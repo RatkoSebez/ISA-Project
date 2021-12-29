@@ -1,10 +1,8 @@
-package com.example.client;
+package com.example.Model;
 
-import com.example.security.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,25 +10,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.*;
 
+// treba dodati promenljivu koja ce drzati listu rola
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client implements UserDetails {
+@Table(name="Users")
+public class User implements UserDetails {
     @Id
-//    @SequenceGenerator(
-//            name = "client_sequence",
-//            sequenceName = "client_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "client_sequence"
-//    )
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    private String email;
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
@@ -38,31 +29,34 @@ public class Client implements UserDetails {
     private String city;
     private String country;
     private String phoneNumber;
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private String role;
     private Boolean locked = false;
     private Boolean enabled = false;
-    private String[] roles; // ROLE_USER{ read, edit }, ROLE_ADMIN
-    private String[] authorities;
+    private GrantedAuthority[] grantedAuthorities;
     private Boolean isNotLocked;
-    //private List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-    public Client(String email, String password, String firstName, String lastName) {
-        this.email = email;
+    public User(String username, String password, String role){
+        this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        //this.grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+        // List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        // grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + this.role));
+        // return this.grantedAuthoritiesList;
+        //return new ArrayList<>();
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+
+        list.add(new SimpleGrantedAuthority(this.role));
+
+        return list;
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.username;
     }
 
     @Override
