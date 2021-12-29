@@ -29,13 +29,13 @@ public class User implements UserDetails {
     private String city;
     private String country;
     private String phoneNumber;
-    private String role;
+    private UserRole role;
     private Boolean locked = false;
     private Boolean enabled = false;
     private GrantedAuthority[] grantedAuthorities;
     private Boolean isNotLocked;
 
-    public User(String username, String password, String role){
+    public User(String username, String password, UserRole role){
         this.username = username;
         this.password = password;
         this.role = role;
@@ -49,7 +49,7 @@ public class User implements UserDetails {
         //return new ArrayList<>();
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 
-        list.add(new SimpleGrantedAuthority(this.role));
+        list.add(new SimpleGrantedAuthority(this.role.name()));
 
         return list;
     }
