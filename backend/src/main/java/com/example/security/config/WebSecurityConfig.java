@@ -1,6 +1,6 @@
 package com.example.security.config;
 
-import com.example.Service.ClientService;
+import com.example.Service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 @Configuration
 @AllArgsConstructor
@@ -23,7 +18,7 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-    private final ClientService clientService;
+    private final UserService clientService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -31,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/client/**", "/", "/css/*", "/js/*").permitAll()
+                    .antMatchers("/api/**", "/", "/css/*", "/js/*").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin()

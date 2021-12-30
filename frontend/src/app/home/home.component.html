@@ -1,1 +1,20 @@
 <app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <div class="col-sm" *ngFor="let weekendCottage of weekendCottages">
+            <div class="card" style="width: 18rem;">
+                <img src="../assets/vikendica.jpg" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ weekendCottage.name }}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                        content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>Vikendice: {{weekendCottages | json}}</p>
+
+<!-- *ngFor="let hero of heroes" -->
