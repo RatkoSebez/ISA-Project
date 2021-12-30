@@ -1,12 +1,11 @@
 package com.example;
 
-import com.example.Model.User;
-import com.example.Model.UserRole;
-import com.example.Model.WeekendCottage;
-import com.example.Repository.UserRepository;
-import com.example.Repository.WeekendCottageRepository;
+import com.example.model.User;
+import com.example.model.UserRole;
+import com.example.model.WeekendCottage;
+import com.example.repository.UserRepository;
+import com.example.repository.WeekendCottageRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

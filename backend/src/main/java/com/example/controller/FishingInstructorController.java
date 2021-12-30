@@ -1,9 +1,9 @@
-package com.example.Controller;
+package com.example.controller;
 
 
-import com.example.DTO.FishingInstructorDTO;
-import com.example.Model.FishingInstructor;
-import com.example.Service.FishingInstructorService;
+import com.example.dto.FishingInstructorDTO;
+import com.example.model.FishingInstructor;
+import com.example.service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

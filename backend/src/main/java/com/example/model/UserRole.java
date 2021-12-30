@@ -1,4 +1,4 @@
-package com.example.Model;
+package com.example.model;
 
 public enum UserRole {
     ROLE_CLIENT,

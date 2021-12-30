@@ -1,6 +1,6 @@
 package com.example.security.config;
 
-import com.example.Service.UserService;
+import com.example.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

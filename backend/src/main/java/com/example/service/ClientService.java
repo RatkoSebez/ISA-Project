@@ -1,7 +1,7 @@
-package com.example.Service;
+package com.example.service;
 
-import com.example.Model.User;
-import com.example.Repository.UserRepository;
+import com.example.model.User;
+import com.example.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

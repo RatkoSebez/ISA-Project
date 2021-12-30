@@ -1,7 +1,7 @@
-package com.example.Service;
+package com.example.service;
 
-import com.example.Model.WeekendCottage;
-import com.example.Repository.WeekendCottageRepository;
+import com.example.model.WeekendCottage;
+import com.example.repository.WeekendCottageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

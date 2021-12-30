@@ -1,19 +1,42 @@
-package com.example.DTO;
+package com.example.model;
 
-import com.example.Model.FishingInstructor;
+import javax.persistence.*;
 
-public class FishingInstructorDTO {
+@Entity
+public class FishingInstructor{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "firstName", nullable = false)
     private String firstName;
+
+    @Column(name = "LastName", nullable = false)
     private String lastName;
+
+    @Column(name = "adress", nullable = false)
     private String adress;
+
+    @Column(name = "city", nullable = false)
     private String city;
+
+    @Column(name = "country", nullable = false)
     private String country;
+
+    @Column(name = "phoneNumber", nullable = false)
     private String phoneNumber;
 
-    public FishingInstructorDTO(long id, String email, String password, String firstName, String lastName, String adress, String city, String country, String phoneNumber) {
+    public FishingInstructor() {
+    }
+
+    public FishingInstructor(long id, String email, String password, String firstName, String lastName, String adress, String city, String country, String phoneNumber) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -25,9 +48,15 @@ public class FishingInstructorDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public FishingInstructorDTO(FishingInstructor fishingInstructor) {
-        this(fishingInstructor.getId(), fishingInstructor.getEmail(), fishingInstructor.getPassword(), fishingInstructor.getFirstName(), fishingInstructor.getLastName(),
-                fishingInstructor.getAdress(), fishingInstructor.getCity(), fishingInstructor.getCountry(), fishingInstructor.getPhoneNumber());
+    public FishingInstructor(String email, String password, String firstName, String lastName, String adress, String city, String country, String phoneNumber) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adress = adress;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
     }
 
     public long getId() {

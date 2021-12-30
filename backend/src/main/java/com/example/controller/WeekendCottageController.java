@@ -1,7 +1,7 @@
-package com.example.Controller;
+package com.example.controller;
 
-import com.example.Model.WeekendCottage;
-import com.example.Service.WeekendCottageService;
+import com.example.model.WeekendCottage;
+import com.example.service.WeekendCottageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

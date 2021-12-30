@@ -1,7 +1,7 @@
-package com.example.Service;
+package com.example.service;
 
-import com.example.Model.FishingInstructor;
-import com.example.Repository.FishingInstructorRepository;
+import com.example.model.FishingInstructor;
+import com.example.repository.FishingInstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
