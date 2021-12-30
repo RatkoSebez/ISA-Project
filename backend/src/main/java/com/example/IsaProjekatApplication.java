@@ -26,5 +26,6 @@ public class IsaProjekatApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         userRepository.save(new User("user", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_CLIENT));
+        userRepository.save(new User("user2", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_ADMIN));
     }
 }

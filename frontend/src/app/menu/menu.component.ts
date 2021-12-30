@@ -9,11 +9,12 @@ import { map } from 'rxjs/operators';
 })
 export class MenuComponent implements OnInit {
 
-  getData: any;
+  user: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {  
+    this.doGet();
   }
 
   doGet(){
@@ -24,8 +25,19 @@ export class MenuComponent implements OnInit {
     // this.http.get<any>('api/client').subscribe(data => {
     //     this.getData = JSON.stringify(data.total);
     // })    
-    this.http.get('api/client').subscribe(val => console.log(val));
+    this.http.get('api/client').subscribe(val => this.user = val);
     //console.log(this.getData);
   }
+
+  // doPost(){
+  //   this.http.post<any>('http://localhost:8080/login', { 'username': 'user', 'password': '123' }).subscribe(data => {
+        
+  //   })
+  // }
+
+  // logout(){
+  //   this.http.get('http://localhost:8080/login?logout').subscribe();
+  //   console.log('ovde');
+  // }
 
 }

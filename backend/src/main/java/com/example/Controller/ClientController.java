@@ -3,6 +3,8 @@ package com.example.Controller;
 import com.example.Model.User;
 import com.example.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +16,12 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    // @CrossOrigin(origins = "http://localhost:4200")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CLIENT')")
     @GetMapping()
-    public String testApi(){
-        // System.out.println("ejjj");
-        // return new Client("emial", "sifra", "ime", "prezime");
+    public User testApi(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((User)principal).getUsername();
-//        List<GrantedAuthority> authorityes = ((Client)principal).getGrantedAuthorities();
-//        for(GrantedAuthority authority : authorityes){
-//            System.out.println("e");
-//            System.out.println(authority);
-//        }
-        //System.out.println("e");
-        return username;
+        return (User)principal;
     }
 
     @GetMapping("test")
@@ -37,11 +30,19 @@ public class ClientController {
         return "klijent je ulogovan";
     }
 
+    @GetMapping("test2")
+    public String test2(){
+        return "klijent je ulogovan";
+    }
+
     @PostMapping()
-    public String postTest(@RequestBody User client) {
-        clientService.registerClient(client);
-        System.out.println(client.getUsername());
-        return "radi";
-        // return new ResponseEntity<>(new Client(), HttpStatus.CREATED);
+    @PreAuthorize("hasRole('CLIENT')")
+    public ResponseEntity<User> registerClient(@RequestBody User user) {
+        clientService.registerClient(user);
+        // System.out.println(user.getUsername());
+        // System.out.println("test");
+        // return "radi";
+        ResponseEntity<User> userResponseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
+        return userResponseEntity;
     }
 }

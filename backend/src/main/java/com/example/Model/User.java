@@ -32,7 +32,6 @@ public class User implements UserDetails {
     private UserRole role;
     private Boolean locked = false;
     private Boolean enabled = false;
-    private GrantedAuthority[] grantedAuthorities;
     private Boolean isNotLocked;
 
     public User(String username, String password, UserRole role){

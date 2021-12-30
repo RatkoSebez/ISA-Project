@@ -39,18 +39,23 @@
                 </ul>
                 <ul class="navbar-nav ms-auto text-center">
                     <li class="nav-item">
-                        <a href="login" class="nav-link">Login</a>
+                        <a href="http://localhost:8080/login" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://localhost:8080/logout" class="nav-link">Logout</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
 
-    <button (click)=doGet()>klik</button>
-    <p>{{getData}}nesto</p>
+    <!-- <button (click)=doGet()>uzmi usera</button> -->
+    <!-- WARNING!!! -->
+    <!-- ovo je samo demonstrativno, ne salji password na front, vec neki DTO -->
+    <p>Ulogovan korisnik: {{user | json}}</p>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
