@@ -1,0 +1,15 @@
+.cottage-border {
+  /* background-color: rgb(224, 226, 226); */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.img-cottage {
+  width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.col-sm-4 {
+  padding: 0;
+}

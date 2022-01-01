@@ -16,13 +16,11 @@ public class WeekendCottageController {
 
     @GetMapping()
     public List<WeekendCottage> getAllWeekendCottages(){
-        System.out.println("pozvan sam");
         return weekendCottageService.getAllWeekendCottages();
     }
 
     @GetMapping(path = "{id}")
-    public Optional<WeekendCottage> getWeekendCottage(@PathVariable  Long id){
-        System.out.println("pozvan sam");
+    public Optional<WeekendCottage> getWeekendCottage(@PathVariable Long id){
         return weekendCottageService.getWeekendCottage(id);
     }
 }

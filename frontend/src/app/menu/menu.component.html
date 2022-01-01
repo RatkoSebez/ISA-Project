@@ -31,21 +31,21 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-center">
                     <li class="nav-item active">
-                        <a href="" class="nav-link active">Pricing</a>
+                        <a href="" class="nav-link active" [ngClass]="pricing ? 'is-active' : 'is-not-active'">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">About</a>
+                        <a href="" class="nav-link" [ngClass]="about ? 'is-active' : 'is-not-active'">About</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto text-center">
                     <li class="nav-item">
-                        <a href="http://localhost:8080/login" class="nav-link">Login</a>
+                        <a href="http://localhost:8080/login" class="nav-link" [ngClass]="login ? 'is-active' : 'is-not-active'">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Register</a>
+                        <a href="" class="nav-link" [ngClass]="register ? 'is-active' : 'is-not-active'">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost:8080/logout" class="nav-link">Logout</a>
+                        <a href="http://localhost:8080/logout" class="nav-link" [ngClass]="logout ? 'is-active' : 'is-not-active'">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -55,7 +55,7 @@
     <!-- <button (click)=doGet()>uzmi usera</button> -->
     <!-- WARNING!!! -->
     <!-- ovo je samo demonstrativno, ne salji password na front, vec neki DTO -->
-    <p>Ulogovan korisnik: {{user | json}}</p>
+    <!-- <p>Ulogovan korisnik: {{user | json}}</p> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 

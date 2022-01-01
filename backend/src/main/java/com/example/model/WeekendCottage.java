@@ -18,8 +18,10 @@ public class WeekendCottage {
     private Long id;
     private String name;
     private String address;
+    @Column(columnDefinition="TEXT")
     private String description;
     private Double rating;
+    private String image;
 //    @OneToMany(targetEntity = String.class, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "cottage_fk", referencedColumnName = "id")
 //    @ElementCollection
@@ -32,11 +34,12 @@ public class WeekendCottage {
     private String rulesOfConduct;
 //    private String priceList;
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image){
         this.name = name;
         this.address = address;
         this.description = description;
         this.rating = rating;
         this.rulesOfConduct = rulesOfConduct;
+        this.image = image;
     }
 }
