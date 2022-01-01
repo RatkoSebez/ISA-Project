@@ -1,9 +1,11 @@
+<app-menu></app-menu>
+
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 mt-5 pt-5">
             <div class="row z-depth-3 cottage-border">
                 <div class="col-sm-4 rounded-left">
-                    <img src="{{ weekendCottage.image }}" class="img-cottage" alt="">
+                    <img src="{{ boat.image }}" class="img-cottage" alt="">
                     <!-- <div class="card-block text-center rext-white">
                         <i class="fas fa-user-tie fa-7x mt-5"></i>
                         <h2 class="font-weight-bold mt-4">{{ weekendCottage.name }}</h2>
@@ -16,18 +18,18 @@
                     <!-- <hr class="badge-primary mt-0 w-25"> -->
                     <div class="row">
                         <p class="font-weight-bold">Name: </p>
-                        <h6 class="text-muted">{{ weekendCottage.name }}</h6>
+                        <h6 class="text-muted">{{ boat.name }}</h6>
                         <p class="font-weight-bold">Description: </p>
-                        <h6 class="text-muted">{{ weekendCottage.description }}</h6>
+                        <h6 class="text-muted">{{ boat.description }}</h6>
                         <p class="font-weight-bold">Address: </p>
-                        <h6 class="text-muted">{{ weekendCottage.address }}</h6>
-                        <p class="font-weight-bold">Rules of conduct: </p>
-                        <h6 class="text-muted">{{ weekendCottage.rulesOfConduct }}</h6>
+                        <h6 class="text-muted">{{ boat.address }}</h6>
                         <p class="font-weight-bold">Average rating: </p>
-                        <h6 class="text-muted">{{ weekendCottage.rating }}</h6>
+                        <h6 class="text-muted">{{ boat.rating }}</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

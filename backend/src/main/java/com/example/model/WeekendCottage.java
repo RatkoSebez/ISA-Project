@@ -31,6 +31,7 @@ public class WeekendCottage {
 //    private Integer numberOfRooms;
 //    @ElementCollection
 //    private List<Integer> numberOfBedsInRoom;
+    @Column(columnDefinition="TEXT")
     private String rulesOfConduct;
 //    private String priceList;
 
