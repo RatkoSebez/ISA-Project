@@ -10,10 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './weekend-cottage-card/card.component';
 import { WeekendCottageInfoComponent } from './weekend-cottage-info/weekend-cottage-info.component';
 import { FooterComponent } from './footer/footer.component';
 import { WeekendCottageInfoCardComponent } from './weekend-cottage-info-card/weekend-cottage-info-card.component';
+import { BoatInfoCardComponent } from './boat-info-card/boat-info-card.component';
+import { BoatCardComponent } from './boat-card/boat-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { WeekendCottageInfoCardComponent } from './weekend-cottage-info-card/wee
     CardComponent,
     WeekendCottageInfoComponent,
     FooterComponent,
-    WeekendCottageInfoCardComponent
+    WeekendCottageInfoCardComponent,
+    BoatInfoCardComponent,
+    BoatCardComponent
   ],
   imports: [
     BrowserModule,

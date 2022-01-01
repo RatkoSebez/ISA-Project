@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm" *ngFor="let boat of boats">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ boat.image }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ boat.name }}</h5>
+                    <p class="card-text">{{ boat.description | slice:0:200
+                        }}{{boat.description.length > 200 ? '...' : ''}}</p>
+                    <p class="card-text">{{ boat.address }}</p>
+                    <p class="card-text">Average rating: {{ boat.rating }}</p>
+                    <a href="/boat?id={{ boat.id }}" class="btn btn-primary">See more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
