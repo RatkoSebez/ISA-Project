@@ -23,6 +23,7 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String email; // novo
     private String firstName;
     private String lastName;
     private String address;
@@ -33,6 +34,10 @@ public class User implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
     private Boolean isNotLocked;
+
+
+
+
 
     public User(String username, String password, UserRole role){
         this.username = username;

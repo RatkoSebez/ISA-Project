@@ -1,12 +1,12 @@
 package com.example.controller;
 
 
-import com.example.dto.FishingInstructorDTO;
-import com.example.model.FishingInstructor;
+import com.example.model.User;
 import com.example.service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +21,48 @@ public class FishingInstructorController {
     public FishingInstructorController(FishingInstructorService fishingInstructorService) {
         this.fishingInstructorService = fishingInstructorService;
     }
+    
+
+    @DeleteMapping(path = "{fishingInstructorId}")
+    public Boolean deleteFishingInstructorById(@PathVariable("fishingInstructorId") Long fishingInstructorId){
+        return fishingInstructorService.deleteFishingInstructorById(fishingInstructorId);
+    }
+
+    @DeleteMapping(path = "{fishingInstructorUsername}")
+    public Boolean deleteFishingInstructorByUsername(@PathVariable("fishingInstructorUsername") String fishingInstructorUsername){
+        return fishingInstructorService.deleteFishingInstructorByUsername(fishingInstructorUsername);
+    }
+
+
+    @GetMapping
+    public List<User> getFishingInstructors(){
+        return fishingInstructorService.getFishingInstructors();
+    }
+
+    @PostMapping()
+    public ResponseEntity<User> registerFishingInstructor(@RequestBody User user) {
+        fishingInstructorService.registerFishingInstructor(user);
+        ResponseEntity<User> userResponseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
+        return userResponseEntity;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
     @GetMapping
     public List<FishingInstructor> getFishingInstructors(){
@@ -43,7 +85,7 @@ public class FishingInstructorController {
         fishingInstructor = fishingInstructorService.save(fishingInstructor);
         return new ResponseEntity<>(new FishingInstructorDTO(fishingInstructor), HttpStatus.CREATED);
     }
-
+*/
 
 
 }
