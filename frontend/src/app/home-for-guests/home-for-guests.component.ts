@@ -10,22 +10,35 @@ import { CardComponent } from '../weekend-cottage-card/card.component';
   styleUrls: ['./home-for-guests.component.css']
 })
 export class HomeForGuestsComponent implements OnInit {
-  public name = '';
-  public address = '';
-  public description = '';
+  public nameCottage = '';
+  public addressCottage = '';
+  public descriptionCottage = '';
+  public nameBoat = '';
+  public descriptionBoat = '';
+  public capacityBoat!: number;
 
   public constructor(private cottageComponent: CardComponent) {
     
   }
 
-  public getName(){
-    return this.name;
+  public getNameCottage(){
+    return this.nameCottage;
   }
-  public getAddress(){
-    return this.address;
+  public getAddressCottage(){
+    return this.addressCottage;
   }
-  public getDescription(){
-    return this.description;
+  public getDescriptionCottage(){
+    return this.descriptionCottage;
+  }
+  public getNameBoat(){
+    return this.nameBoat;
+  }
+  public getDescriptionBoat(){
+    return this.descriptionBoat;
+  }
+  public getCapacityBoat(){
+    //console.log(this.capacityBoat);
+    return this.capacityBoat;
   }
 
   ngOnInit(): void {

@@ -2,25 +2,26 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { HomeForGuestsComponent } from '../home-for-guests/home-for-guests.component';
 
 @Pipe({
-  name: 'cottagesFilter',
+  name: 'boatsFilter',
   pure: false
 })
-export class CottagesFilterPipe implements PipeTransform {
+export class BoatsFilterPipe implements PipeTransform {
 
   constructor(private homeForGuestsComponent: HomeForGuestsComponent){
-
   }
 
   transform(value: any[], filter: string, propName: string): any[] {
-    var name = this.homeForGuestsComponent.getNameCottage();
-    var address = this.homeForGuestsComponent.getAddressCottage();
-    var description = this.homeForGuestsComponent.getDescriptionCottage();
+    var name = this.homeForGuestsComponent.getNameBoat();
+    var description = this.homeForGuestsComponent.getDescriptionBoat();
+    //var capacity = this.homeForGuestsComponent.getCapacityBoat();
+    //capacity = parseInt(capacity);
+    //console.log(typeof(capacity))
     const resultArray = [];
     if(value.length === 0 || name === '' || propName === ''){
       return value;
     }
     for(const item of value){
-      if(item['name'].includes(name) && item['address'].includes(address) && item['description'].includes(description)){
+      if(item['name'].includes(name) && item['description'].includes(description)){
         resultArray.push(item);
       }
     }

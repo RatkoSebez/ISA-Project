@@ -17,6 +17,7 @@ import { BoatInfoPageComponent } from './boat-info-page/boat-info-page.component
 import { WeekendCottageInfoPageComponent } from './weekend-cottage-info-page/weekend-cottage-info-page.component';
 import { CottagesFilterPipe } from './pipes/cottages-filter.pipe';
 import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.component';
+import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.compon
     BoatInfoPageComponent,
     WeekendCottageInfoPageComponent,
     CottagesFilterPipe,
-    HomeForGuestsComponent
+    HomeForGuestsComponent,
+    BoatsFilterPipe
   ],
   imports: [
     BrowserModule,

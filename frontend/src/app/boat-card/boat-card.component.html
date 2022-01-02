@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm" *ngFor="let boat of boats">
+        <div class="col-sm" *ngFor="let boat of boats | boatsFilter:'':'name'">
             <div class="card" style="width: 18rem;">
                 <img src="{{ boat.image }}" class="card-img-top" alt="">
                 <div class="card-body">
