@@ -18,6 +18,7 @@ import { WeekendCottageInfoPageComponent } from './weekend-cottage-info-page/wee
 import { CottagesFilterPipe } from './pipes/cottages-filter.pipe';
 import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.component';
 import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
     WeekendCottageInfoPageComponent,
     CottagesFilterPipe,
     HomeForGuestsComponent,
-    BoatsFilterPipe
+    BoatsFilterPipe,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
