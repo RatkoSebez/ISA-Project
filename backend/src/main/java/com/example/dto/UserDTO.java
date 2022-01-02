@@ -4,7 +4,7 @@ import com.example.model.UserRole;
 
 import java.util.List;
 
-public class FishingInstructorDTO {
+public class UserDTO {
     public Long id;
     public String username;
     private String password;
@@ -20,9 +20,9 @@ public class FishingInstructorDTO {
     private String explanationOfRegistration;
 
 
-    public FishingInstructorDTO(){}
+    public UserDTO(){}
 
-    public FishingInstructorDTO(Long id, String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, String explanationOfRegistration) {
+    public UserDTO(Long id, String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, String explanationOfRegistration) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -38,7 +38,7 @@ public class FishingInstructorDTO {
         this.explanationOfRegistration = explanationOfRegistration;
     }
 
-    public FishingInstructorDTO(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, String explanationOfRegistration) {
+    public UserDTO(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, String explanationOfRegistration) {
         this.username = username;
         this.password = password;
         this.email = email;

@@ -36,12 +36,11 @@ public class User implements UserDetails {
     private Boolean enabled = false;
     private Boolean isNotLocked;
 
-    @Transient
-    private List<RegistrationRequest> listRegistrationRequests = new ArrayList<RegistrationRequest>(); // NE RADI BEZ @Transient, KADA SE OSTAVI OVAKO ONDA NE RADI UBACIVANJE U LISTU, TJ. U BAZI SE NISTA NE DESAVA
-
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<RegistrationRequest> listRegistrationRequests = new HashSet<RegistrationRequest>();
 
     //Administrator
-    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, List<RegistrationRequest> listRegistrationRequests) {
+    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, Set<RegistrationRequest> listRegistrationRequests) {
         this.id = id;
         this.username = username;
         this.password = password;

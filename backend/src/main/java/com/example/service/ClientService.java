@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -12,14 +13,18 @@ public class ClientService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public String registerClient(User user){
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+    public User registerClient(UserDTO clientDTO){
+        boolean userExists = userRepository.findByEmail(clientDTO.getEmail()).isPresent();
         if(userExists){
-            throw new IllegalStateException("username already taken");
+            throw new IllegalStateException("email already taken");
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        userRepository.save(user);
-        return "registration works";
+        User newClient = new User(clientDTO.getUsername(), clientDTO.getPassword(), clientDTO.getEmail(),
+                clientDTO.getFirstName(), clientDTO.getLastName(), clientDTO.getAddress(), clientDTO.getCity(), clientDTO.getCountry(),
+                clientDTO.getPhoneNumber(), clientDTO.getRole(), false);
+
+        String encodedPassword = bCryptPasswordEncoder.encode(newClient.getPassword());
+        newClient.setPassword(encodedPassword);
+        userRepository.save(newClient);
+        return newClient;
     }
 }

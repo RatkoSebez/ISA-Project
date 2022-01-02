@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.FishingInstructorDTO;
+import com.example.dto.UserDTO;
 import com.example.model.RegistrationRequest;
 import com.example.model.User;
 import com.example.model.UserRole;
@@ -38,10 +38,10 @@ public class FishingInstructorService {
         return fishingInstructors;
     };
 
-    public User registerFishingInstructor(FishingInstructorDTO fishingInstructor){
-        boolean userExists = fishingInstructorRepository.findByUsername(fishingInstructor.getUsername()).isPresent();
+    public User registerFishingInstructor(UserDTO fishingInstructor){
+        boolean userExists = fishingInstructorRepository.findByEmail(fishingInstructor.getEmail()).isPresent();
         if(userExists){
-            throw new IllegalStateException("username already taken");
+            throw new IllegalStateException("email already taken");
         }
         User newFishingInstructor = new User(fishingInstructor.getUsername(), fishingInstructor.getPassword(), fishingInstructor.getEmail(),
                 fishingInstructor.getFirstName(), fishingInstructor.getLastName(), fishingInstructor.getAddress(), fishingInstructor.getCity(), fishingInstructor.getCountry(),
@@ -55,7 +55,7 @@ public class FishingInstructorService {
     }
 
 
-    private void sendRegistrationRequest(FishingInstructorDTO fishingInstructor){
+    private void sendRegistrationRequest(UserDTO fishingInstructor){
         RegistrationRequest newRegistrationRequest = new RegistrationRequest(fishingInstructor);
 
         List<User> listAllUsers = fishingInstructorRepository.findAll();

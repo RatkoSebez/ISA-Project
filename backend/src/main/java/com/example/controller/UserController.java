@@ -1,8 +1,10 @@
 package com.example.controller;
 
+import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.model.UserRole;
 import com.example.service.ClientService;
+import com.example.service.FishingInstructorService;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +18,20 @@ public class UserController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private FishingInstructorService fishingInstructorService;
+
+
     @PostMapping()
-    public ResponseEntity<User> registerClient(@RequestBody User user) {
-        if(user.getRole() == UserRole.ROLE_CLIENT){
-            clientService.registerClient(user);
+    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
+        User user = new User();
+        if(userDTO.getRole() == UserRole.ROLE_CLIENT){
+            user = clientService.registerClient(userDTO);
         }
+        if(userDTO.getRole() == UserRole.ROLE_FISHINGI){
+             user = fishingInstructorService.registerFishingInstructor(userDTO);
+        }
+
         ResponseEntity<User> userResponseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
         return userResponseEntity;
     }

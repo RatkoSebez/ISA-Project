@@ -1,9 +1,19 @@
 package com.example.model;
 
-import com.example.dto.FishingInstructorDTO;
+import com.example.dto.UserDTO;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class RegistrationRequest {
-    public String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+ //   private Long userId;
+    private String username;
     private String password;
     private String email;
     private String firstName;
@@ -18,7 +28,7 @@ public class RegistrationRequest {
 
     public RegistrationRequest(){}
 
-    public RegistrationRequest(FishingInstructorDTO fishingInstructorDTO){
+    public RegistrationRequest(UserDTO fishingInstructorDTO){
         this(fishingInstructorDTO.getUsername(), fishingInstructorDTO.getPassword(), fishingInstructorDTO.getEmail(), fishingInstructorDTO.getFirstName(), fishingInstructorDTO.getLastName(),
                 fishingInstructorDTO.getAddress(), fishingInstructorDTO.getCity(), fishingInstructorDTO.getCountry(), fishingInstructorDTO.getPhoneNumber(), fishingInstructorDTO.getRole(),
                 fishingInstructorDTO.getLocked(), fishingInstructorDTO.getExplanationOfRegistration());
@@ -26,6 +36,22 @@ public class RegistrationRequest {
 
 
     public RegistrationRequest(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, String explanationOfRegistration) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.locked = locked;
+        this.explanationOfRegistration = explanationOfRegistration;
+    }
+
+    public RegistrationRequest(Long id, String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, String explanationOfRegistration) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;

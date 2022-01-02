@@ -11,9 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -30,7 +28,7 @@ public class IsaProjekatApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        List<RegistrationRequest> listRegistrationRequests = new ArrayList<RegistrationRequest>();
+        Set<RegistrationRequest> listRegistrationRequests = new HashSet<RegistrationRequest>();
         listRegistrationRequests.add(new RegistrationRequest("tt", "tt", "tt", "tt", "tt", "tt", "tt", "tt", "tt", UserRole.ROLE_FISHINGI, true, "tt"));
 
 
