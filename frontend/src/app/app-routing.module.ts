@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoatInfoCardComponent } from './boat-info-card/boat-info-card.component';
+import { BoatInfoPageComponent } from './boat-info-page/boat-info-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { WeekendCottageInfoComponent } from './weekend-cottage-info/weekend-cottage-info.component';
+import { WeekendCottageInfoPageComponent } from './weekend-cottage-info-page/weekend-cottage-info-page.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "home", component: HomeComponent},
-  {path: "weekendCottage", component: WeekendCottageInfoComponent},
-  {path: "boat", component: BoatInfoCardComponent},
+  {path: "weekendCottage", component: WeekendCottageInfoPageComponent},
+  {path: "boat", component: BoatInfoPageComponent},
   {path: "", redirectTo: '/home', pathMatch: 'full'},
   {path: "**", component: PageNotFoundComponent}
 ];

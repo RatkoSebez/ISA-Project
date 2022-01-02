@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Boat } from '../model/Boat';
 
 @Component({
-  selector: 'app-boat-info-card',
-  templateUrl: './boat-info-card.component.html',
-  styleUrls: ['./boat-info-card.component.css']
+  selector: 'app-boat-info-page',
+  templateUrl: './boat-info-page.component.html',
+  styleUrls: ['./boat-info-page.component.css']
 })
-export class BoatInfoCardComponent implements OnInit {
+export class BoatInfoPageComponent implements OnInit {
 
   boat!: Boat;
 

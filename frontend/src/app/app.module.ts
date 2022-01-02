@@ -11,11 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CardComponent } from './weekend-cottage-card/card.component';
-import { WeekendCottageInfoComponent } from './weekend-cottage-info/weekend-cottage-info.component';
 import { FooterComponent } from './footer/footer.component';
-import { WeekendCottageInfoCardComponent } from './weekend-cottage-info-card/weekend-cottage-info-card.component';
-import { BoatInfoCardComponent } from './boat-info-card/boat-info-card.component';
 import { BoatCardComponent } from './boat-card/boat-card.component';
+import { BoatInfoPageComponent } from './boat-info-page/boat-info-page.component';
+import { WeekendCottageInfoPageComponent } from './weekend-cottage-info-page/weekend-cottage-info-page.component';
+import { CottagesFilterPipe } from './pipes/cottages-filter.pipe';
+import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,12 @@ import { BoatCardComponent } from './boat-card/boat-card.component';
     MenuComponent,
     PageNotFoundComponent,
     CardComponent,
-    WeekendCottageInfoComponent,
     FooterComponent,
-    WeekendCottageInfoCardComponent,
-    BoatInfoCardComponent,
-    BoatCardComponent
+    BoatCardComponent,
+    BoatInfoPageComponent,
+    WeekendCottageInfoPageComponent,
+    CottagesFilterPipe,
+    HomeForGuestsComponent
   ],
   imports: [
     BrowserModule,

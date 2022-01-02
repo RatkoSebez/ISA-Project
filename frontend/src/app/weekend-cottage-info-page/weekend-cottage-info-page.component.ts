@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { WeekendCottage } from '../model/WeekendCottage';
 
 @Component({
-  selector: 'app-weekend-cottage-info-card',
-  templateUrl: './weekend-cottage-info-card.component.html',
-  styleUrls: ['./weekend-cottage-info-card.component.css']
+  selector: 'app-weekend-cottage-info-page',
+  templateUrl: './weekend-cottage-info-page.component.html',
+  styleUrls: ['./weekend-cottage-info-page.component.css']
 })
-export class WeekendCottageInfoCardComponent implements OnInit {
+export class WeekendCottageInfoPageComponent implements OnInit {
 
   weekendCottage!: WeekendCottage;
 
@@ -25,4 +25,5 @@ export class WeekendCottageInfoCardComponent implements OnInit {
         );
     });
   }
+
 }

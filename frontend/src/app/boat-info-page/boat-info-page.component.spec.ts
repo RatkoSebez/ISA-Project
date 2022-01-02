@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoatInfoCardComponent } from './boat-info-card.component';
+import { BoatInfoPageComponent } from './boat-info-page.component';
 
-describe('BoatInfoCardComponent', () => {
-  let component: BoatInfoCardComponent;
-  let fixture: ComponentFixture<BoatInfoCardComponent>;
+describe('BoatInfoPageComponent', () => {
+  let component: BoatInfoPageComponent;
+  let fixture: ComponentFixture<BoatInfoPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BoatInfoCardComponent ]
+      declarations: [ BoatInfoPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BoatInfoCardComponent);
+    fixture = TestBed.createComponent(BoatInfoPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

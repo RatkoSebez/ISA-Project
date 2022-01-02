@@ -1,6 +1,6 @@
-<div class="container">
+ <div class="container">
     <div class="row">
-        <div class="col-sm" *ngFor="let weekendCottage of weekendCottages">
+        <div class="col-sm" *ngFor="let weekendCottage of weekendCottages | cottagesFilter:'':'name'">
             <div class="card" style="width: 18rem;">
                 <img src="{{ weekendCottage.image }}" class="card-img-top" alt="">
                 <div class="card-body">
