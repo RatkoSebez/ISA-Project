@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
     // this.http.get<any>('api/client').subscribe(data => {
     //     this.getData = JSON.stringify(data.total);
     // })    
-    this.http.get('api/client').subscribe(val => {
+    this.http.get('api/user').subscribe(val => {
       this.user = val;
       if(val) {
         this.logout = true;
