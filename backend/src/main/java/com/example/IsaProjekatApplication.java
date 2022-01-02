@@ -34,9 +34,9 @@ public class IsaProjekatApplication implements ApplicationRunner {
         listRegistrationRequests.add(new RegistrationRequest("tt", "tt", "tt", "tt", "tt", "tt", "tt", "tt", "tt", UserRole.ROLE_FISHINGI, true, "tt"));
 
 
-        userRepository.save(new User("user", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_CLIENT));
+        userRepository.save(new User("user@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_CLIENT));
        // userRepository.save(new User("user2", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_ADMIN));
-        userRepository.save(new User("admin", "123", "administrator@gmail.com", "ImeAdmin", "PrezimeAdmin", "AdresaAdmin", "NS", "Serb", "12412412", UserRole.ROLE_ADMIN, false,  listRegistrationRequests));
+        userRepository.save(new User("admin@gmail.com", "123", "administrator@gmail.com", "ImeAdmin", "PrezimeAdmin", "AdresaAdmin", "NS", "Serb", "12412412", UserRole.ROLE_ADMIN, false,  listRegistrationRequests));
         weekendCottageRepository.save(new WeekendCottage("vikendica", "adresa", "ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));

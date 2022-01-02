@@ -73,8 +73,8 @@ public class User implements UserDetails {
         this.locked = locked;
     }
 
-    public User(String username, String password, UserRole role){
-        this.username = username;
+    public User(String email, String password, UserRole role){
+        this.email = email;
         this.password = password;
         this.role = role;
     }
@@ -94,7 +94,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override
