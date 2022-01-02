@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.dto.FishingInstructorDTO;
+import com.example.model.RegistrationRequest;
 import com.example.model.User;
 import com.example.model.UserRole;
 import com.example.repository.FishingInstructorRepository;
@@ -36,15 +38,34 @@ public class FishingInstructorService {
         return fishingInstructors;
     };
 
-    public User registerFishingInstructor(User fishingInstructor){
+    public User registerFishingInstructor(FishingInstructorDTO fishingInstructor){
         boolean userExists = fishingInstructorRepository.findByUsername(fishingInstructor.getUsername()).isPresent();
         if(userExists){
             throw new IllegalStateException("username already taken");
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(fishingInstructor.getPassword());
-        fishingInstructor.setPassword(encodedPassword);
-        fishingInstructorRepository.save(fishingInstructor);
-        return fishingInstructor;
+        User newFishingInstructor = new User(fishingInstructor.getUsername(), fishingInstructor.getPassword(), fishingInstructor.getEmail(),
+                fishingInstructor.getFirstName(), fishingInstructor.getLastName(), fishingInstructor.getAddress(), fishingInstructor.getCity(), fishingInstructor.getCountry(),
+                fishingInstructor.getPhoneNumber(), fishingInstructor.getRole(), true);
+
+        String encodedPassword = bCryptPasswordEncoder.encode(newFishingInstructor.getPassword());
+        newFishingInstructor.setPassword(encodedPassword);
+        fishingInstructorRepository.save(newFishingInstructor);
+        sendRegistrationRequest(fishingInstructor);
+        return newFishingInstructor;
+    }
+
+
+    private void sendRegistrationRequest(FishingInstructorDTO fishingInstructor){
+        RegistrationRequest newRegistrationRequest = new RegistrationRequest(fishingInstructor);
+
+        List<User> listAllUsers = fishingInstructorRepository.findAll();
+        for (int i = 0; i < listAllUsers.size(); i++) {
+            if(listAllUsers.get(i).getRole().equals(UserRole.ROLE_ADMIN)){
+                listAllUsers.get(i).getListRegistrationRequests().add(newRegistrationRequest);
+                fishingInstructorRepository.save(listAllUsers.get(i));
+                break;
+            }
+        }
     }
 
 

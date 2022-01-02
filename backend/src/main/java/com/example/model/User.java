@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.servlet.Registration;
 import java.util.*;
 
 // treba dodati promenljivu koja ce drzati listu rola
@@ -35,9 +36,42 @@ public class User implements UserDetails {
     private Boolean enabled = false;
     private Boolean isNotLocked;
 
+    @Transient
+    private List<RegistrationRequest> listRegistrationRequests = new ArrayList<RegistrationRequest>(); // NE RADI BEZ @Transient, KADA SE OSTAVI OVAKO ONDA NE RADI UBACIVANJE U LISTU, TJ. U BAZI SE NISTA NE DESAVA
 
 
+    //Administrator
+    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, List<RegistrationRequest> listRegistrationRequests) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.locked = locked;
+        this.listRegistrationRequests = listRegistrationRequests;
+    }
 
+    //FishingInstructor
+    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.locked = locked;
+    }
 
     public User(String username, String password, UserRole role){
         this.username = username;
