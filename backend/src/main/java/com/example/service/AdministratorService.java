@@ -1,14 +1,14 @@
 package com.example.service;
 
 
+import com.example.model.RegistrationRequest;
 import com.example.model.User;
 import com.example.model.UserRole;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AdministratorService {
@@ -35,4 +35,55 @@ public class AdministratorService {
         return administrators;
 
     }
+
+    public boolean acceptRegistrationRequest(RegistrationRequest registrationRequest) {
+        User user;
+        User admin;
+        user = getUserFromRegistrationRequest(registrationRequest);
+
+        if(user == null){
+            return false;
+        }
+        user.setLocked(false);
+        administratorRepository.save(user);
+
+        admin = getAdminWhoHasRegistrationRequest(registrationRequest);
+        if(admin == null){
+            return false;
+        }
+
+        admin.getListRegistrationRequests().remove(registrationRequest);
+        administratorRepository.save(admin);
+
+        return true;
+    }
+
+    private User getUserFromRegistrationRequest(RegistrationRequest registrationRequest){
+        List<User> listAllUsers = administratorRepository.findAll();
+        User user = new User();
+
+        for (int i = 0; i < listAllUsers.size(); i++) {
+            if(listAllUsers.get(i).getEmail().equals(registrationRequest.getEmail())){
+                 return user = listAllUsers.get(i);
+            }
+        }
+        return null;
+    }
+
+    private User getAdminWhoHasRegistrationRequest(RegistrationRequest registrationRequest){
+        List<User> listAllUsers = administratorRepository.findAll();
+        User admin = new User();
+
+        // NE MOGU DA NADJEM ADMINA KOJI IMA TAJ ZAHTJEV DA BI GA UKLONIO SA TE NJEGOVE LISTE
+        for (int i = 0; i < listAllUsers.size(); i++) {
+           if(listAllUsers.get(i).getRole().equals(UserRole.ROLE_ADMIN)){
+               if( listAllUsers.get(i).getListRegistrationRequests().contains(registrationRequest)){
+                   return  listAllUsers.get(i);
+               }
+
+           }
+        }
+        return null;
+    }
+
 }

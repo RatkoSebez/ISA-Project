@@ -28,7 +28,7 @@ public class IsaProjekatApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        Set<RegistrationRequest> listRegistrationRequests = new HashSet<RegistrationRequest>();
+        Set<RegistrationRequest> listRegistrationRequests = new HashSet<>();
         listRegistrationRequests.add(new RegistrationRequest("tt", "tt", "tt", "tt", "tt", "tt", "tt", "tt", "tt", UserRole.ROLE_FISHINGI, true, "tt"));
 
 

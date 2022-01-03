@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private Boolean isNotLocked;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<RegistrationRequest> listRegistrationRequests = new HashSet<RegistrationRequest>();
+    private Set<RegistrationRequest> listRegistrationRequests = new HashSet<>();
 
     //Administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, Set<RegistrationRequest> listRegistrationRequests) {
