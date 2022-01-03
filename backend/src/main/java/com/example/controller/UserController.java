@@ -3,9 +3,8 @@ package com.example.controller;
 import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.model.UserRole;
-import com.example.service.ClientService;
+import com.example.service.RegistrationService;
 import com.example.service.FishingInstructorService;
-import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/user")
 public class UserController {
     @Autowired
-    private ClientService clientService;
+    private RegistrationService registrationService;
 
     @Autowired
     private FishingInstructorService fishingInstructorService;
@@ -24,14 +23,7 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
-        User user = new User();
-        if(userDTO.getRole() == UserRole.ROLE_CLIENT){
-            user = clientService.registerClient(userDTO);
-        }
-        if(userDTO.getRole() == UserRole.ROLE_FISHINGI){
-             user = fishingInstructorService.registerFishingInstructor(userDTO);
-        }
-
+        User user = registrationService.registerUser(userDTO);
         ResponseEntity<User> userResponseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
         return userResponseEntity;
     }

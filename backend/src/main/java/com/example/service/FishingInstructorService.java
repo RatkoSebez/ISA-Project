@@ -38,21 +38,21 @@ public class FishingInstructorService {
         return fishingInstructors;
     };
 
-    public User registerFishingInstructor(UserDTO fishingInstructor){
-        boolean userExists = fishingInstructorRepository.findByEmail(fishingInstructor.getEmail()).isPresent();
-        if(userExists){
-            throw new IllegalStateException("email already taken");
-        }
-        User newFishingInstructor = new User(fishingInstructor.getUsername(), fishingInstructor.getPassword(), fishingInstructor.getEmail(),
-                fishingInstructor.getFirstName(), fishingInstructor.getLastName(), fishingInstructor.getAddress(), fishingInstructor.getCity(), fishingInstructor.getCountry(),
-                fishingInstructor.getPhoneNumber(), fishingInstructor.getRole(), true);
-
-        String encodedPassword = bCryptPasswordEncoder.encode(newFishingInstructor.getPassword());
-        newFishingInstructor.setPassword(encodedPassword);
-        fishingInstructorRepository.save(newFishingInstructor);
-        sendRegistrationRequest(fishingInstructor);
-        return newFishingInstructor;
-    }
+//    public User registerFishingInstructor(UserDTO fishingInstructor){
+//        boolean userExists = fishingInstructorRepository.findByEmail(fishingInstructor.getEmail()).isPresent();
+//        if(userExists){
+//            throw new IllegalStateException("email already taken");
+//        }
+//        User newFishingInstructor = new User(fishingInstructor.getUsername(), fishingInstructor.getPassword(), fishingInstructor.getEmail(),
+//                fishingInstructor.getFirstName(), fishingInstructor.getLastName(), fishingInstructor.getAddress(), fishingInstructor.getCity(), fishingInstructor.getCountry(),
+//                fishingInstructor.getPhoneNumber(), fishingInstructor.getRole(), true);
+//
+//        String encodedPassword = bCryptPasswordEncoder.encode(newFishingInstructor.getPassword());
+//        newFishingInstructor.setPassword(encodedPassword);
+//        fishingInstructorRepository.save(newFishingInstructor);
+//        sendRegistrationRequest(fishingInstructor);
+//        return newFishingInstructor;
+//    }
 
 
     private void sendRegistrationRequest(UserDTO fishingInstructor){
