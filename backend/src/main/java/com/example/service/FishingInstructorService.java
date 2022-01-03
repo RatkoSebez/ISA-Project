@@ -55,18 +55,18 @@ public class FishingInstructorService {
 //    }
 
 
-    private void sendRegistrationRequest(UserDTO fishingInstructor){
-        RegistrationRequest newRegistrationRequest = new RegistrationRequest(fishingInstructor);
-
-        List<User> listAllUsers = fishingInstructorRepository.findAll();
-        for (int i = 0; i < listAllUsers.size(); i++) {
-            if(listAllUsers.get(i).getRole().equals(UserRole.ROLE_ADMIN)){
-                listAllUsers.get(i).getListRegistrationRequests().add(newRegistrationRequest);
-                fishingInstructorRepository.save(listAllUsers.get(i));
-                break;
-            }
-        }
-    }
+//    private void sendRegistrationRequest(UserDTO fishingInstructor){
+//        RegistrationRequest newRegistrationRequest = new RegistrationRequest(fishingInstructor);
+//
+//        List<User> listAllUsers = fishingInstructorRepository.findAll();
+//        for (int i = 0; i < listAllUsers.size(); i++) {
+//            if(listAllUsers.get(i).getRole().equals(UserRole.ROLE_ADMIN)){
+//                listAllUsers.get(i).getListRegistrationRequests().add(newRegistrationRequest);
+//                fishingInstructorRepository.save(listAllUsers.get(i));
+//                break;
+//            }
+//        }
+//    }
 
 
     public Boolean deleteFishingInstructorById(Long fishingInstructorId) {

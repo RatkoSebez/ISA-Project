@@ -30,10 +30,10 @@ public class AdministratorController {
     }
 
 
-    @PostMapping(value = "/acceptRegistrationRequest")
-    public boolean acceptRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
-        return administratorService.acceptRegistrationRequest(registrationRequest);
-    }
+//    @PostMapping(value = "/acceptRegistrationRequest")
+//    public boolean acceptRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
+//        return administratorService.acceptRegistrationRequest(registrationRequest);
+//    }
 
     @PostMapping(value = "/declineRegistrationRequest")
     public void declineRegistrationRequest(){
