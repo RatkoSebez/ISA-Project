@@ -10,6 +10,11 @@ export class MenuComponent implements OnInit {
 
   user: any;
   show = true;
+  login = true;
+  register = true;
+  about = true;
+  pricing = true;
+  logout = false;
 
   constructor(private http: HttpClient, private renderer: Renderer2, private elem: ElementRef) { }
 
