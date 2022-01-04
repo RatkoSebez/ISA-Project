@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class MenuComponent implements OnInit {
 
-  user: any;
+  user: any = "nema";
   login = true;
   register = true;
   about = true;
