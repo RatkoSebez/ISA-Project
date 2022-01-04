@@ -19,6 +19,9 @@ import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.compon
 import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
 import { RegisterComponent } from './register/register.component';
 import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
+import { HomeForClientComponent } from './home-for-client/home-for-client.component';
+import { BoatsPageComponent } from './boats-page/boats-page.component';
+import { WeekendCottagesPageComponent } from './weekend-cottages-page/weekend-cottages-page.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { UserInfoPageComponent } from './user-info-page/user-info-page.component
     HomeForGuestsComponent,
     BoatsFilterPipe,
     RegisterComponent,
-    UserInfoPageComponent
+    UserInfoPageComponent,
+    HomeForClientComponent,
+    BoatsPageComponent,
+    WeekendCottagesPageComponent
   ],
   imports: [
     BrowserModule,

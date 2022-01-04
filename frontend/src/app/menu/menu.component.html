@@ -31,24 +31,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-center">
                     <li class="nav-item active">
-                        <a href="" class="nav-link active" [ngClass]="pricing ? 'is-active' : 'is-not-active'">Pricing</a>
+                        <a href="/cottages" class="nav-link active">Cottages</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link" [ngClass]="about ? 'is-active' : 'is-not-active'">About</a>
+                        <a href="/boats" class="nav-link">Boats</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto text-center">
                     <li class="nav-item">
-                        <a href="http://localhost:8080/login" class="nav-link" [ngClass]="login ? 'is-active' : 'is-not-active'">Login</a>
+                        <a href="http://localhost:8080/login" class="nav-link" [ngClass]="show ? 'is-active' : 'is-not-active'">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/register" class="nav-link" [ngClass]="register ? 'is-active' : 'is-not-active'">Register</a>
+                        <a href="/register" class="nav-link" [ngClass]="show ? 'is-active' : 'is-not-active'">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/user" class="nav-link" [ngClass]="user ? 'is-active' : 'is-not-active'">User profile</a>
+                        <a href="/user" class="nav-link" [ngClass]="show ? 'is-not-active' : 'is-active'">User profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost:8080/logout" class="nav-link" [ngClass]="logout ? 'is-active' : 'is-not-active'">Logout</a>
+                        <a href="http://localhost:8080/logout" class="nav-link" (click)='changeShow()' [ngClass]="show ? 'is-not-active' : 'is-active'">Logout</a>
                     </li>
                 </ul>
             </div>

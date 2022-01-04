@@ -1,3 +1,4 @@
 <app-menu></app-menu>
-<app-home-for-guests></app-home-for-guests>
+<app-home-for-guests [ngClass]="guest ? 'is-active' : 'is-not-active'"></app-home-for-guests>
+<app-home-for-client [ngClass]="client ? 'is-active' : 'is-not-active'"></app-home-for-client>
 <app-footer></app-footer>

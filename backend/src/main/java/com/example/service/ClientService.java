@@ -28,7 +28,7 @@ public class ClientService {
         User newUser = new User(encodedPassword, user.getEmail(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getCity(), user.getCountry(), user.getPhoneNumber(), oldUser.getId(), UserRole.ROLE_CLIENT);
         userRepository.save(newUser);
         Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, newUser.getPassword(), newUser.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);      
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return newUser;
     }
 }

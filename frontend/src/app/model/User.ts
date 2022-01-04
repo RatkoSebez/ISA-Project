@@ -7,6 +7,6 @@ export class User{
         public city: string,
         public country: string,
         public phoneNumber: number,
-        public role: number
+        public role: string
     ){}
 }
