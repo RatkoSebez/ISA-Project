@@ -1,8 +1,6 @@
 package com.example.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +9,9 @@ import javax.persistence.*;
 import javax.servlet.Registration;
 import java.util.*;
 
-// treba dodati promenljivu koja ce drzati listu rola
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Users")
@@ -68,6 +66,20 @@ public class User implements UserDetails {
         this.locked = locked;
     }
 
+    //Client
+    public User(String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, Long id, UserRole role) {
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.id = id;
+        this.role = role;
+    }
+
     public User(String email, String password, UserRole role){
         this.email = email;
         this.password = password;
@@ -110,5 +122,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setFirstName(String name){
+        this.firstName = name;
     }
 }
