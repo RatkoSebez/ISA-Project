@@ -53,13 +53,17 @@
                     [(ngModel)]="city">
             </p>
             <p>
-                <label for="password" class="sr-only">Phone NUmber</label>
+                <label for="password" class="sr-only">Phone Number</label>
                 <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required="" [(ngModel)]="phoneNumber">
             </p>
-            <select class="form-select mb-3" aria-label="" id="roleSelect">
+            <select class="form-select mb-3" aria-label="" id="roleSelect" (change)="onChange()">
                 <option value="0">Client</option>
                 <option value="2">Fishing Instructor</option>
             </select>
+            <p *ngIf='showExplanation'>
+                <label for="password" class="sr-only">Explanation Of Registration</label>
+                <input  type="text" id="explanation" name="Explanation" class="form-control" placeholder="Explanation Of Registration" required="" [(ngModel)]="explanation">
+            </p>
             <button class="btn btn-lg btn-primary btn-block" (click)="register()">Register</button>
         </form>
     </div>

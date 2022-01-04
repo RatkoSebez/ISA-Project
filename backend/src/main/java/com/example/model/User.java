@@ -36,6 +36,9 @@ public class User implements UserDetails {
     private Boolean enabled = false;
     private Boolean isNotLocked;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<WeekendCottage> cottages = new HashSet<WeekendCottage>();
+
     //Administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, Set<RegistrationRequest> listRegistrationRequests) {
         this.id = id;
@@ -85,6 +88,16 @@ public class User implements UserDetails {
         list.add(new SimpleGrantedAuthority(this.role.name()));
 
         return list;
+    }
+
+    public void addWeekendCottage(WeekendCottage cott){
+        cottages.add(cott);
+        cott.setUser(this);
+    }
+
+    public void removeWeekendCottage(WeekendCottage cott){
+        cottages.remove(cott);
+        cott.setUser(null);
     }
 
     @Override
