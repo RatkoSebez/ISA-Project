@@ -18,6 +18,7 @@ import { CottagesFilterPipe } from './pipes/cottages-filter.pipe';
 import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.component';
 import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
 import { RegisterComponent } from './register/register.component';
+import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RegisterComponent } from './register/register.component';
     CottagesFilterPipe,
     HomeForGuestsComponent,
     BoatsFilterPipe,
-    RegisterComponent
+    RegisterComponent,
+    UserInfoPageComponent
   ],
   imports: [
     BrowserModule,
