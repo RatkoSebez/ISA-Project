@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { BoatsPageComponent } from '../boats-page/boats-page.component';
 import { HomeForGuestsComponent } from '../home-for-guests/home-for-guests.component';
 
 @Pipe({
@@ -7,12 +8,12 @@ import { HomeForGuestsComponent } from '../home-for-guests/home-for-guests.compo
 })
 export class BoatsFilterPipe implements PipeTransform {
 
-  constructor(private homeForGuestsComponent: HomeForGuestsComponent){
+  constructor(private boatsPageComponent: BoatsPageComponent){
   }
 
   transform(value: any[], filter: string, propName: string): any[] {
-    var name = this.homeForGuestsComponent.getNameBoat();
-    var description = this.homeForGuestsComponent.getDescriptionBoat();
+    var name = this.boatsPageComponent.getNameBoat();
+    var description = this.boatsPageComponent.getDescriptionBoat();
     //var capacity = this.homeForGuestsComponent.getCapacityBoat();
     //capacity = parseInt(capacity);
     //console.log(typeof(capacity))
@@ -28,5 +29,4 @@ export class BoatsFilterPipe implements PipeTransform {
     
     return resultArray;
   }
-
 }

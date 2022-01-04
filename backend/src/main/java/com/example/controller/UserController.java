@@ -33,7 +33,9 @@ public class UserController {
     @GetMapping()
     public User getLoggedInUser(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //if(principal == null) return null;
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        //System.out.println("user: " + name);
+        //if(name.equals("")) return new User();
         return (User)principal;
     }
 

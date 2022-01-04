@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boats-page.component.css']
 })
 export class BoatsPageComponent implements OnInit {
+  public nameBoat = '';
+  public descriptionBoat = '';
+  public capacityBoat!: number;
 
-  constructor() { }
+  public constructor() {}
+
+  public getNameBoat(){
+    return this.nameBoat;
+  }
+  public getDescriptionBoat(){
+    return this.descriptionBoat;
+  }
+  public getCapacityBoat(){
+    return this.capacityBoat;
+  }
 
   ngOnInit(): void {
   }
-
 }

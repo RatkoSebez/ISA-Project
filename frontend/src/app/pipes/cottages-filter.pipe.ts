@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { HomeForGuestsComponent } from '../home-for-guests/home-for-guests.component';
+import { WeekendCottagesPageComponent } from '../weekend-cottages-page/weekend-cottages-page.component';
 
 @Pipe({
   name: 'cottagesFilter',
@@ -7,14 +7,14 @@ import { HomeForGuestsComponent } from '../home-for-guests/home-for-guests.compo
 })
 export class CottagesFilterPipe implements PipeTransform {
 
-  constructor(private homeForGuestsComponent: HomeForGuestsComponent){
+  constructor(private weekendCottagesPageComponent: WeekendCottagesPageComponent){
 
   }
 
   transform(value: any[], filter: string, propName: string): any[] {
-    var name = this.homeForGuestsComponent.getNameCottage();
-    var address = this.homeForGuestsComponent.getAddressCottage();
-    var description = this.homeForGuestsComponent.getDescriptionCottage();
+    var name = this.weekendCottagesPageComponent.getNameCottage();
+    var address = this.weekendCottagesPageComponent.getAddressCottage();
+    var description = this.weekendCottagesPageComponent.getDescriptionCottage();
     const resultArray = [];
     if(value.length === 0 || name === '' || propName === ''){
       return value;
