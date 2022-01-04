@@ -16,8 +16,6 @@ export class RegisterComponent implements OnInit {
   public city = '';
   public phoneNumber = '';
   public role = 0;
-  public explanation = null;
-  showExplanation: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +27,7 @@ export class RegisterComponent implements OnInit {
     var sel = e.selectedIndex;
     var opt = e.options[sel];
     var CurValue = (<HTMLSelectElement><unknown>opt).value;
-    var rol: number = +CurValue;
+    //console.log('ajde: ' + CurValue)
     var postData = {
       email: this.email,
       password: this.password,
@@ -39,25 +37,12 @@ export class RegisterComponent implements OnInit {
       country: this.country,
       city: this.city,
       phoneNumber: this.phoneNumber,
-      role: rol,
-      explanationOfRegistration: this.explanation
+      role: this.role
     }
     console.log('registrujem: ' + this.email + this.password + this.firstName + this.lastName);
     this.http.post("api/user", postData).toPromise().then(data => {
       console.log(data);
     });
-  }
-
-  onChange(){
-    var e = (document.getElementById("roleSelect")) as HTMLSelectElement;
-    var sel = e.selectedIndex;
-    var opt = e.options[sel];
-    var CurValue = (<HTMLSelectElement><unknown>opt).value;
-    var rol: number = +CurValue;
-    if(rol != 0){
-      this.showExplanation = true;
-    }
-    else{ this.showExplanation = false;}
   }
 
 }

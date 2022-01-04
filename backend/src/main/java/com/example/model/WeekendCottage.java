@@ -35,9 +35,6 @@ public class WeekendCottage {
 //    private List<Integer> numberOfBedsInRoom;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id")
-    private User user;
 
     @Column(columnDefinition="TEXT")
     private String rulesOfConduct;

@@ -25,7 +25,7 @@ public class RegistrationService {
         if(userExists){
             throw new IllegalStateException("email already taken");
         }
-        if(userDTO.getRole() == UserRole.ROLE_CLIENT){
+        if(userDTO.getRole() == UserRole.ROLE_ADMIN){
             newUser = new User(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAddress(), userDTO.getCity(), userDTO.getCountry(),
                     userDTO.getPhoneNumber(), userDTO.getRole(), false);
@@ -33,7 +33,7 @@ public class RegistrationService {
         else{
             RegistrationRequest newRR = new RegistrationRequest(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAddress(), userDTO.getCity(), userDTO.getCountry(),
-                    userDTO.getPhoneNumber(), userDTO.getRole(), true, userDTO.getExplanationOfRegistration());
+                    userDTO.getPhoneNumber(), userDTO.getRole(), true, "Volim pecati");
             newUser = new User(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAddress(), userDTO.getCity(), userDTO.getCountry(),
                     userDTO.getPhoneNumber(), userDTO.getRole(), true);
