@@ -30,6 +30,9 @@ public class Boat {
     private String priceList;
     @Column(columnDefinition="TEXT")
     private String additionalServices;
+    @OneToMany(targetEntity = ReservationBoat.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "foreign_key", referencedColumnName = "id")
+    private List<ReservationBoat> reservations;
 
     public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices) {
         this.name = name;
@@ -40,5 +43,10 @@ public class Boat {
         this.rating = rating;
         this.priceList = priceList;
         this.additionalServices = additionalServices;
+    }
+
+    public Boat(String name, List<ReservationBoat> reservations){
+        this.name = name;
+        this.reservations = reservations;
     }
 }

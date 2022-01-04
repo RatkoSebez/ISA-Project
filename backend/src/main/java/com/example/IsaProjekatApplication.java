@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.model.*;
 import com.example.repository.BoatRepository;
+import com.example.repository.ReservationBoatRepository;
 import com.example.repository.UserRepository;
 import com.example.repository.WeekendCottageRepository;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class IsaProjekatApplication implements ApplicationRunner {
     private UserRepository userRepository;
     private WeekendCottageRepository weekendCottageRepository;
     private BoatRepository boatRepository;
+    private ReservationBoatRepository reservationBoatRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(IsaProjekatApplication.class, args);
@@ -41,5 +43,15 @@ public class IsaProjekatApplication implements ApplicationRunner {
         boatRepository.save(new Boat("brod3", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod4", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod5", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
+        List<ReservationBoat> reservations = new ArrayList<>();
+        reservations.add(new ReservationBoat(new Date(), new Date()));
+        Boat brod = new Boat("brod", reservations);
+        boatRepository.save(brod);
+        List<ReservationBoat> reservations2 = brod.getReservations();
+        for(ReservationBoat reservation : reservations2){
+            System.out.println("-------------------" + reservation.getId());
+            System.out.println("-------------------" + reservation.getStartDate());
+            System.out.println("-------------------" + reservation.getEndDate());
+        }
     }
 }
