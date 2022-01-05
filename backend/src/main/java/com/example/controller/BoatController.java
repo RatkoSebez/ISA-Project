@@ -38,4 +38,9 @@ public class BoatController {
         Boolean ans = boatService.makeReservation(boatReservationDTO);
         return ans;
     }
+
+    @DeleteMapping(path = "/reservation/{id}")
+    public Boolean deleteBoatReservation(@PathVariable Long id){
+        return boatService.cancelReservation(id);
+    }
 }
