@@ -30,7 +30,7 @@ public class Boat {
     private String priceList;
     @Column(columnDefinition="TEXT")
     private String additionalServices;
-    @OneToMany(targetEntity = ReservationBoat.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = ReservationBoat.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
     private List<ReservationBoat> reservations;
 

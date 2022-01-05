@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,11 +18,13 @@ public class ReservationBoat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String clientEmail;
 
-    public ReservationBoat(Date start, Date end){
+    public ReservationBoat(LocalDate start, LocalDate end, String clientEmail){
         this.startDate = start;
         this.endDate = end;
+        this.clientEmail = clientEmail;
     }
 }

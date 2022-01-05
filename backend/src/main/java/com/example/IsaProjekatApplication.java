@@ -44,7 +44,7 @@ public class IsaProjekatApplication implements ApplicationRunner {
         boatRepository.save(new Boat("brod4", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod5", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         List<ReservationBoat> reservations = new ArrayList<>();
-        reservations.add(new ReservationBoat(new Date(), new Date()));
+        reservations.add(new ReservationBoat(LocalDate.of(2000, 2, 3), LocalDate.of(1999, 6, 21), "user@gmail.com"));
         Boat brod = new Boat("brod", reservations);
         boatRepository.save(brod);
         List<ReservationBoat> reservations2 = brod.getReservations();
