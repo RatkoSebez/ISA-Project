@@ -16,9 +16,9 @@ export class CottagesFilterPipe implements PipeTransform {
     var address = this.weekendCottagesPageComponent.getAddressCottage();
     var description = this.weekendCottagesPageComponent.getDescriptionCottage();
     const resultArray = [];
-    if(value.length === 0 || name === '' || propName === ''){
-      return value;
-    }
+    // if(value.length === 0 || name === '' || propName === ''){
+    //   return value;
+    // }
     for(const item of value){
       if(item['name'].includes(name) && item['address'].includes(address) && item['description'].includes(description)){
         resultArray.push(item);

@@ -38,20 +38,22 @@ public class IsaProjekatApplication implements ApplicationRunner {
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
-        boatRepository.save(new Boat("brod1", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
+        List<ReservationBoat> reservations = new ArrayList<>();
+        reservations.add(new ReservationBoat(LocalDate.of(2021, 12, 28), LocalDate.of(2022, 1, 3), "user@gmail.com"));
+        boatRepository.save(new Boat("brod1", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi", reservations));
         boatRepository.save(new Boat("brod2", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod3", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod4", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod5", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
-        List<ReservationBoat> reservations = new ArrayList<>();
-        reservations.add(new ReservationBoat(LocalDate.of(2000, 2, 3), LocalDate.of(1999, 6, 21), "user@gmail.com"));
-        Boat brod = new Boat("brod", reservations);
-        boatRepository.save(brod);
-        List<ReservationBoat> reservations2 = brod.getReservations();
-        for(ReservationBoat reservation : reservations2){
-            System.out.println("-------------------" + reservation.getId());
-            System.out.println("-------------------" + reservation.getStartDate());
-            System.out.println("-------------------" + reservation.getEndDate());
-        }
+//        List<ReservationBoat> reservations = new ArrayList<>();
+//        reservations.add(new ReservationBoat(LocalDate.of(2000, 2, 3), LocalDate.of(1999, 6, 21), "user@gmail.com"));
+//        Boat brod = new Boat("brod", reservations);
+//        boatRepository.save(brod);
+//        List<ReservationBoat> reservations2 = brod.getReservations();
+//        for(ReservationBoat reservation : reservations2){
+//            System.out.println("-------------------" + reservation.getId());
+//            System.out.println("-------------------" + reservation.getStartDate());
+//            System.out.println("-------------------" + reservation.getEndDate());
+//        }
     }
 }

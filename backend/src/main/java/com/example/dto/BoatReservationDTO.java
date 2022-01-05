@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class BoatReservationDTO {
     private LocalDate startDate;
-    private Integer days;
+    private LocalDate endDate;
     private Integer guests;
     private Long boatId;
 }

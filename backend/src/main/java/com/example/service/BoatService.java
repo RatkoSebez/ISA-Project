@@ -33,13 +33,13 @@ public class BoatService {
 //        System.out.println(boatReservationDTO.getGuests());
         List<ReservationBoat> reservations = boat.getReservations();
         for(ReservationBoat reservation : reservations){
-            if(boatReservationDTO.getStartDate().isAfter(reservation.getEndDate()) || boatReservationDTO.getStartDate().plusDays(boatReservationDTO.getDays()).isBefore(reservation.getStartDate())){}
+            if(boatReservationDTO.getStartDate().isAfter(reservation.getEndDate()) || boatReservationDTO.getEndDate().isBefore(reservation.getStartDate())){}
             //ako se opseg nove rezervacije poklapa sa nekim datumom postojece rezervacije, onda ne pravim novu rezervaciju
             else return false;
         }
 //        List<ReservationBoat> reservations = boat.getReservations();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getStartDate().plusDays(boatReservationDTO.getDays()), email));
+        reservations.add(new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email));
         boat.setReservations(reservations);
         boatRepository.save(boat);
         return true;

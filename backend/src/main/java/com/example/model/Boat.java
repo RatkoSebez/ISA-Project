@@ -45,6 +45,18 @@ public class Boat {
         this.additionalServices = additionalServices;
     }
 
+    public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices, List<ReservationBoat> reservations) {
+        this.name = name;
+        this.address = address;
+        this.description = description;
+        this.image = image;
+        this.capacity = capacity;
+        this.rating = rating;
+        this.priceList = priceList;
+        this.additionalServices = additionalServices;
+        this.reservations = reservations;
+    }
+
     public Boat(String name, List<ReservationBoat> reservations){
         this.name = name;
         this.reservations = reservations;

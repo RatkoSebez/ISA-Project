@@ -1,3 +1,5 @@
+import { BoatReservation } from "./BoatReservation";
+
 export class Boat{
     constructor(
         public id: number,
@@ -8,6 +10,7 @@ export class Boat{
         public image: string,
         public capacity: number,
         public priceList: string,
-        public additionalServices: string
+        public additionalServices: string,
+        public reservations: Array<BoatReservation>
     ){}
 }
