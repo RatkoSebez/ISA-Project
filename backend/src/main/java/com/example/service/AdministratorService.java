@@ -1,10 +1,13 @@
 package com.example.service;
 
 
+import com.example.dto.DeleteAccountRequestDTO;
 import com.example.dto.UserDTO;
+import com.example.model.DeleteAccountRequest;
 import com.example.model.RegistrationRequest;
 import com.example.model.User;
 import com.example.model.UserRole;
+import com.example.repository.DeleteAccountRequestRepository;
 import com.example.repository.RegistrationRequestRepository;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +24,15 @@ public class AdministratorService {
     @Autowired
     private final RegistrationRequestRepository registrationRequestRepository;
     @Autowired
+    private final DeleteAccountRequestRepository deleteAccountRequestRepository;
+    @Autowired
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public AdministratorService(UserRepository administratorRepository, RegistrationRequestRepository registrationRequestRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AdministratorService(UserRepository administratorRepository, RegistrationRequestRepository registrationRequestRepository, DeleteAccountRequestRepository deleteAccountRequestRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.administratorRepository = administratorRepository;
         this.registrationRequestRepository = registrationRequestRepository;
+        this.deleteAccountRequestRepository = deleteAccountRequestRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -124,4 +130,20 @@ public class AdministratorService {
         }
     }
 
+    public List<DeleteAccountRequest> getDeleteAccountRequests() {
+        return deleteAccountRequestRepository.findAll();
+    }
+
+    public boolean acceptDeleteAccountRequest(DeleteAccountRequestDTO deleteAccountRequestDTO) {
+        administratorRepository.deleteById(deleteAccountRequestDTO.getUserId());
+        DeleteAccountRequest deleteAccountRequest = deleteAccountRequestRepository.findDeleteAccountRequestById(deleteAccountRequestDTO.getUserId());
+        deleteAccountRequestRepository.deleteById(deleteAccountRequest.getId());
+        return true;
+    }
+
+    public boolean declineDeleteAccountRequest(DeleteAccountRequestDTO deleteAccountRequestDTO) {
+        DeleteAccountRequest deleteAccountRequest = deleteAccountRequestRepository.findDeleteAccountRequestById(deleteAccountRequestDTO.getUserId());
+        deleteAccountRequestRepository.deleteById(deleteAccountRequest.getId());
+        return true;
+    }
 }

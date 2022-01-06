@@ -1,10 +1,13 @@
 package com.example.service;
 
+import com.example.dto.DeleteAccountRequestDTO;
 import com.example.dto.FishingServiceDTO;
 import com.example.dto.UserDTO;
+import com.example.model.DeleteAccountRequest;
 import com.example.model.FishingService;
 import com.example.model.User;
 import com.example.model.UserRole;
+import com.example.repository.DeleteAccountRequestRepository;
 import com.example.repository.FishingInstructorRepository;
 import com.example.repository.FishingServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +25,14 @@ public class FishingInstructorService {
     @Autowired
     private final FishingServiceRepository fishingServiceRepository;
     @Autowired
+    private final DeleteAccountRequestRepository deleteAccountRequestRepository;
+    @Autowired
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public FishingInstructorService(FishingInstructorRepository fishingInstructorRepository, FishingServiceRepository fishingServiceRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public FishingInstructorService(FishingInstructorRepository fishingInstructorRepository, FishingServiceRepository fishingServiceRepository, DeleteAccountRequestRepository deleteAccountRequestRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.fishingInstructorRepository = fishingInstructorRepository;
         this.fishingServiceRepository = fishingServiceRepository;
+        this.deleteAccountRequestRepository = deleteAccountRequestRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -177,5 +183,9 @@ public class FishingInstructorService {
         }
     }
 
-
+    public DeleteAccountRequest sendDeleteAccountRequest(DeleteAccountRequestDTO deleteAccountRequestDTO) {
+        DeleteAccountRequest newDeleteAccountRequest = new DeleteAccountRequest(deleteAccountRequestDTO.getReason(), deleteAccountRequestDTO.getUserId());
+        deleteAccountRequestRepository.save(newDeleteAccountRequest);
+        return newDeleteAccountRequest;
+    }
 }

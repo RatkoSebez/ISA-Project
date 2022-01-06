@@ -1,8 +1,10 @@
 package com.example.controller;
 
 
+import com.example.dto.DeleteAccountRequestDTO;
 import com.example.dto.FishingServiceDTO;
 import com.example.dto.UserDTO;
+import com.example.model.DeleteAccountRequest;
 import com.example.model.FishingService;
 import com.example.model.User;
 import com.example.service.FishingInstructorService;
@@ -48,6 +50,13 @@ public class FishingInstructorController {
         User editedFishingInstructor = fishingInstructorService.editFishingInstructor(userDTO);
         ResponseEntity<User> userResponseEntity = new ResponseEntity<>(editedFishingInstructor, HttpStatus.OK);
         return userResponseEntity;
+    }
+
+    @PostMapping(value = "/sendDeleteAccountRequest", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<DeleteAccountRequest> sendDeleteAccountRequest(@RequestBody DeleteAccountRequestDTO deleteAccountRequestDTO) {
+        DeleteAccountRequest newDeleteAccountRequest = fishingInstructorService.sendDeleteAccountRequest(deleteAccountRequestDTO);
+        ResponseEntity<DeleteAccountRequest> DeleteAccReqResponseEntity = new ResponseEntity<>(newDeleteAccountRequest, HttpStatus.CREATED);
+        return DeleteAccReqResponseEntity;
     }
 
 

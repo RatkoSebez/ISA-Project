@@ -1,7 +1,9 @@
 package com.example.controller;
 
 
+import com.example.dto.DeleteAccountRequestDTO;
 import com.example.dto.UserDTO;
+import com.example.model.DeleteAccountRequest;
 import com.example.model.RegistrationRequest;
 import com.example.model.User;
 import com.example.service.AdministratorService;
@@ -29,7 +31,6 @@ public class AdministratorController {
         return administratorService.getAdministrators();
     }
 
-
     @PostMapping(value = "/acceptRegistrationRequest")
     public boolean acceptRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
         return administratorService.acceptRegistrationRequest(registrationRequest);
@@ -39,7 +40,6 @@ public class AdministratorController {
     public boolean declineRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
         return administratorService.declineRegistrationRequest(registrationRequest);
     }
-
 
     @PutMapping(value = "/editAdministrator")
     public ResponseEntity<User> editAdministrator(@RequestBody UserDTO userDTO){
@@ -65,7 +65,19 @@ public class AdministratorController {
         return administratorService.deleteUserById(userId);
     }
 
+    @GetMapping(value = "/getDeleteAccountRequests")
+    public List<DeleteAccountRequest> getDeleteAccountRequests(){
+        return administratorService.getDeleteAccountRequests();
+    }
 
+    @PostMapping(value = "/acceptDeleteAccountRequest")
+    public boolean acceptDeleteAccountRequest(@RequestBody DeleteAccountRequestDTO deleteAccountRequestDTO){
+        return administratorService.acceptDeleteAccountRequest(deleteAccountRequestDTO);
+    }
 
+    @PostMapping(value = "/declineDeleteAccountRequest")
+    public boolean declineDeleteAccountRequest(@RequestBody DeleteAccountRequestDTO deleteAccountRequestDTO){
+        return administratorService.declineDeleteAccountRequest(deleteAccountRequestDTO);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.model;
 
 import lombok.*;
+import org.hibernate.sql.Delete;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,9 +38,12 @@ public class User implements UserDetails {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<FishingService> fishingServiceList;
 
+
 //    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Set<WeekendCottage> cottages = new HashSet<WeekendCottage>();
 
+
+    //administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {
         this.id = id;
         this.username = username;
