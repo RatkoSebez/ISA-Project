@@ -43,6 +43,13 @@ public class FishingInstructorController {
         return FishingServiceResponseEntity;
     }
 
+    @PutMapping(value = "/editFishingInstructor")
+    public ResponseEntity<User> editFishingInstructor(@RequestBody UserDTO userDTO){
+        User editedFishingInstructor = fishingInstructorService.editFishingInstructor(userDTO);
+        ResponseEntity<User> userResponseEntity = new ResponseEntity<>(editedFishingInstructor, HttpStatus.OK);
+        return userResponseEntity;
+    }
+
 
     /*
     @DeleteMapping(path = "{fishingInstructorId}")

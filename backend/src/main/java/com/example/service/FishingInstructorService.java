@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.FishingServiceDTO;
+import com.example.dto.UserDTO;
 import com.example.model.FishingService;
 import com.example.model.User;
 import com.example.model.UserRole;
@@ -140,5 +141,41 @@ public class FishingInstructorService {
             fishingService.setCancellationPolicy(fishingServiceDTO.getCancellationPolicy());
         }
     }
+
+    public User editFishingInstructor(UserDTO userDTO) {
+        User fishingInstructor = fishingInstructorRepository.findUserByEmail(userDTO.getEmail());
+        updateFishingInstructorFields(userDTO, fishingInstructor);
+        fishingInstructorRepository.save(fishingInstructor);
+        return fishingInstructor;
+    }
+
+    private void updateFishingInstructorFields(UserDTO userDTO, User fishingInstructor) {
+        if( userDTO.getUsername().trim() != "" ) {
+            fishingInstructor.setUsername(userDTO.getUsername());
+        }
+        if( userDTO.getPassword().trim() != "" ) {
+            String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
+            fishingInstructor.setPassword(encodedPassword);
+        }
+        if( userDTO.getFirstName().trim() != "" ) {
+            fishingInstructor.setFirstName(userDTO.getFirstName());
+        }
+        if( userDTO.getLastName().trim() != "" ) {
+            fishingInstructor.setLastName(userDTO.getLastName());
+        }
+        if( userDTO.getLastName().trim() != "" ) {
+            fishingInstructor.setAddress(userDTO.getAddress());
+        }
+        if( userDTO.getCity().trim() != "" ) {
+            fishingInstructor.setCity(userDTO.getCity());
+        }
+        if( userDTO.getCountry().trim() != "" ) {
+            fishingInstructor.setCountry(userDTO.getCountry());
+        }
+        if( userDTO.getPhoneNumber().trim() != "" ) {
+            fishingInstructor.setPhoneNumber(userDTO.getPhoneNumber());
+        }
+    }
+
 
 }
