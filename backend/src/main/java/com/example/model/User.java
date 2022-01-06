@@ -29,9 +29,10 @@ public class User implements UserDetails {
     private String city;
     private String country;
     private String phoneNumber;
+    private String verificationCode = "";
     private UserRole role;
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
     private Boolean isNotLocked;
 
     @OneToMany(targetEntity = FishingService.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -98,14 +99,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-        // grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + this.role));
-        // return this.grantedAuthoritiesList;
-        //return new ArrayList<>();
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-
         list.add(new SimpleGrantedAuthority(this.role.name()));
-
         return list;
     }
 
@@ -141,7 +136,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 
     public void setFirstName(String name){

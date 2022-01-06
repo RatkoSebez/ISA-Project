@@ -3,10 +3,8 @@ package com.example.controller;
 import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.model.UserRole;
-import com.example.service.ClientService;
-import com.example.service.RegistrationService;
-import com.example.service.FishingInstructorService;
-import com.example.service.UserService;
+import com.example.repository.UserRepository;
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +21,10 @@ public class UserController {
     private ClientService clientService;
     @Autowired
     private FishingInstructorService fishingInstructorService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping()
     public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
@@ -48,5 +50,14 @@ public class UserController {
     @DeleteMapping(path = "/{id}")
     public Boolean deleteUser(@PathVariable Long id){
         return clientService.deleteUser(id);
+    }
+
+    @GetMapping(path = "confirmEmail")
+    public Boolean confirmEmail(@RequestParam("code") String code){
+        User user = userService.getUserForConfirmation(code);
+        if(user == null) return false;
+        user.setEnabled(true);
+        userRepository.save(user);
+        return true;
     }
 }

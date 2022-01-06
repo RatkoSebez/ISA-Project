@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   public city = '';
   public phoneNumber = '';
   public role = 0;
+  public clicked = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+    this.clicked = true;
     var e = (document.getElementById("roleSelect")) as HTMLSelectElement;
     var sel = e.selectedIndex;
     var opt = e.options[sel];

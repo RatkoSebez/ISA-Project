@@ -8,12 +8,15 @@ import com.example.model.UserRole;
 import com.example.repository.RegistrationRequestRepository;
 import com.example.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -21,6 +24,7 @@ public class RegistrationService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final RegistrationRequestRepository requestRepository;
+    private final JavaMailSender javaMailSender;
 
     public User registerUser(UserDTO userDTO){
         User newUser = null;
@@ -45,7 +49,22 @@ public class RegistrationService {
 
         String encodedPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPassword);
+        if(newUser.getRole() == UserRole.ROLE_CLIENT) sendConfirmationEmail(newUser);
         userRepository.save(newUser);
         return newUser;
+    }
+
+    private void sendConfirmationEmail(User user){
+        user.setEnabled(false);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        message.setTo(user.getEmail());
+        message.setSubject("Please confirm your email address.");
+        String uniqueID = UUID.randomUUID().toString();
+        user.setVerificationCode(uniqueID);
+        userRepository.save(user);
+        message.setText("http://localhost:8080/api/user/confirmEmail?code=" + uniqueID);
+        javaMailSender.send(message);
+        System.out.println("mejl radi");
     }
 }
