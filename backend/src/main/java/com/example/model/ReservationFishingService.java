@@ -1,20 +1,29 @@
 package com.example.model;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
+@Data
 public class ReservationFishingService {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date dateAndTimeOfReservation;
     private String place;
     private String duration;
-    private String capacityOfPeople;
+    private Integer capacityOfPeople;
     private String additionalServices;
-    private String price;
+    private Integer price;
 
     public ReservationFishingService(){}
 
-    public ReservationFishingService(Long id, Date dateAndTimeOfReservation, String place, String duration, String capacityOfPeople, String additionalServices, String price) {
+    public ReservationFishingService(Long id, Date dateAndTimeOfReservation, String place, String duration, Integer capacityOfPeople, String additionalServices, Integer price) {
         this.id = id;
         this.dateAndTimeOfReservation = dateAndTimeOfReservation;
         this.place = place;
@@ -24,7 +33,7 @@ public class ReservationFishingService {
         this.price = price;
     }
 
-    public ReservationFishingService(Date dateAndTimeOfReservation, String place, String duration, String capacityOfPeople, String additionalServices, String price) {
+    public ReservationFishingService(Date dateAndTimeOfReservation, String place, String duration, Integer capacityOfPeople, String additionalServices, Integer price) {
         this.dateAndTimeOfReservation = dateAndTimeOfReservation;
         this.place = place;
         this.duration = duration;
@@ -65,11 +74,11 @@ public class ReservationFishingService {
         this.duration = duration;
     }
 
-    public String getCapacityOfPeople() {
+    public Integer getCapacityOfPeople() {
         return capacityOfPeople;
     }
 
-    public void setCapacityOfPeople(String capacityOfPeople) {
+    public void setCapacityOfPeople(Integer capacityOfPeople) {
         this.capacityOfPeople = capacityOfPeople;
     }
 
@@ -81,11 +90,11 @@ public class ReservationFishingService {
         this.additionalServices = additionalServices;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }

@@ -41,6 +41,18 @@ public class WeekendCottage {
 
     @Column(columnDefinition="TEXT")
     private String rulesOfConduct;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 //    private String priceList;
 
     public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image){

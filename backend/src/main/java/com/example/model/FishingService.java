@@ -1,47 +1,66 @@
 package com.example.model;
 
-public class FishingService {
+import lombok.Data;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Data
+public class FishingService {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String address;
     private String description;
+    private String aboutFishingInstructor;
     private String images;
-    private String capacityOfPeople;
-    private String freeTerms; // ZA SADA NEKA BUDE STRING, AL TREBA LISTA DATUMA
+    private Integer capacityOfPeople;
+
+    @ElementCollection
+    @CollectionTable(name="FreeTearms", joinColumns=@JoinColumn(name="fishingService_id"))
+    @Column(name="freeTerms")
+    private List<Date> freeTerms;
+
     private String rulesOfConduct;
     private String equipment;
-    private String price;
+    private String priceList;
     private String additionalInformation;
     private String cancellationPolicy;
 
     public FishingService(){}
 
-    public FishingService(Long id, String name, String address, String description, String images, String capacityOfPeople, String freeTerms, String rulesOfConduct, String equipment, String price, String additionalInformation, String cancellationPolicy) {
+    public FishingService(Long id, String name, String address, String description, String aboutFishingInstructor, String images, Integer capacityOfPeople, List<Date> freeTerms, String rulesOfConduct, String equipment, String priceList, String additionalInformation, String cancellationPolicy) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.description = description;
+        this.aboutFishingInstructor = aboutFishingInstructor;
         this.images = images;
         this.capacityOfPeople = capacityOfPeople;
         this.freeTerms = freeTerms;
         this.rulesOfConduct = rulesOfConduct;
         this.equipment = equipment;
-        this.price = price;
+        this.priceList = priceList;
         this.additionalInformation = additionalInformation;
         this.cancellationPolicy = cancellationPolicy;
     }
 
-    public FishingService(String name, String address, String description, String images, String capacityOfPeople, String freeTerms, String rulesOfConduct, String equipment, String price, String additionalInformation, String cancellationPolicy) {
+    public FishingService(String name, String address, String description, String aboutFishingInstructor, String images, Integer capacityOfPeople, List<Date> freeTerms, String rulesOfConduct, String equipment, String priceList, String additionalInformation, String cancellationPolicy) {
         this.name = name;
         this.address = address;
         this.description = description;
+        this.aboutFishingInstructor = aboutFishingInstructor;
         this.images = images;
         this.capacityOfPeople = capacityOfPeople;
         this.freeTerms = freeTerms;
         this.rulesOfConduct = rulesOfConduct;
         this.equipment = equipment;
-        this.price = price;
+        this.priceList = priceList;
         this.additionalInformation = additionalInformation;
         this.cancellationPolicy = cancellationPolicy;
     }
@@ -78,6 +97,14 @@ public class FishingService {
         this.description = description;
     }
 
+    public String getAboutFishingInstructor() {
+        return aboutFishingInstructor;
+    }
+
+    public void setAboutFishingInstructor(String aboutFishingInstructor) {
+        this.aboutFishingInstructor = aboutFishingInstructor;
+    }
+
     public String getImages() {
         return images;
     }
@@ -86,19 +113,19 @@ public class FishingService {
         this.images = images;
     }
 
-    public String getCapacityOfPeople() {
+    public Integer getCapacityOfPeople() {
         return capacityOfPeople;
     }
 
-    public void setCapacityOfPeople(String capacityOfPeople) {
+    public void setCapacityOfPeople(Integer capacityOfPeople) {
         this.capacityOfPeople = capacityOfPeople;
     }
 
-    public String getFreeTerms() {
+    public List<Date> getFreeTerms() {
         return freeTerms;
     }
 
-    public void setFreeTerms(String freeTerms) {
+    public void setFreeTerms(List<Date> freeTerms) {
         this.freeTerms = freeTerms;
     }
 
@@ -118,12 +145,12 @@ public class FishingService {
         this.equipment = equipment;
     }
 
-    public String getPrice() {
-        return price;
+    public String getPriceList() {
+        return priceList;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPriceList(String priceList) {
+        this.priceList = priceList;
     }
 
     public String getAdditionalInformation() {

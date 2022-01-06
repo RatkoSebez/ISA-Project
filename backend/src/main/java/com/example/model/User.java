@@ -33,11 +33,14 @@ public class User implements UserDetails {
     private Boolean enabled = false;
     private Boolean isNotLocked;
 
+    @OneToMany(targetEntity = FishingService.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private List<FishingService> fishingServiceList;
+
 //    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Set<WeekendCottage> cottages = new HashSet<WeekendCottage>();
 
-    //Administrator
-    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, Set<RegistrationRequest> listRegistrationRequests) {
+    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -53,7 +56,7 @@ public class User implements UserDetails {
     }
 
     //FishingInstructor
-    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {
+    public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked, List<FishingService> fishingServiceList) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -66,6 +69,7 @@ public class User implements UserDetails {
         this.phoneNumber = phoneNumber;
         this.role = role;
         this.locked = locked;
+        this.fishingServiceList = fishingServiceList;
     }
 
     //Client

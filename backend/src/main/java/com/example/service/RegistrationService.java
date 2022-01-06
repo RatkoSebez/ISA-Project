@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.UserDTO;
+import com.example.model.FishingService;
 import com.example.model.RegistrationRequest;
 import com.example.model.User;
 import com.example.model.UserRole;
@@ -10,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -36,7 +39,7 @@ public class RegistrationService {
                     userDTO.getPhoneNumber(), userDTO.getRole(), true, userDTO.getExplanationOfRegistration());
             newUser = new User(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAddress(), userDTO.getCity(), userDTO.getCountry(),
-                    userDTO.getPhoneNumber(), userDTO.getRole(), true);
+                    userDTO.getPhoneNumber(), userDTO.getRole(), true, new ArrayList< FishingService >());
             requestRepository.save(newRR);
         }
 
