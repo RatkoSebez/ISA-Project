@@ -4,6 +4,7 @@ import { BoatInfoPageComponent } from './boat-info-page/boat-info-page.component
 import { BoatReservationsComponent } from './boat-reservations/boat-reservations.component';
 import { BoatsPageComponent } from './boats-page/boats-page.component';
 import { BookedReservationsComponent } from './booked-reservations/booked-reservations.component';
+import { CottageReservationsComponent } from './cottage-reservations/cottage-reservations.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "user", component: UserInfoPageComponent},
   {path: "bookedReservations", component: BookedReservationsComponent},
   {path: "boatReservations", component: BoatReservationsComponent},
+  {path: "cottageReservations", component: CottageReservationsComponent},
   {path: "boats", component: BoatsPageComponent},
   {path: "cottages", component: WeekendCottagesPageComponent},
   {path: "home", component: HomeComponent},

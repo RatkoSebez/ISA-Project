@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-boats-page',
   templateUrl: './boats-page.component.html',
@@ -16,7 +20,7 @@ export class BoatsPageComponent implements OnInit {
   public date2!: Date;
   public boatId = 8;
 
-  public constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient, private router: Router) {}
 
   public getNameBoat(){
     return this.nameBoat;
@@ -49,6 +53,7 @@ export class BoatsPageComponent implements OnInit {
     }
     this.http.post("api/boat/reservation", postData).toPromise().then(data => {
       console.log(data);
+      this.router.navigate(['/boatReservations']);
     });
     //console.log("rezervisem")
   }

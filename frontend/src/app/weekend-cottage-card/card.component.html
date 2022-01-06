@@ -10,6 +10,8 @@
                     <p class="card-text">{{ weekendCottage.address }}</p>
                     <p class="card-text">Average rating: {{ weekendCottage.rating }}</p>
                     <a href="/weekendCottage?id={{ weekendCottage.id }}" class="btn btn-primary">See more</a>
+                    <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
+                        (click)='makeReservation(weekendCottage.id)'>Make Reservation</button>
                 </div>
             </div>
         </div>

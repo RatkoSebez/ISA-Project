@@ -24,6 +24,7 @@ import { BoatsPageComponent } from './boats-page/boats-page.component';
 import { WeekendCottagesPageComponent } from './weekend-cottages-page/weekend-cottages-page.component';
 import { BookedReservationsComponent } from './booked-reservations/booked-reservations.component';
 import { BoatReservationsComponent } from './boat-reservations/boat-reservations.component';
+import { CottageReservationsComponent } from './cottage-reservations/cottage-reservations.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BoatReservationsComponent } from './boat-reservations/boat-reservations
     BoatsPageComponent,
     WeekendCottagesPageComponent,
     BookedReservationsComponent,
-    BoatReservationsComponent
+    BoatReservationsComponent,
+    CottageReservationsComponent
   ],
   imports: [
     BrowserModule,

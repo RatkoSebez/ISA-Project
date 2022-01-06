@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { BoatsPageComponent } from '../boats-page/boats-page.component';
 import { Boat } from '../model/Boat';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-boat-card',
   templateUrl: './boat-card.component.html',
