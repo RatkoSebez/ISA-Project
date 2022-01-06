@@ -40,6 +40,14 @@ public class AdministratorController {
         return administratorService.declineRegistrationRequest(registrationRequest);
     }
 
+
+    @PutMapping(value = "/editAdministrator")
+    public ResponseEntity<User> editAdministrator(@RequestBody UserDTO userDTO){
+        User editedAdministrator = administratorService.editAdministrator(userDTO);
+        ResponseEntity<User> userResponseEntity = new ResponseEntity<>(editedAdministrator, HttpStatus.OK);
+        return userResponseEntity;
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> registerAdministrator(@RequestBody UserDTO administrator) {
         User newAdministrator = administratorService.registerAdministrator(administrator);

@@ -89,5 +89,39 @@ public class AdministratorService {
         return false;
     }
 
+    public User editAdministrator(UserDTO userDTO) {
+        User administrator = administratorRepository.findUserByEmail(userDTO.getEmail());
+        updateAdministratorFields(userDTO, administrator);
+        administratorRepository.save(administrator);
+        return administrator;
+    }
+
+    private void updateAdministratorFields(UserDTO userDTO, User administrator) {
+        if( userDTO.getUsername().trim() != "" ) {
+            administrator.setUsername(userDTO.getUsername());
+        }
+        if( userDTO.getPassword().trim() != "" ) {
+            String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
+            administrator.setPassword(encodedPassword);
+        }
+        if( userDTO.getFirstName().trim() != "" ) {
+            administrator.setFirstName(userDTO.getFirstName());
+        }
+        if( userDTO.getLastName().trim() != "" ) {
+            administrator.setLastName(userDTO.getLastName());
+        }
+        if( userDTO.getLastName().trim() != "" ) {
+            administrator.setAddress(userDTO.getAddress());
+        }
+        if( userDTO.getCity().trim() != "" ) {
+            administrator.setCity(userDTO.getCity());
+        }
+        if( userDTO.getCountry().trim() != "" ) {
+            administrator.setCountry(userDTO.getCountry());
+        }
+        if( userDTO.getPhoneNumber().trim() != "" ) {
+            administrator.setPhoneNumber(userDTO.getPhoneNumber());
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.dto;
 
+import com.example.model.User;
 import com.example.model.UserRole;
 
 import java.util.List;
@@ -52,6 +53,21 @@ public class UserDTO {
         this.locked = locked;
         this.explanationOfRegistration = explanationOfRegistration;
     }
+
+    // Konstruktor sa poljima, gdje ce administrator mijenjati svoje licne podatke
+    public UserDTO(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+    }
+
+
 
     public Long getId() {
         return id;
