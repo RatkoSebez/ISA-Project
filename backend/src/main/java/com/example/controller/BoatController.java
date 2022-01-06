@@ -29,7 +29,12 @@ public class BoatController {
     }
 
     @GetMapping(path = "/reservation")
-    public List<ReservationBoat> getAllReservations(){
+    public List<ReservationBoat> getAllReservationsThatCanBeCancelled(){
+        return boatService.getAllReservationsThatCanBeCancelled();
+    }
+
+    @GetMapping(path = "/allreservations")
+    public List<ReservationBoat> getAllBoatReservations(){
         return boatService.getAllBoatReservations();
     }
 

@@ -34,13 +34,7 @@ public class UserController {
     @GetMapping()
     public User getLoggedInUser(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-//        User auth = (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
-        //System.out.println("user: " + name);
-        //if(name.equals("")) return new User();
-        //return (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
         if(principal instanceof String) return null;
-        //System.out.println(principal.getClass());
         return (User)principal;
     }
 
@@ -49,5 +43,10 @@ public class UserController {
         User user = clientService.editUser(data);
         ResponseEntity<User> userResponseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
         return userResponseEntity;
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public Boolean deleteUser(@PathVariable Long id){
+        return clientService.deleteUser(id);
     }
 }

@@ -60,7 +60,7 @@ public class BoatService {
         return true;
     }
 
-    public List<ReservationBoat> getAllBoatReservations(){
+    public List<ReservationBoat> getAllReservationsThatCanBeCancelled(){
         List<ReservationBoat> reservations = reservationBoatRepository.findAll();
         List<ReservationBoat> reservations2 = new ArrayList<>();
         for(ReservationBoat reservation : reservations){
@@ -68,5 +68,9 @@ public class BoatService {
             else reservations2.add(reservation);
         }
         return reservations2;
+    }
+
+    public List<ReservationBoat> getAllBoatReservations(){
+        return reservationBoatRepository.findAll();
     }
 }

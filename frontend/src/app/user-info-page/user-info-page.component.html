@@ -18,6 +18,8 @@
                     <h3 class="mt-3 text-center">
                         {{ user.email }}
                         <button class="btn btn-outline-primary" (click)='doEdit()'>Edit profile</button>
+                        <button class="btn btn-outline-primary" (click)='deleteUser(user.id)'>Delete
+                                Profile</button>
                     </h3>
                     <!-- <hr class="badge-primary mt-0 w-25"> -->
                     <div class="row">

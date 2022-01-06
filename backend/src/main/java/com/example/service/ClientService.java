@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.UserDTO;
+import com.example.model.ReservationBoat;
 import com.example.model.User;
 import com.example.model.UserRole;
 import com.example.repository.UserRepository;
@@ -11,6 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -30,5 +34,10 @@ public class ClientService {
         Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, newUser.getPassword(), newUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return newUser;
+    }
+
+    public Boolean deleteUser(Long id){
+        userRepository.deleteById(id);
+        return true;
     }
 }

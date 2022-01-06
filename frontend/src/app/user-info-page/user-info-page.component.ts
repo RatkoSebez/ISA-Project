@@ -74,4 +74,13 @@ export class UserInfoPageComponent implements OnInit {
     });
   }
 
+  deleteUser(id: number){
+    this.http.delete('api/user/' + id)
+      .subscribe(
+        () => {
+          this.router.navigate(['/home']);
+        }
+      );
+  }
+
 }

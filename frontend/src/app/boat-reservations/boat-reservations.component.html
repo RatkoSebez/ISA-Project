@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Reservation id</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reservation of boatReservations">
+                    <th scope="row">{{ reservation.id }}</th>
+                    <td>{{ reservation.startDate }}</td>
+                    <td>{{ reservation.endDate }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-footer></app-footer>
