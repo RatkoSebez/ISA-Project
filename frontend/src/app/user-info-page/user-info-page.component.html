@@ -57,4 +57,28 @@
     </div>
 </div>
 
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Subscription id</th>
+                    <th scope="col">Entity</th>
+                    <th scope="col">Entity id</th>
+                    <th scope="col">Cancel subscription</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subscription of subscriptions">
+                    <th scope="row">{{ subscription.id }}</th>
+                    <td>{{ subscription.entity }}</td>
+                    <td>{{ subscription.idOfEntity }}</td>
+                    <td><button class="btn btn-outline-primary make-reservation"
+                            (click)='cancelSubscription(subscription.id)'>Cancel Subscription</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <app-footer></app-footer>

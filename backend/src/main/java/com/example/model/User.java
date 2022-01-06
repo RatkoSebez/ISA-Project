@@ -1,6 +1,8 @@
 package com.example.model;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.sql.Delete;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,16 +35,14 @@ public class User implements UserDetails {
     private UserRole role;
     private Boolean locked = false;
     private Boolean enabled = true;
-    private Boolean isNotLocked;
-
-    @OneToMany(targetEntity = FishingService.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = FishingService.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<FishingService> fishingServiceList;
-
-
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private Set<WeekendCottage> cottages = new HashSet<WeekendCottage>();
-
+    @OneToMany(targetEntity = UserSubscription.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<UserSubscription> subscriptions;
 
     //administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {

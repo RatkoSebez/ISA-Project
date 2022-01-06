@@ -11,6 +11,7 @@ import { WeekendCottage } from '../model/WeekendCottage';
 export class WeekendCottageInfoPageComponent implements OnInit {
 
   weekendCottage!: WeekendCottage;
+  show = false;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
 
@@ -24,6 +25,20 @@ export class WeekendCottageInfoPageComponent implements OnInit {
           }
         );
     });
+    this.http.get('api/user').subscribe(val => {
+      console.log(val);
+      if(val) {
+        this.show = true;
+      }
+    });
   }
 
+  subscribeToCottage(cottageId: number){
+    var postData = {
+      entity: "WEEKEND_COTTAGE",
+      idOfEntity: cottageId
+    }
+    this.http.post("api/user/subscribe", postData).toPromise().then(data => {
+    });
+  }
 }

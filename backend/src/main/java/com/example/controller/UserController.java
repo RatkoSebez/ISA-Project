@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.model.UserRole;
+import com.example.model.UserSubscription;
 import com.example.repository.UserRepository;
 import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/user")
@@ -59,5 +62,20 @@ public class UserController {
         user.setEnabled(true);
         userRepository.save(user);
         return true;
+    }
+
+    @PostMapping(path = "/subscribe")
+    public Boolean subscribe(@RequestBody UserSubscription data) {
+        return userService.subscribe(data);
+    }
+
+    @GetMapping(path = "subscriptions")
+    public List<UserSubscription> getAllSubscriptions(){
+        return userService.getAllSubscriptions();
+    }
+
+    @DeleteMapping(path = "subscriptions/{id}")
+    public Boolean deleteSubscription(@PathVariable Long id){
+        return userService.deleteSubscription(id);
     }
 }

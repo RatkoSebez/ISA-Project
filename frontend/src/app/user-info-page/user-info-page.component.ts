@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
+import { UserSubscription } from '../model/UserSubscription';
 
 @Component({
   selector: 'app-user-info-page',
@@ -11,6 +12,7 @@ import { User } from '../model/User';
 export class UserInfoPageComponent implements OnInit {
 
   user!: User;
+  subscriptions!: UserSubscription[];
   edit = true;
   email = '';
   firstName = '';
@@ -25,6 +27,11 @@ export class UserInfoPageComponent implements OnInit {
 
   ngOnInit() { 
     this.doGet();
+    this.http.get<any>('api/user/subscriptions').subscribe(
+      response => {
+        this.subscriptions = response;
+      }
+    );
   }
 
   doGet(){  
@@ -81,6 +88,13 @@ export class UserInfoPageComponent implements OnInit {
           this.router.navigate(['/home']);
         }
       );
+  }
+
+  cancelSubscription(id: number){
+    this.http.delete('api/user/subscriptions/' + id)
+      .subscribe(() => {
+        //this.router.navigate(['/boatReservations']);
+      });
   }
 
 }

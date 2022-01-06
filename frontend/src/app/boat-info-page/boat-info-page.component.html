@@ -14,11 +14,17 @@
                     </div> -->
                 </div>
                 <div class="col-sm-8 rounded-right">
-                    <h3 class="mt-3 text-center">Info</h3>
+                    <h3 class="mt-3 text-center">
+                        Info
+                        <button class="btn btn-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
+                            (click)='subscribeToBoat(boat.id)'>{{ subscribeButtonText }}</button>
+                    </h3>
                     <!-- <hr class="badge-primary mt-0 w-25"> -->
                     <div class="row">
                         <p class="font-weight-bold">Name: </p>
                         <p class="text-muted">{{ boat.name }}</p>
+                        <p class="font-weight-bold">Id: </p>
+                        <p class="text-muted">{{ boat.id }}</p>
                         <p class="font-weight-bold">Description: </p>
                         <p class="text-muted">{{ boat.description }}</p>
                         <p class="font-weight-bold">Address: </p>
