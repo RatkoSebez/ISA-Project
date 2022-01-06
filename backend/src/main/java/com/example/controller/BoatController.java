@@ -1,17 +1,10 @@
 package com.example.controller;
 
-import com.example.dto.BoatReservationDTO;
-import com.example.dto.UserDTO;
+import com.example.dto.ReservationDTO;
 import com.example.model.Boat;
 import com.example.model.ReservationBoat;
-import com.example.model.User;
-import com.example.model.WeekendCottage;
 import com.example.service.BoatService;
-import com.example.service.WeekendCottageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +23,7 @@ public class BoatController {
 
     @GetMapping(path = "/reservation")
     public List<ReservationBoat> getAllReservationsThatCanBeCancelled(){
-        return boatService.getAllReservationsThatCanBeCancelled();
+        return boatService.getAllBoatReservationsThatCanBeCancelled();
     }
 
     @GetMapping(path = "/allreservations")
@@ -45,13 +38,13 @@ public class BoatController {
 
 //    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/reservation")
-    public Boolean registerUser(@RequestBody BoatReservationDTO boatReservationDTO) {
-        Boolean ans = boatService.makeReservation(boatReservationDTO);
+    public Boolean makeBoatReservation(@RequestBody ReservationDTO boatReservationDTO) {
+        Boolean ans = boatService.makeBoatReservation(boatReservationDTO);
         return ans;
     }
 
     @DeleteMapping(path = "/reservation/{id}")
     public Boolean deleteBoatReservation(@PathVariable Long id){
-        return boatService.cancelReservation(id);
+        return boatService.cancelBoatReservation(id);
     }
 }

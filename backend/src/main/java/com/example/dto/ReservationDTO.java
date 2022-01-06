@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoatReservationDTO {
+public class ReservationDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer guests;

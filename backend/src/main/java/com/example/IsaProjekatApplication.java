@@ -39,15 +39,18 @@ public class IsaProjekatApplication implements ApplicationRunner {
         fishingServiceList.add( new FishingService("fishingServ", "addd", "des", "about", "img", 4, null, "ee", "equp", "pricelis", "info", "cancel"));
         userRepository.save(new User("uuuuu", "eeeee", "kkk", "ttt", "eee", "tyyyy", "assfa", "asfsf", "1assfasf", UserRole.ROLE_FISHINGI, false, fishingServiceList));
         //
+        List<ReservationBoat> reservationsBoat = new ArrayList<>();
+        reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com"));
+        reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com"));
+        List<ReservationCottage> reservationsCottage = new ArrayList<>();
+        reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com"));
+        reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com"));
         weekendCottageRepository.save(new WeekendCottage("vikendica", "adresa", "ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
+        weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg", reservationsCottage));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
-        weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.5, "pravila", "https://cdn.pixabay.com/photo/2016/12/06/14/33/log-cabin-1886620_960_720.jpg"));
-        List<ReservationBoat> reservations = new ArrayList<>();
-        reservations.add(new ReservationBoat(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com"));
-        reservations.add(new ReservationBoat(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com"));
-        boatRepository.save(new Boat("brod1", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi", reservations));
+        boatRepository.save(new Boat("brod1", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi", reservationsBoat));
         boatRepository.save(new Boat("brod2", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod3", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));
         boatRepository.save(new Boat("brod4", "adresa", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", "dodatni servisi"));

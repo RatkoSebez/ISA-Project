@@ -1,13 +1,11 @@
 package com.example.service;
 
-import com.example.dto.BoatReservationDTO;
+import com.example.dto.ReservationDTO;
 import com.example.model.Boat;
 import com.example.model.ReservationBoat;
-import com.example.model.User;
 import com.example.repository.BoatRepository;
 import com.example.repository.ReservationBoatRepository;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,7 @@ public class BoatService {
         return boatRepository.findById(id);
     }
 
-    public Boolean makeReservation(BoatReservationDTO boatReservationDTO){
+    public Boolean makeBoatReservation(ReservationDTO boatReservationDTO){
         Boat boat = boatRepository.findById(boatReservationDTO.getBoatId()).stream().findFirst().orElse(null);
 //        System.out.println(boatReservationDTO.getStartDate());
 //        System.out.println(boatReservationDTO.getBoatId());
@@ -50,7 +48,7 @@ public class BoatService {
         return true;
     }
 
-    public Boolean cancelReservation(Long id){
+    public Boolean cancelBoatReservation(Long id){
         Optional<ReservationBoat> optional = reservationBoatRepository.findById(id);
         ReservationBoat reservation = optional.stream().findFirst().orElse(null);
         if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){
@@ -60,7 +58,7 @@ public class BoatService {
         return true;
     }
 
-    public List<ReservationBoat> getAllReservationsThatCanBeCancelled(){
+    public List<ReservationBoat> getAllBoatReservationsThatCanBeCancelled(){
         List<ReservationBoat> reservations = reservationBoatRepository.findAll();
         List<ReservationBoat> reservations2 = new ArrayList<>();
         for(ReservationBoat reservation : reservations){
