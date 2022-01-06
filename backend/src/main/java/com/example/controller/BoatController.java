@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.dto.BoatReservationDTO;
 import com.example.dto.UserDTO;
 import com.example.model.Boat;
+import com.example.model.ReservationBoat;
 import com.example.model.User;
 import com.example.model.WeekendCottage;
 import com.example.service.BoatService;
@@ -25,6 +26,11 @@ public class BoatController {
     @GetMapping()
     public List<Boat> getAllBoats(){
         return boatService.getAllBoats();
+    }
+
+    @GetMapping(path = "/reservation")
+    public List<ReservationBoat> getAllReservations(){
+        return boatService.getAllBoatReservations();
     }
 
     @GetMapping(path = "{id}")

@@ -3,6 +3,7 @@ export class BoatReservation{
         public id: number,
         public startDate: Date,
         public endDate: Date,
-        public clientEmail: string
+        public clientEmail: string,
+        public foreign_key: number
     ){}
 }

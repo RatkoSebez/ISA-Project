@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,5 +58,15 @@ public class BoatService {
         }
         reservationBoatRepository.deleteById(id);
         return true;
+    }
+
+    public List<ReservationBoat> getAllBoatReservations(){
+        List<ReservationBoat> reservations = reservationBoatRepository.findAll();
+        List<ReservationBoat> reservations2 = new ArrayList<>();
+        for(ReservationBoat reservation : reservations){
+            if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){}
+            else reservations2.add(reservation);
+        }
+        return reservations2;
     }
 }

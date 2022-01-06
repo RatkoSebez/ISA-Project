@@ -22,6 +22,7 @@ import { UserInfoPageComponent } from './user-info-page/user-info-page.component
 import { HomeForClientComponent } from './home-for-client/home-for-client.component';
 import { BoatsPageComponent } from './boats-page/boats-page.component';
 import { WeekendCottagesPageComponent } from './weekend-cottages-page/weekend-cottages-page.component';
+import { BookedReservationsComponent } from './booked-reservations/booked-reservations.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { WeekendCottagesPageComponent } from './weekend-cottages-page/weekend-co
     UserInfoPageComponent,
     HomeForClientComponent,
     BoatsPageComponent,
-    WeekendCottagesPageComponent
+    WeekendCottagesPageComponent,
+    BookedReservationsComponent
   ],
   imports: [
     BrowserModule,

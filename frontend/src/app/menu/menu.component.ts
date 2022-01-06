@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
   about = true;
   pricing = true;
   logout = false;
+  client = false;
 
   constructor(private http: HttpClient, private renderer: Renderer2, private elem: ElementRef) { }
 
@@ -29,6 +30,7 @@ export class MenuComponent implements OnInit {
       if(val) {
         this.show = false;
       }
+      if(this.user.role == "ROLE_CLIENT") this.client = true;
     });
   }
 
