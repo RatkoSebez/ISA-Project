@@ -21,7 +21,7 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private String email; // novo
+    private String email;
     private String firstName;
     private String lastName;
     private String address;

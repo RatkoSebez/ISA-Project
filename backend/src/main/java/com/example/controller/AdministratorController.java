@@ -30,14 +30,14 @@ public class AdministratorController {
     }
 
 
-//    @PostMapping(value = "/acceptRegistrationRequest")
-//    public boolean acceptRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
-//        return administratorService.acceptRegistrationRequest(registrationRequest);
-//    }
+    @PostMapping(value = "/acceptRegistrationRequest")
+    public boolean acceptRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
+        return administratorService.acceptRegistrationRequest(registrationRequest);
+    }
 
     @PostMapping(value = "/declineRegistrationRequest")
-    public void declineRegistrationRequest(){
-        //Imeplementirati
+    public boolean declineRegistrationRequest(@RequestBody RegistrationRequest registrationRequest){
+        return administratorService.declineRegistrationRequest(registrationRequest);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

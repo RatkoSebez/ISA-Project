@@ -33,7 +33,7 @@ public class RegistrationService {
         else{
             RegistrationRequest newRR = new RegistrationRequest(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAddress(), userDTO.getCity(), userDTO.getCountry(),
-                    userDTO.getPhoneNumber(), userDTO.getRole(), true, "Volim pecati");
+                    userDTO.getPhoneNumber(), userDTO.getRole(), true, userDTO.getExplanationOfRegistration());
             newUser = new User(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAddress(), userDTO.getCity(), userDTO.getCountry(),
                     userDTO.getPhoneNumber(), userDTO.getRole(), true);
