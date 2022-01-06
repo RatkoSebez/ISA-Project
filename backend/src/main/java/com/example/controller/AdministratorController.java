@@ -55,7 +55,6 @@ public class AdministratorController {
         return userResponseEntity;
     }
 
-
     @GetMapping(value = "/getUsers")
     public List<User> getUsers(){
         return administratorService.getUsers();
@@ -65,8 +64,6 @@ public class AdministratorController {
     public Boolean deleteUserById(@PathVariable("userId") Long userId){
         return administratorService.deleteUserById(userId);
     }
-
-
 
 
 

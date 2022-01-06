@@ -1,7 +1,9 @@
 package com.example.controller;
 
 
+import com.example.dto.FishingServiceDTO;
 import com.example.dto.UserDTO;
+import com.example.model.FishingService;
 import com.example.model.User;
 import com.example.service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,26 @@ public class FishingInstructorController {
 
     public FishingInstructorController(FishingInstructorService fishingInstructorService) {
         this.fishingInstructorService = fishingInstructorService;
+    }
+
+
+    @PostMapping(value = "/addFishingService", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FishingService> addFishingService(@RequestBody FishingServiceDTO fishingServiceDTO) {
+        FishingService newFishingService = fishingInstructorService.addFishingService(fishingServiceDTO);
+        ResponseEntity<FishingService> FishingServiceResponseEntity = new ResponseEntity<>(newFishingService, HttpStatus.CREATED);
+        return FishingServiceResponseEntity;
+    }
+
+    @DeleteMapping(path = "{fishingServiceId}")
+    public Boolean deleteFishingServiceById(@PathVariable("fishingServiceId") Long fishingServiceId){
+        return fishingInstructorService.deleteFishingServiceById(fishingServiceId);
+    }
+
+    @PutMapping(value = "/editFishingService")
+    public ResponseEntity<FishingService> editFishingService(@RequestBody FishingServiceDTO fishingServiceDTO){
+        FishingService editedFishingService = fishingInstructorService.editFishingService(fishingServiceDTO);
+        ResponseEntity<FishingService> FishingServiceResponseEntity = new ResponseEntity<>(editedFishingService, HttpStatus.OK);
+        return FishingServiceResponseEntity;
     }
 
 

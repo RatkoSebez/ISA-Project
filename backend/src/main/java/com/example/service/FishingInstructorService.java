@@ -1,10 +1,11 @@
 package com.example.service;
 
-import com.example.dto.UserDTO;
-import com.example.model.RegistrationRequest;
+import com.example.dto.FishingServiceDTO;
+import com.example.model.FishingService;
 import com.example.model.User;
 import com.example.model.UserRole;
 import com.example.repository.FishingInstructorRepository;
+import com.example.repository.FishingServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,13 @@ public class FishingInstructorService {
     @Autowired
     private final FishingInstructorRepository fishingInstructorRepository;
     @Autowired
+    private final FishingServiceRepository fishingServiceRepository;
+    @Autowired
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public FishingInstructorService(FishingInstructorRepository fishingInstructorRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public FishingInstructorService(FishingInstructorRepository fishingInstructorRepository, FishingServiceRepository fishingServiceRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.fishingInstructorRepository = fishingInstructorRepository;
+        this.fishingServiceRepository = fishingServiceRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -37,36 +41,6 @@ public class FishingInstructorService {
         }
         return fishingInstructors;
     };
-
-//    public User registerFishingInstructor(UserDTO fishingInstructor){
-//        boolean userExists = fishingInstructorRepository.findByEmail(fishingInstructor.getEmail()).isPresent();
-//        if(userExists){
-//            throw new IllegalStateException("email already taken");
-//        }
-//        User newFishingInstructor = new User(fishingInstructor.getUsername(), fishingInstructor.getPassword(), fishingInstructor.getEmail(),
-//                fishingInstructor.getFirstName(), fishingInstructor.getLastName(), fishingInstructor.getAddress(), fishingInstructor.getCity(), fishingInstructor.getCountry(),
-//                fishingInstructor.getPhoneNumber(), fishingInstructor.getRole(), true);
-//
-//        String encodedPassword = bCryptPasswordEncoder.encode(newFishingInstructor.getPassword());
-//        newFishingInstructor.setPassword(encodedPassword);
-//        fishingInstructorRepository.save(newFishingInstructor);
-//        sendRegistrationRequest(fishingInstructor);
-//        return newFishingInstructor;
-//    }
-
-
-//    private void sendRegistrationRequest(UserDTO fishingInstructor){
-//        RegistrationRequest newRegistrationRequest = new RegistrationRequest(fishingInstructor);
-//
-//        List<User> listAllUsers = fishingInstructorRepository.findAll();
-//        for (int i = 0; i < listAllUsers.size(); i++) {
-//            if(listAllUsers.get(i).getRole().equals(UserRole.ROLE_ADMIN)){
-//                listAllUsers.get(i).getListRegistrationRequests().add(newRegistrationRequest);
-//                fishingInstructorRepository.save(listAllUsers.get(i));
-//                break;
-//            }
-//        }
-//    }
 
 
     public Boolean deleteFishingInstructorById(Long fishingInstructorId) {
@@ -96,4 +70,75 @@ public class FishingInstructorService {
         }
         return false;
     }
+
+    public FishingService addFishingService(FishingServiceDTO fishingServiceDTO) {
+
+        User fishingInstructor = fishingInstructorRepository.findById(fishingServiceDTO.getFishingInstructorId()).stream().findFirst().orElse(null);
+
+        FishingService newFishingService = new FishingService(fishingServiceDTO.getName(), fishingServiceDTO.getAddress(), fishingServiceDTO.getDescription(), fishingServiceDTO.getAboutFishingInstructor(),
+                fishingServiceDTO.getImages(), fishingServiceDTO.getCapacityOfPeople(), fishingServiceDTO.getFreeTerms(), fishingServiceDTO.getRulesOfConduct(), fishingServiceDTO.getEquipment(),
+                fishingServiceDTO.getPriceList(), fishingServiceDTO.getAdditionalInformation(), fishingServiceDTO.getCancellationPolicy());
+
+        fishingInstructor.getFishingServiceList().add(newFishingService);
+        fishingInstructorRepository.save(fishingInstructor);
+        return newFishingService;
+    }
+
+    public Boolean deleteFishingServiceById(Long fishingServiceId) {
+        List<FishingService> fishingServiceList = fishingServiceRepository.findAll();
+        for (int i = 0; i < fishingServiceList.size(); i++) {
+            if(fishingServiceList.get(i).getId().equals(fishingServiceId)) {
+                fishingServiceRepository.deleteById(fishingServiceId);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public FishingService editFishingService(FishingServiceDTO fishingServiceDTO) {
+        FishingService fishingService = fishingServiceRepository.findById(fishingServiceDTO.getId()).stream().findFirst().orElse(null);
+        updateFishingServiceFields(fishingServiceDTO, fishingService);
+        fishingServiceRepository.save(fishingService);
+        return fishingService;
+    }
+
+    private void updateFishingServiceFields(FishingServiceDTO fishingServiceDTO, FishingService fishingService) {
+        if( fishingServiceDTO.getName().trim() != "" ) {
+            fishingService.setName(fishingServiceDTO.getName());
+        }
+        if( fishingServiceDTO.getAddress().trim() != "" ) {
+            fishingService.setAddress(fishingServiceDTO.getAddress());
+        }
+        if( fishingServiceDTO.getDescription().trim() != "" ) {
+            fishingService.setDescription(fishingServiceDTO.getDescription());
+        }
+        if( fishingServiceDTO.getAboutFishingInstructor().trim() != "" ) {
+            fishingService.setAboutFishingInstructor(fishingServiceDTO.getAboutFishingInstructor());
+        }
+        if( fishingServiceDTO.getImages().trim() != "" ) {
+            fishingService.setImages(fishingServiceDTO.getImages());
+        }
+        if( fishingServiceDTO.getCapacityOfPeople() >= 0 ) {
+            fishingService.setCapacityOfPeople(fishingServiceDTO.getCapacityOfPeople());
+        }
+        if( fishingServiceDTO.getFreeTerms() != null) {
+            fishingService.setFreeTerms(fishingServiceDTO.getFreeTerms());
+        }
+        if( fishingServiceDTO.getRulesOfConduct().trim() != "" ) {
+            fishingService.setRulesOfConduct(fishingServiceDTO.getRulesOfConduct());
+        }
+        if( fishingServiceDTO.getEquipment().trim() != "" ) {
+            fishingService.setEquipment(fishingServiceDTO.getEquipment());
+        }
+        if( fishingServiceDTO.getPriceList().trim() != "" ) {
+            fishingService.setPriceList(fishingServiceDTO.getPriceList());
+        }
+        if( fishingServiceDTO.getAdditionalInformation().trim() != "" ) {
+            fishingService.setAdditionalInformation(fishingServiceDTO.getAdditionalInformation());
+        }
+        if( fishingServiceDTO.getCancellationPolicy().trim() != "" ) {
+            fishingService.setCancellationPolicy(fishingServiceDTO.getCancellationPolicy());
+        }
+    }
+
 }
