@@ -44,6 +44,12 @@ public class User implements UserDetails {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserSubscription> subscriptions;
 
+    @OneToMany(targetEntity = AvailabilityFishingInstructor.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fishing_instr_id", referencedColumnName = "id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<AvailabilityFishingInstructor> availabilityFishingInstructorList;
+
+
     //administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {
         this.id = id;
@@ -75,6 +81,7 @@ public class User implements UserDetails {
         this.role = role;
         this.locked = locked;
         this.fishingServiceList = fishingServiceList;
+        this.availabilityFishingInstructorList = new ArrayList<AvailabilityFishingInstructor>();
     }
 
     //Client

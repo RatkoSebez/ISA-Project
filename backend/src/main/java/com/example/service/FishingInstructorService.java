@@ -1,12 +1,10 @@
 package com.example.service;
 
+import com.example.dto.AvailabilityFishingInstructorDTO;
 import com.example.dto.DeleteAccountRequestDTO;
 import com.example.dto.FishingServiceDTO;
 import com.example.dto.UserDTO;
-import com.example.model.DeleteAccountRequest;
-import com.example.model.FishingService;
-import com.example.model.User;
-import com.example.model.UserRole;
+import com.example.model.*;
 import com.example.repository.DeleteAccountRequestRepository;
 import com.example.repository.FishingInstructorRepository;
 import com.example.repository.FishingServiceRepository;
@@ -187,5 +185,17 @@ public class FishingInstructorService {
         DeleteAccountRequest newDeleteAccountRequest = new DeleteAccountRequest(deleteAccountRequestDTO.getReason(), deleteAccountRequestDTO.getUserId());
         deleteAccountRequestRepository.save(newDeleteAccountRequest);
         return newDeleteAccountRequest;
+    }
+
+    public AvailabilityFishingInstructor defineAvailability(AvailabilityFishingInstructorDTO availabilityFishingInstructorDTO) {
+        User fishingInstructor = fishingInstructorRepository.findById(availabilityFishingInstructorDTO.getIdFishInstr()).stream().findFirst().orElse(null);
+
+        AvailabilityFishingInstructor afi = new AvailabilityFishingInstructor(availabilityFishingInstructorDTO.getStartDate(),
+                                                                              availabilityFishingInstructorDTO.getEndDate());
+
+        fishingInstructor.getAvailabilityFishingInstructorList().add(afi);
+        fishingInstructorRepository.save(fishingInstructor);
+
+        return afi;
     }
 }

@@ -1,9 +1,11 @@
 package com.example.controller;
 
 
+import com.example.dto.AvailabilityFishingInstructorDTO;
 import com.example.dto.DeleteAccountRequestDTO;
 import com.example.dto.FishingServiceDTO;
 import com.example.dto.UserDTO;
+import com.example.model.AvailabilityFishingInstructor;
 import com.example.model.DeleteAccountRequest;
 import com.example.model.FishingService;
 import com.example.model.User;
@@ -58,6 +60,17 @@ public class FishingInstructorController {
         ResponseEntity<DeleteAccountRequest> DeleteAccReqResponseEntity = new ResponseEntity<>(newDeleteAccountRequest, HttpStatus.CREATED);
         return DeleteAccReqResponseEntity;
     }
+
+
+    @PostMapping(value = "/defineAvailability", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AvailabilityFishingInstructor> defineAvailability(@RequestBody AvailabilityFishingInstructorDTO availabilityFishingInstructorDTO) {
+        AvailabilityFishingInstructor newAvailability = fishingInstructorService.defineAvailability(availabilityFishingInstructorDTO);
+        ResponseEntity<AvailabilityFishingInstructor> defAvailabilityReqResponseEntity = new ResponseEntity<>(newAvailability, HttpStatus.CREATED);
+        return defAvailabilityReqResponseEntity;
+    }
+
+
+
 
 
     /*
