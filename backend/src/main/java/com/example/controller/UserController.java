@@ -43,6 +43,11 @@ public class UserController {
         return (User)principal;
     }
 
+    @GetMapping(path = "/getAllUsers")
+    public List<User> getAllUsers(){
+        return userService.getAllUsers();
+    }
+
     @PostMapping(path = "/edit")
     public ResponseEntity<User> editUser(@RequestBody User data) {
         User user = clientService.editUser(data);

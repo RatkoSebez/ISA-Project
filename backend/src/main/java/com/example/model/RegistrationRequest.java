@@ -4,6 +4,7 @@ import com.example.dto.UserDTO;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Data

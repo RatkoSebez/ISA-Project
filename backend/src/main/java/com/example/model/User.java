@@ -52,6 +52,10 @@ public class User implements UserDetails {
     @JoinColumn(name = "fishing_instr_id", referencedColumnName = "id")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Adventure> adventures;
+    @OneToMany(targetEntity = PotentialComplaint.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<PotentialComplaint> potentialComplaints;
 
     //administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {

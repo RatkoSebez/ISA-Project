@@ -60,4 +60,8 @@ public class UserService implements UserDetailsService {
         userSubscriptionRepository.deleteById(id);
         return true;
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }

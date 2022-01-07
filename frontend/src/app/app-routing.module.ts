@@ -9,6 +9,7 @@ import { BoatsPageComponent } from './boats-page/boats-page.component';
 import { BookedReservationsComponent } from './booked-reservations/booked-reservations.component';
 import { CottageReservationsComponent } from './cottage-reservations/cottage-reservations.component';
 import { HomeComponent } from './home/home.component';
+import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
 import { AdventureReservation } from './model/AdventureReservation';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "adventures", component: AdventuresPageComponent},
   {path: "adventure", component: AdventureInfoPageComponent},
   {path: "adventureReservations", component: AdventureReservationsComponent},
+  {path: "makeCompliant", component: MakeComplaintComponent},
   {path: "bookedReservations", component: BookedReservationsComponent},
   {path: "boatReservations", component: BoatReservationsComponent},
   {path: "cottageReservations", component: CottageReservationsComponent},

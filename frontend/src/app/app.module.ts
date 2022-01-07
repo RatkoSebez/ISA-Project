@@ -29,6 +29,7 @@ import { AdventuresPageComponent } from './adventures-page/adventures-page.compo
 import { AdventureCardComponent } from './adventure-card/adventure-card.component';
 import { AdventureInfoPageComponent } from './adventure-info-page/adventure-info-page.component';
 import { AdventureReservationsComponent } from './adventure-reservations/adventure-reservations.component';
+import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AdventureReservationsComponent } from './adventure-reservations/adventu
     AdventuresPageComponent,
     AdventureCardComponent,
     AdventureInfoPageComponent,
-    AdventureReservationsComponent
+    AdventureReservationsComponent,
+    MakeComplaintComponent
   ],
   imports: [
     BrowserModule,

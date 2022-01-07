@@ -30,8 +30,9 @@ public class Adventure {
     @OneToMany(targetEntity = ReservationAdventure.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
     private List<ReservationAdventure> reservations;
+    private Long instructorId;
 
-    public Adventure(String name, String address, String description, String instructorBiography, String image, Integer capacity, String priceList) {
+    public Adventure(String name, String address, String description, String instructorBiography, String image, Integer capacity, String priceList, Long instructorId) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -39,5 +40,6 @@ public class Adventure {
         this.image = image;
         this.capacity = capacity;
         this.priceList = priceList;
+        this.instructorId = instructorId;
     }
 }

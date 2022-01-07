@@ -1,9 +1,12 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,11 +34,13 @@ public class Boat {
     private String priceList;
     @Column(columnDefinition="TEXT")
     private String additionalServices;
-    @OneToMany(targetEntity = ReservationBoat.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = ReservationBoat.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<ReservationBoat> reservations;
+    private Long boatOwnerId;
 
-    public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices) {
+    public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices, Long boatOwnerId) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -44,9 +49,10 @@ public class Boat {
         this.rating = rating;
         this.priceList = priceList;
         this.additionalServices = additionalServices;
+        this.boatOwnerId = boatOwnerId;
     }
 
-    public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices, List<ReservationBoat> reservations) {
+    public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices, Long boatOwnerId, List<ReservationBoat> reservations) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -55,6 +61,7 @@ public class Boat {
         this.rating = rating;
         this.priceList = priceList;
         this.additionalServices = additionalServices;
+        this.boatOwnerId = boatOwnerId;
         this.reservations = reservations;
     }
 

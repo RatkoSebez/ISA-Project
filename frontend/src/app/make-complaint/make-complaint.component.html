@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Boat id</th>
+                    <th scope="col">Make compliant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let boat of boats">
+                    <td scope="row">{{ boat.id }}</td>
+                    <button class="btn btn-primary" (click)='makeBoatCompliant(boat.id)'>Make Compliant</button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea2">Your compliant</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="5" [(ngModel)]="compliant"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

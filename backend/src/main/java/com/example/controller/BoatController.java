@@ -2,11 +2,14 @@ package com.example.controller;
 
 import com.example.dto.ReservationDTO;
 import com.example.model.Boat;
+import com.example.model.Compliant;
 import com.example.model.ReservationBoat;
 import com.example.service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,5 +49,22 @@ public class BoatController {
     @DeleteMapping(path = "/reservation/{id}")
     public Boolean deleteBoatReservation(@PathVariable Long id){
         return boatService.cancelBoatReservation(id);
+    }
+
+//    @PostMapping(path = "/boatsForComplaint")
+//    public List<Boat> getAllBoatsByIds(@RequestBody String[] ids){
+//        ArrayList<Long> result = new ArrayList<>();
+//        for(int i=0; i<ids.length; i++){
+//            System.out.println(ids[i]);
+//            result.add(Long.parseLong(ids[i]));
+//        }
+//        return boatService.getAllBoatsFromListOfIds(result);
+//        //return null;
+//    }
+
+    @PostMapping(path = "/compliant")
+    public Boolean makeCompliant(@RequestBody Compliant compliant) {
+        boatService.makeCompliant(compliant);
+        return true;
     }
 }

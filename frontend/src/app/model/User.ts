@@ -1,3 +1,5 @@
+import { PotentialCompliant } from "./PotentialCompliant";
+
 export class User{
     constructor(
         public id: number,
@@ -8,6 +10,7 @@ export class User{
         public city: string,
         public country: string,
         public phoneNumber: number,
-        public role: string
+        public role: string,
+        public potentialComplaints: Array<PotentialCompliant>
     ){}
 }

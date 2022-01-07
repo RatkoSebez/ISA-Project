@@ -8,6 +8,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class WeekendCottage {
     private List<ReservationCottage> reservations;
     @Column(columnDefinition="TEXT")
     private String rulesOfConduct;
+    private Long cottageOwnerId;
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
@@ -45,16 +47,17 @@ public class WeekendCottage {
 //    }
 //    private String priceList;
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId){
         this.name = name;
         this.address = address;
         this.description = description;
         this.rating = rating;
         this.rulesOfConduct = rulesOfConduct;
         this.image = image;
+        this.cottageOwnerId = cottageOwnerId;
     }
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, List<ReservationCottage> reservations){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -62,5 +65,6 @@ public class WeekendCottage {
         this.rulesOfConduct = rulesOfConduct;
         this.image = image;
         this.reservations = reservations;
+        this.cottageOwnerId = cottageOwnerId;
     }
 }
