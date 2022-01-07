@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="name" aria-label="Username"
+                    aria-describedby="basic-addon1" [(ngModel)]="nameBoat">
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="description" aria-label="Username"
+                    aria-describedby="basic-addon1" [(ngModel)]="descriptionBoat">
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <input type="date" id="birthday" name="birthday" [(ngModel)]="date1">
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <input type="date" id="birthday" name="birthday" [(ngModel)]="date2">
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="people" aria-label="Username"
+                    aria-describedby="basic-addon1" [(ngModel)]="people">
+            </div>
+        </div>
+    </div>
+</div>
+<app-adventure-card></app-adventure-card>
+<app-footer></app-footer>

@@ -5,24 +5,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
-@javax.persistence.Entity
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSubscription {
+public class ReservationAdventure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Entity entity;
-    private Long idOfEntity;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String clientEmail;
 
-    public UserSubscription(Entity entity, Long idOfEntity){
-        this.entity = entity;
-        this.idOfEntity = idOfEntity;
+    public ReservationAdventure(LocalDate start, LocalDate end, String clientEmail){
+        this.startDate = start;
+        this.endDate = end;
+        this.clientEmail = clientEmail;
     }
 }

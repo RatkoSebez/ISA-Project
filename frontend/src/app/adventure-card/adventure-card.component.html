@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm" *ngFor="let adventure of adventures">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ adventure.image }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ adventure.name }}</h5>
+                    <p class="card-text">{{ adventure.description | slice:0:200
+                        }}{{adventure.description.length > 200 ? '...' : ''}}</p>
+                    <p class="card-text">id: {{ adventure.id }}</p>
+                    <p class="card-text">{{ adventure.address }}</p>
+                    <p class="card-text">Average rating: {{ adventure.rating }}</p>
+                    <a href="/adventure?id={{ adventure.id }}" class="btn btn-primary">See more</a>
+                    <button class="btn btn-outline-primary make-reservation"
+                        [ngClass]="show ? 'is-active' : 'is-not-active'" (click)='makeReservation(adventure.id)'>Make
+                        Reservation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

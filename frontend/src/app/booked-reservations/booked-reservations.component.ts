@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { AdventureReservation } from '../model/AdventureReservation';
 import { BoatReservation } from '../model/BoatReservation';
 import { CottageReservation } from '../model/CottageReservation';
 
@@ -14,6 +15,7 @@ export class BookedReservationsComponent implements OnInit {
 
   boatReservations!: BoatReservation[];
   cottageReservations!: CottageReservation[];
+  adventureReservations!: AdventureReservation[];
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -30,6 +32,12 @@ export class BookedReservationsComponent implements OnInit {
         console.log(this.cottageReservations)
       }
     );
+    this.http.get<any>('api/adventure/reservation').subscribe(
+      response => {
+        this.adventureReservations = response;
+        console.log(this.adventureReservations)
+      }
+    );
   }
 
   cancelBoatReservation(id: number){
@@ -43,6 +51,13 @@ export class BookedReservationsComponent implements OnInit {
     this.http.delete('api/weekendCottage/reservation/' + id)
       .subscribe(() => {
         this.router.navigate(['/cottageReservations']);
+      });
+  }
+
+  cancelAdventureReservation(id: number){
+    this.http.delete('api/adventure/reservation/' + id)
+      .subscribe(() => {
+        this.router.navigate(['/adventureReservations']);
       });
   }
 }

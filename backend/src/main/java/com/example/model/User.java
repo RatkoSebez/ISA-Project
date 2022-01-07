@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.*;
 
 @Entity
@@ -43,12 +44,14 @@ public class User implements UserDetails {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserSubscription> subscriptions;
-
     @OneToMany(targetEntity = AvailabilityFishingInstructor.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "fishing_instr_id", referencedColumnName = "id")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<AvailabilityFishingInstructor> availabilityFishingInstructorList;
-
+    @OneToMany(targetEntity = Adventure.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fishing_instr_id", referencedColumnName = "id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Adventure> adventures;
 
     //administrator
     public User(String username, String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, Boolean locked) {
@@ -82,6 +85,20 @@ public class User implements UserDetails {
         this.locked = locked;
         this.fishingServiceList = fishingServiceList;
         this.availabilityFishingInstructorList = new ArrayList<AvailabilityFishingInstructor>();
+    }
+
+    //FishingInstructor2
+    public User(String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, List<Adventure> adventures) {
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.adventures = adventures;
     }
 
     //Client

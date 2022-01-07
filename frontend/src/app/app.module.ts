@@ -25,6 +25,10 @@ import { WeekendCottagesPageComponent } from './weekend-cottages-page/weekend-co
 import { BookedReservationsComponent } from './booked-reservations/booked-reservations.component';
 import { BoatReservationsComponent } from './boat-reservations/boat-reservations.component';
 import { CottageReservationsComponent } from './cottage-reservations/cottage-reservations.component';
+import { AdventuresPageComponent } from './adventures-page/adventures-page.component';
+import { AdventureCardComponent } from './adventure-card/adventure-card.component';
+import { AdventureInfoPageComponent } from './adventure-info-page/adventure-info-page.component';
+import { AdventureReservationsComponent } from './adventure-reservations/adventure-reservations.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { CottageReservationsComponent } from './cottage-reservations/cottage-res
     WeekendCottagesPageComponent,
     BookedReservationsComponent,
     BoatReservationsComponent,
-    CottageReservationsComponent
+    CottageReservationsComponent,
+    AdventuresPageComponent,
+    AdventureCardComponent,
+    AdventureInfoPageComponent,
+    AdventureReservationsComponent
   ],
   imports: [
     BrowserModule,
