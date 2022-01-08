@@ -9,6 +9,8 @@ import com.example.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,8 @@ public class BoatService {
         List<PotentialComplaint> potentialComplaints = user.getPotentialComplaints();
         potentialComplaints.add(new PotentialComplaint(boat.getId(), Entity.BOAT));
         potentialComplaints.add(new PotentialComplaint(boat.getBoatOwnerId(), Entity.BOAT_OWNER));
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         userRepository.save(user);
         return true;
     }

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Adventure } from '../model/Adventure';
 import { Boat } from '../model/Boat';
 import { User } from '../model/User';
+import { WeekendCottage } from '../model/WeekendCottage';
 
 @Component({
   selector: 'app-make-complaint',
@@ -13,8 +15,13 @@ export class MakeComplaintComponent implements OnInit {
   public user!: User;
   public boatsIds: number[] = [];
   public boatOwnersIds: number[] = [];
+  public weekendCottagesIds: number[] = [];
+  public cottageOwnersIds: number[] = [];
+  public adventureIds: number[] = [];
   public boats: Array<Boat> = [];
   public boatOwners: Array<User> = [];
+  public cottages: Array<WeekendCottage> = [];
+  public adventures: Array<Adventure> = [];
   public compliant: String = "";
 
   constructor(private http: HttpClient) { }
@@ -31,7 +38,17 @@ export class MakeComplaintComponent implements OnInit {
         if(potentialComplaint.entity == "BOAT_OWNER"){
           this.boatOwnersIds.push(potentialComplaint.entityId);
         }
+        if(potentialComplaint.entity == "WEEKEND_COTTAGE"){
+          this.weekendCottagesIds.push(potentialComplaint.entityId);
+        }
+        if(potentialComplaint.entity == "COTTAGE_OWNER"){
+          this.cottageOwnersIds.push(potentialComplaint.entityId);
+        }
+        if(potentialComplaint.entity == "ADVENTURE"){
+          this.adventureIds.push(potentialComplaint.entityId);
+        }
       }
+      //console.log("adventure ids" + this.adventureIds)
       //boats
       this.http.get<any>("api/boat").subscribe(data => {
         for(let boat of data){
@@ -43,6 +60,30 @@ export class MakeComplaintComponent implements OnInit {
           }
         }
         console.log(this.boats);
+      });
+      //cottages
+      this.http.get<any>("api/weekendCottage").subscribe(data => {
+        for(let cottage of data){
+          for(let cottageId of this.weekendCottagesIds){
+            if(cottage.id == cottageId){
+              this.cottages.push(cottage);
+              break;
+            }
+          }
+        }
+        console.log(this.cottages);
+      });
+      //adventures
+      this.http.get<any>("api/adventure").subscribe(data => {
+        for(let adventure of data){
+          for(let adventureId of this.adventureIds){
+            if(adventure.id == adventureId){
+              this.adventures.push(adventure);
+              break;
+            }
+          }
+        }
+        console.log(this.adventures);
       });
       //boat owners
       // this.http.get<any>("api/user/getAllUsers").subscribe(data => {
@@ -70,6 +111,28 @@ export class MakeComplaintComponent implements OnInit {
       entity: "BOAT"
     }
     this.http.post("api/boat/compliant", postData).toPromise().then(data => {
+      console.log(data);
+    });
+  }
+
+  makeCottageCompliant(cottageId: number){
+    var postData = {
+      compliant: this.compliant,
+      idOfEntity: cottageId,
+      entity: "WEEKEND_COTTAGE"
+    }
+    this.http.post("api/weekendCottage/compliant", postData).toPromise().then(data => {
+      console.log(data);
+    });
+  }
+
+  makeAdventureCompliant(adventureId: number){
+    var postData = {
+      compliant: this.compliant,
+      idOfEntity: adventureId,
+      entity: "ADVENTURE"
+    }
+    this.http.post("api/adventure/compliant", postData).toPromise().then(data => {
       console.log(data);
     });
   }

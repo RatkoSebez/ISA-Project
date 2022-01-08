@@ -5,5 +5,6 @@ public enum Entity {
     WEEKEND_COTTAGE,
     FISHING_INSTRUCTOR,
     ADVENTURE,
-    BOAT_OWNER
+    BOAT_OWNER,
+    COTTAGE_OWNER
 }

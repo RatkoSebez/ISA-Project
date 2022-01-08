@@ -31,9 +31,9 @@ public class IsaProjekatApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         userRepository.save(new User("user@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_CLIENT));
-        userRepository.save(new User("instructor@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_FISHINGI));
-        userRepository.save(new User("isaprojmejl2@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_BOATOWNER));
-        userRepository.save(new User("cottageOwner@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_WEEKENDCOTTOWNER));
+        userRepository.save(new User("isaprojmejl2@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_FISHINGI));
+        userRepository.save(new User("test@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_BOATOWNER));
+        userRepository.save(new User("test@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_WEEKENDCOTTOWNER));
         List<Adventure> adventures = new ArrayList<>();
         adventures.add(new Adventure("avantura1",   "adresa", "opis", "biografija instruktora pecanja", "https://cdn.pixabay.com/photo/2018/01/05/02/47/fishing-3062034_960_720.jpg", 5, "cenovnik", 2L));
         adventures.add(new Adventure("avantura2", "adresa", "opis", "biografija instruktora pecanja", "https://cdn.pixabay.com/photo/2018/01/05/02/47/fishing-3062034_960_720.jpg", 5, "cenovnik", 2L));

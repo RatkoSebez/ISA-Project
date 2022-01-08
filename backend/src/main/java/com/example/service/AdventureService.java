@@ -1,15 +1,13 @@
 package com.example.service;
 
 import com.example.dto.ReservationDTO;
-import com.example.model.Adventure;
-import com.example.model.Boat;
-import com.example.model.ReservationAdventure;
-import com.example.model.ReservationBoat;
-import com.example.repository.AdventureRepository;
-import com.example.repository.BoatRepository;
-import com.example.repository.ReservationAdventureRepository;
-import com.example.repository.ReservationBoatRepository;
+import com.example.model.*;
+import com.example.repository.*;
 import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +21,9 @@ import java.util.Optional;
 public class AdventureService {
     private final AdventureRepository adventureRepository;
     private final ReservationAdventureRepository reservationAdventureRepository;
+    private final UserRepository userRepository;
+    private final CompliantRepository compliantRepository;
+    private final JavaMailSender javaMailSender;
 
     public List<Adventure> getAllAdventures(){
         return adventureRepository.findAll();
@@ -44,6 +45,15 @@ public class AdventureService {
         reservations.add(new ReservationAdventure(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email));
         adventure.setReservations(reservations);
         adventureRepository.save(adventure);
+        //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) principal;
+        List<PotentialComplaint> potentialComplaints = user.getPotentialComplaints();
+        potentialComplaints.add(new PotentialComplaint(adventure.getId(), Entity.ADVENTURE));
+        //potentialComplaints.add(new PotentialComplaint(adventure.getInstructorId(), Entity.FISHING_INSTRUCTOR));
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        userRepository.save(user);
         return true;
     }
 
@@ -69,5 +79,18 @@ public class AdventureService {
 
     public List<ReservationAdventure> getAllAdventureReservations(){
         return reservationAdventureRepository.findAll();
+    }
+
+    public void makeCompliant(Compliant compliant) {
+        compliantRepository.save(compliant);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        Adventure adventure = adventureRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
+        //Boat boat = boatRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
+        User user = userRepository.findById(adventure.getInstructorId()).stream().findFirst().orElseThrow();
+        message.setTo(user.getEmail());
+        message.setSubject("You received compliant from client.");
+        message.setText(compliant.getCompliant());
+        javaMailSender.send(message);
     }
 }

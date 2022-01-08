@@ -21,6 +21,44 @@
 
 <div class="row justify-content-center">
     <div class="col-auto">
+        <table class="table w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Cottage id</th>
+                    <th scope="col">Make compliant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cottage of cottages">
+                    <td scope="row">{{ cottage.id }}</td>
+                    <button class="btn btn-primary" (click)='makeCottageCompliant(cottage.id)'>Make Compliant</button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Adventure id</th>
+                    <th scope="col">Make compliant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let adventure of adventures">
+                    <td scope="row">{{ adventure.id }}</td>
+                    <button class="btn btn-primary" (click)='makeAdventureCompliant(adventure.id)'>Make Compliant</button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
         <div class="form-group">
             <label for="exampleFormControlTextarea2">Your compliant</label>
             <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="5" [(ngModel)]="compliant"></textarea>

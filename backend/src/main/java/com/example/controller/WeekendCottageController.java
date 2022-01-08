@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.dto.ReservationDTO;
+import com.example.model.Compliant;
 import com.example.model.ReservationBoat;
 import com.example.model.ReservationCottage;
 import com.example.model.WeekendCottage;
@@ -46,5 +47,11 @@ public class WeekendCottageController {
     public Boolean makeCottageReservation(@RequestBody ReservationDTO boatReservationDTO) {
         Boolean ans = weekendCottageService.makeCottageReservation(boatReservationDTO);
         return ans;
+    }
+
+    @PostMapping(path = "/compliant")
+    public Boolean makeCompliant(@RequestBody Compliant compliant) {
+        weekendCottageService.makeCompliant(compliant);
+        return true;
     }
 }

@@ -1,10 +1,7 @@
 package com.example.controller;
 
 import com.example.dto.ReservationDTO;
-import com.example.model.Adventure;
-import com.example.model.Boat;
-import com.example.model.ReservationAdventure;
-import com.example.model.ReservationBoat;
+import com.example.model.*;
 import com.example.service.AdventureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +45,11 @@ public class AdventureController {
     @DeleteMapping(path = "/reservation/{id}")
     public Boolean deleteAdventureReservation(@PathVariable Long id){
         return adventureService.cancelAdventureReservation(id);
+    }
+
+    @PostMapping(path = "/compliant")
+    public Boolean makeCompliant(@RequestBody Compliant compliant) {
+        adventureService.makeCompliant(compliant);
+        return true;
     }
 }

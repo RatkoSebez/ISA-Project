@@ -1,12 +1,16 @@
 package com.example.service;
 
 import com.example.dto.ReservationDTO;
-import com.example.model.ReservationBoat;
-import com.example.model.ReservationCottage;
-import com.example.model.WeekendCottage;
+import com.example.model.*;
+import com.example.repository.CompliantRepository;
 import com.example.repository.ReservationCottageRepository;
+import com.example.repository.UserRepository;
 import com.example.repository.WeekendCottageRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,9 @@ import java.util.Optional;
 public class WeekendCottageService {
     private final WeekendCottageRepository weekendCottageRepository;
     private final ReservationCottageRepository reservationCottageRepository;
+    private final UserRepository userRepository;
+    private final CompliantRepository compliantRepository;
+    private final JavaMailSender javaMailSender;
 
     public List<WeekendCottage> getAllWeekendCottages(){
         return weekendCottageRepository.findAll();
@@ -65,6 +72,28 @@ public class WeekendCottageService {
         reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email));
         weekendCottage.setReservations(reservations);
         weekendCottageRepository.save(weekendCottage);
+        //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) principal;
+        List<PotentialComplaint> potentialComplaints = user.getPotentialComplaints();
+        potentialComplaints.add(new PotentialComplaint(weekendCottage.getId(), Entity.WEEKEND_COTTAGE));
+        potentialComplaints.add(new PotentialComplaint(weekendCottage.getCottageOwnerId(), Entity.COTTAGE_OWNER));
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        userRepository.save(user);
         return true;
+    }
+
+    public void makeCompliant(Compliant compliant) {
+        compliantRepository.save(compliant);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        WeekendCottage cottage = weekendCottageRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
+        //Boat boat = boatRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
+        User user = userRepository.findById(cottage.getCottageOwnerId()).stream().findFirst().orElseThrow();
+        message.setTo(user.getEmail());
+        message.setSubject("Your weekend cottage received compliant.");
+        message.setText(compliant.getCompliant());
+        javaMailSender.send(message);
     }
 }
