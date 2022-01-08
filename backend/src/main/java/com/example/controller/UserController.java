@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.dto.UserDTO;
+import com.example.model.DeleteAccountRequest;
 import com.example.model.User;
 import com.example.model.UserRole;
 import com.example.model.UserSubscription;
@@ -55,9 +56,9 @@ public class UserController {
         return userResponseEntity;
     }
 
-    @DeleteMapping(path = "/{id}")
-    public Boolean deleteUser(@PathVariable Long id){
-        return clientService.deleteUser(id);
+    @PostMapping(path = "/deleteClientRequest")
+    public Boolean deleteUser(@RequestBody DeleteAccountRequest deleteAccountRequest){
+        return clientService.deleteUser(deleteAccountRequest);
     }
 
     @GetMapping(path = "confirmEmail")

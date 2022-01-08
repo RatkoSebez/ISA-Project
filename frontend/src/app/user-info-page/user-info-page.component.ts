@@ -22,6 +22,7 @@ export class UserInfoPageComponent implements OnInit {
   address = '';
   phoneNumber!: number;
   password = '';
+  compliant = "";
 
   constructor(private http: HttpClient, private renderer: Renderer2, private elem: ElementRef, private router: Router) { }
 
@@ -82,12 +83,15 @@ export class UserInfoPageComponent implements OnInit {
   }
 
   deleteUser(id: number){
-    this.http.delete('api/user/' + id)
-      .subscribe(
-        () => {
-          this.router.navigate(['/home']);
-        }
-      );
+    var postData = {
+      userId: id,
+      reason: this.compliant
+    }
+    console.log("ovde sam")
+    this.http.post('api/user/deleteClientRequest', postData).toPromise().then(data => {
+      console.log(data);
+      this.router.navigate(['/home']);
+    });
   }
 
   cancelSubscription(id: number){
