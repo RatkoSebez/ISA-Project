@@ -1,10 +1,7 @@
 package com.example.service;
 
 import com.example.dto.UserDTO;
-import com.example.model.FishingService;
-import com.example.model.RegistrationRequest;
-import com.example.model.User;
-import com.example.model.UserRole;
+import com.example.model.*;
 import com.example.repository.RegistrationRequestRepository;
 import com.example.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -50,6 +47,9 @@ public class RegistrationService {
         String encodedPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPassword);
         if(newUser.getRole() == UserRole.ROLE_CLIENT) sendConfirmationEmail(newUser);
+        newUser.setLoyaltyCategory(LoyaltyCategory.REGULAR);
+        newUser.setLoyaltyBenefits("Since you are in regular loyalty mode, you do not have any extra discounts.");
+        newUser.setLoyaltyPoints(10L);
         userRepository.save(newUser);
         return newUser;
     }
