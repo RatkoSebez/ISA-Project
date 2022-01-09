@@ -35,7 +35,7 @@ public class ClientService {
         User oldUser = (User)principal;
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         if(user.getPassword().equals("")) encodedPassword = oldUser.getPassword();
-        User newUser = new User(encodedPassword, user.getEmail(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getCity(), user.getCountry(), user.getPhoneNumber(), oldUser.getId(), UserRole.ROLE_CLIENT);
+        User newUser = new User(encodedPassword, user.getEmail(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getCity(), user.getCountry(), user.getPhoneNumber(), oldUser.getId(), UserRole.ROLE_CLIENT, oldUser.getLoyaltyCategory(), oldUser.getLoyaltyPoints(), oldUser.getLoyaltyBenefits());
         userRepository.save(newUser);
         Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, newUser.getPassword(), newUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);

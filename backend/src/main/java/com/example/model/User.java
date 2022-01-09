@@ -36,6 +36,9 @@ public class User implements UserDetails {
     private UserRole role;
     private Boolean locked = false;
     private Boolean enabled = true;
+    private LoyaltyCategory loyaltyCategory;
+    private Long loyaltyPoints;
+    private String loyaltyBenefits;
     @OneToMany(targetEntity = FishingService.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -106,7 +109,7 @@ public class User implements UserDetails {
     }
 
     //Client
-    public User(String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, Long id, UserRole role) {
+    public User(String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, Long id, UserRole role, LoyaltyCategory loyaltyCategory, Long loyaltyPoints, String loyaltyBenefits) {
         this.password = password;
         this.email = email;
         this.firstName = firstName;
@@ -117,6 +120,25 @@ public class User implements UserDetails {
         this.phoneNumber = phoneNumber;
         this.id = id;
         this.role = role;
+        this.loyaltyCategory = loyaltyCategory;
+        this.loyaltyBenefits = loyaltyBenefits;
+        this.loyaltyPoints = loyaltyPoints;
+    }
+
+    //Client2
+    public User(String password, String email, String firstName, String lastName, String address, String city, String country, String phoneNumber, UserRole role, LoyaltyCategory loyaltyCategory, Long loyaltyPoints, String loyaltyBenefits) {
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.loyaltyCategory = loyaltyCategory;
+        this.loyaltyPoints = loyaltyPoints;
+        this.loyaltyBenefits = loyaltyBenefits;
     }
 
     public User(String email, String password, UserRole role){

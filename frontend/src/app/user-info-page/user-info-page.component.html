@@ -47,6 +47,12 @@
                         <p class="font-weight-bold" [ngClass]="edit ? 'is-not-active' : 'is-active'">Password: </p>
                         <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="password"
                             [ngClass]="edit ? 'is-not-active' : 'is-active'">
+                        <p class="font-weight-bold">Loyalty category: </p>
+                        <p class="text-muted">{{ user.loyaltyCategory }}</p>
+                        <p class="font-weight-bold">Loyalty points: </p>
+                        <p class="text-muted">{{ user.loyaltyPoints }}</p>
+                        <p class="font-weight-bold">Loyalty benefits: </p>
+                        <p class="text-muted">{{ user.loyaltyBenefits }}</p>
                         <button class="btn btn-primary mt-3" (click)='doEditPost()' [ngClass]="edit ? 'is-not-active' : 'is-active'">Save</button>
                     </div>
                 </div>

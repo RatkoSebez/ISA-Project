@@ -11,6 +11,9 @@ export class User{
         public country: string,
         public phoneNumber: number,
         public role: string,
-        public potentialComplaints: Array<PotentialCompliant>
+        public potentialComplaints: Array<PotentialCompliant>,
+        public loyaltyCategory: string,
+        public loyaltyPoints: number,
+        public loyaltyBenefits: string
     ){}
 }
