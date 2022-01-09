@@ -176,15 +176,52 @@ public class AdministratorService {
     }
 
     public boolean acceptDeleteAccountRequest(DeleteAccountRequestDTO deleteAccountRequestDTO) {
+        User user = administratorRepository.findById(deleteAccountRequestDTO.getUserId()).stream().findFirst().orElse(null);
         administratorRepository.deleteById(deleteAccountRequestDTO.getUserId());
         DeleteAccountRequest deleteAccountRequest = deleteAccountRequestRepository.findDeleteAccountRequestById(deleteAccountRequestDTO.getUserId());
         deleteAccountRequestRepository.deleteById(deleteAccountRequest.getId());
+
+        sendAcceptDAR(user);
+
         return true;
     }
 
+    private void sendAcceptDAR(User user){
+        user.setEnabled(true);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        message.setTo(user.getEmail());
+        message.setSubject("Your account is deleted sucessfully!");
+//        String uniqueID = UUID.randomUUID().toString();
+//        user.setVerificationCode(uniqueID);
+//        administratorRepository.save(user);
+        message.setText("Account deleted!");
+        //message.setText("http://localhost:8080/api/user/confirmEmail?code=" + uniqueID);
+        javaMailSender.send(message);
+        System.out.println("mail working");
+    }
+
     public boolean declineDeleteAccountRequest(DeleteAccountRequestDTO deleteAccountRequestDTO) {
+        User user = administratorRepository.findById(deleteAccountRequestDTO.getUserId()).stream().findFirst().orElse(null);
         DeleteAccountRequest deleteAccountRequest = deleteAccountRequestRepository.findDeleteAccountRequestById(deleteAccountRequestDTO.getUserId());
         deleteAccountRequestRepository.deleteById(deleteAccountRequest.getId());
+
+        sendDeclineDAR(user);
         return true;
+    }
+
+    private void sendDeclineDAR(User user){
+        user.setEnabled(true);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        message.setTo(user.getEmail());
+        message.setSubject("Your DAR is declined");
+//        String uniqueID = UUID.randomUUID().toString();
+//        user.setVerificationCode(uniqueID);
+//        administratorRepository.save(user);
+        message.setText("Delete account req declined!");
+        //message.setText("http://localhost:8080/api/user/confirmEmail?code=" + uniqueID);
+        javaMailSender.send(message);
+        System.out.println("mail working");
     }
 }
