@@ -21,6 +21,7 @@ public class ReservationFishingService {
     private String additionalServices;
     private Integer price;
 
+
     public ReservationFishingService(){}
 
     public ReservationFishingService(Long id, Date dateAndTimeOfReservation, String place, String duration, Integer capacityOfPeople, String additionalServices, Integer price) {

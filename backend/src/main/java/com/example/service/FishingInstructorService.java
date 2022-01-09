@@ -1,18 +1,19 @@
 package com.example.service;
 
-import com.example.dto.AvailabilityFishingInstructorDTO;
-import com.example.dto.DeleteAccountRequestDTO;
-import com.example.dto.FishingServiceDTO;
-import com.example.dto.UserDTO;
+import com.example.dto.*;
 import com.example.model.*;
 import com.example.repository.DeleteAccountRequestRepository;
 import com.example.repository.FishingInstructorRepository;
 import com.example.repository.FishingServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -197,5 +198,29 @@ public class FishingInstructorService {
         fishingInstructorRepository.save(fishingInstructor);
 
         return afi;
+    }
+
+
+
+//    private Date dateAndTimeOfReservation;
+//    private String place;
+//    private String duration;
+//    private Integer capacityOfPeople;
+//    private String additionalServices;
+//    private Integer price;
+    //fishingServiceId
+    public ReservationFishingService createOfferReservation(ActionOfferReservationDTO actionOfferReservationDTO) {
+        FishingService fishingService = fishingServiceRepository.findById(actionOfferReservationDTO.getFishingServiceId()).stream().findFirst().orElse(null);
+
+        ReservationFishingService newOfferReservation = new ReservationFishingService(actionOfferReservationDTO.getDateAndTimeOfReservation(),
+                actionOfferReservationDTO.getPlace(), actionOfferReservationDTO.getDuration(), actionOfferReservationDTO.getCapacityOfPeople(),
+                actionOfferReservationDTO.getAdditionalServices(), actionOfferReservationDTO.getPrice());
+
+        fishingService.getOfferedReservationsList().add(newOfferReservation);
+        fishingServiceRepository.save(fishingService);
+
+
+        return newOfferReservation;
+
     }
 }

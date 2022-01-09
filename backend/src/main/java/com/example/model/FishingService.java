@@ -4,10 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -33,6 +30,16 @@ public class FishingService {
     private String additionalInformation;
     private String cancellationPolicy;
 
+    @OneToMany(targetEntity = ReservationFishingService.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "foreign_key", referencedColumnName = "id")
+    private List<ReservationFishingService> reservations;
+
+    @OneToMany(targetEntity = ReservationFishingService.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "foreign_key", referencedColumnName = "id")
+    private List<ReservationFishingService> offeredReservationsList;
+
+
+
     public FishingService(){}
 
     public FishingService(Long id, String name, String address, String description, String aboutFishingInstructor, String images, Integer capacityOfPeople, List<Date> freeTerms, String rulesOfConduct, String equipment, String priceList, String additionalInformation, String cancellationPolicy) {
@@ -49,6 +56,8 @@ public class FishingService {
         this.priceList = priceList;
         this.additionalInformation = additionalInformation;
         this.cancellationPolicy = cancellationPolicy;
+        this.reservations = new ArrayList<ReservationFishingService>();
+        this.offeredReservationsList = new ArrayList<ReservationFishingService>();
     }
 
     public FishingService(String name, String address, String description, String aboutFishingInstructor, String images, Integer capacityOfPeople, List<Date> freeTerms, String rulesOfConduct, String equipment, String priceList, String additionalInformation, String cancellationPolicy) {
@@ -64,6 +73,8 @@ public class FishingService {
         this.priceList = priceList;
         this.additionalInformation = additionalInformation;
         this.cancellationPolicy = cancellationPolicy;
+        this.reservations = new ArrayList<ReservationFishingService>();
+        this.offeredReservationsList = new ArrayList<ReservationFishingService>();
     }
 
     public Long getId() {

@@ -1,14 +1,8 @@
 package com.example.controller;
 
 
-import com.example.dto.AvailabilityFishingInstructorDTO;
-import com.example.dto.DeleteAccountRequestDTO;
-import com.example.dto.FishingServiceDTO;
-import com.example.dto.UserDTO;
-import com.example.model.AvailabilityFishingInstructor;
-import com.example.model.DeleteAccountRequest;
-import com.example.model.FishingService;
-import com.example.model.User;
+import com.example.dto.*;
+import com.example.model.*;
 import com.example.service.FishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +20,6 @@ public class FishingInstructorController {
     public FishingInstructorController(FishingInstructorService fishingInstructorService) {
         this.fishingInstructorService = fishingInstructorService;
     }
-
 
     @PostMapping(value = "/addFishingService", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FishingService> addFishingService(@RequestBody FishingServiceDTO fishingServiceDTO) {
@@ -67,6 +60,14 @@ public class FishingInstructorController {
         AvailabilityFishingInstructor newAvailability = fishingInstructorService.defineAvailability(availabilityFishingInstructorDTO);
         ResponseEntity<AvailabilityFishingInstructor> defAvailabilityReqResponseEntity = new ResponseEntity<>(newAvailability, HttpStatus.CREATED);
         return defAvailabilityReqResponseEntity;
+    }
+
+
+    @PostMapping(value = "/createOfferReservation", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ReservationFishingService> createOfferReservation(@RequestBody ActionOfferReservationDTO actionOfferReservationDTO) {
+        ReservationFishingService newOfferReservation = fishingInstructorService.createOfferReservation(actionOfferReservationDTO);
+        ResponseEntity<ReservationFishingService> reserOfferReqResponseEntity = new ResponseEntity<>(newOfferReservation, HttpStatus.CREATED);
+        return reserOfferReqResponseEntity;
     }
 
 
