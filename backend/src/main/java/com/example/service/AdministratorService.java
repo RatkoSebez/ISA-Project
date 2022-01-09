@@ -11,6 +11,8 @@ import com.example.repository.DeleteAccountRequestRepository;
 import com.example.repository.RegistrationRequestRepository;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +29,16 @@ public class AdministratorService {
     private final DeleteAccountRequestRepository deleteAccountRequestRepository;
     @Autowired
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private final JavaMailSender javaMailSender;
 
 
-    public AdministratorService(UserRepository administratorRepository, RegistrationRequestRepository registrationRequestRepository, DeleteAccountRequestRepository deleteAccountRequestRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AdministratorService(UserRepository administratorRepository, RegistrationRequestRepository registrationRequestRepository, DeleteAccountRequestRepository deleteAccountRequestRepository, BCryptPasswordEncoder bCryptPasswordEncoder, JavaMailSender javaMailSender) {
         this.administratorRepository = administratorRepository;
         this.registrationRequestRepository = registrationRequestRepository;
         this.deleteAccountRequestRepository = deleteAccountRequestRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.javaMailSender = javaMailSender;
     }
 
     public List<User> getAdministrators() {
@@ -49,16 +54,52 @@ public class AdministratorService {
     }
 
     public boolean acceptRegistrationRequest(RegistrationRequest registrationRequest) {
-        User acceptedUser = administratorRepository.findUserByEmail(registrationRequest.getEmail());
+        User acceptedUser = administratorRepository.findById(registrationRequest.getUserId()).stream().findFirst().orElse(null);
+                //administratorRepository.findUserByEmail(registrationRequest.getEmail());
         acceptedUser.setLocked(false);
         administratorRepository.save(acceptedUser);
         registrationRequestRepository.deleteById(registrationRequest.getId());
+        sendAcceptEmail(acceptedUser);
+
         return true;
     }
 
+    private void sendAcceptEmail(User user){
+        user.setEnabled(true);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        message.setTo(user.getEmail());
+        message.setSubject("You are accepted!!!!");
+//        String uniqueID = UUID.randomUUID().toString();
+//        user.setVerificationCode(uniqueID);
+//        administratorRepository.save(user);
+        message.setText("Registracija odobrena!");
+        //message.setText("http://localhost:8080/api/user/confirmEmail?code=" + uniqueID);
+        javaMailSender.send(message);
+        System.out.println("mail working");
+    }
+
     public boolean declineRegistrationRequest(RegistrationRequest registrationRequest) {
+        User user = administratorRepository.findById(registrationRequest.getUserId()).stream().findFirst().orElse(null);
         registrationRequestRepository.deleteById(registrationRequest.getId());
+        sendDeclineEmail(user, "razlog odbijanja!!!");
         return true;
+    }
+
+
+    private void sendDeclineEmail(User user, String reasonOfDecline){
+        user.setEnabled(true);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        message.setTo(user.getEmail());
+        message.setSubject("You are declined!!!!!!!!!!!");
+//        String uniqueID = UUID.randomUUID().toString();
+//        user.setVerificationCode(uniqueID);
+//        administratorRepository.save(user);
+        message.setText(reasonOfDecline);
+        //message.setText("http://localhost:8080/api/user/confirmEmail?code=" + uniqueID);
+        javaMailSender.send(message);
+        System.out.println("mail working");
     }
 
     public User registerAdministrator(UserDTO administratorDTO) {
