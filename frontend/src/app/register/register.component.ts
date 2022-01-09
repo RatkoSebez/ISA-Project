@@ -18,6 +18,9 @@ export class RegisterComponent implements OnInit {
   public phoneNumber = '';
   public role = 0;
   public clicked = false;
+  public password2 = "";
+  public wrongPasswordConfirmationMessage = "*password and confirm password doesn't match";
+  public ok = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -25,6 +28,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+    if(this.password != this.password2){
+      this.ok = true;
+      return;
+    }
+    this.ok = false;
     this.clicked = true;
     var e = (document.getElementById("roleSelect")) as HTMLSelectElement;
     var sel = e.selectedIndex;

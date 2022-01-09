@@ -38,6 +38,11 @@
                     required="" [(ngModel)]="password">
             </p>
             <p>
+                <label for="password" class="sr-only">Confirm Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Confirm Password" required=""
+                    [(ngModel)]="password2">
+            </p>
+            <p>
                 <label for="password" class="sr-only">Address</label>
                 <input type="text" id="address" name="address" class="form-control" placeholder="Address" required=""
                     [(ngModel)]="address">
@@ -60,6 +65,7 @@
                 <option value="0">Client</option>
                 <option value="2">Fishing Instructor</option>
             </select>
+            <p [ngClass]="ok ? 'is-active' : 'is-not-active'">{{ wrongPasswordConfirmationMessage }}</p>
             <button class="btn btn-lg btn-primary btn-block" (click)="register()" [disabled]="clicked">Register</button>
         </form>
     </div>
