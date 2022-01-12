@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class BoatsPageComponent implements OnInit {
   public nameBoat = '';
   public descriptionBoat = '';
+  public address = '';
   public capacityBoat!: number;
   public people!: number;
   public days!: number;
@@ -27,6 +28,9 @@ export class BoatsPageComponent implements OnInit {
   }
   public getDescriptionBoat(){
     return this.descriptionBoat;
+  }
+  public getAddress(){
+    return this.address;
   }
   public getCapacityBoat(){
     return this.capacityBoat;

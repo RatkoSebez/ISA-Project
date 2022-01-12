@@ -25,6 +25,7 @@ public class Adventure {
     @Column(columnDefinition="TEXT")
     private String instructorBiography;
     private String image;
+    private Double rating;
     private Integer capacity;
     private String priceList;
     @OneToMany(targetEntity = ReservationAdventure.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -32,7 +33,7 @@ public class Adventure {
     private List<ReservationAdventure> reservations;
     private Long instructorId;
 
-    public Adventure(String name, String address, String description, String instructorBiography, String image, Integer capacity, String priceList, Long instructorId) {
+    public Adventure(String name, String address, String description, String instructorBiography, String image, Integer capacity, String priceList, Long instructorId, Double rating) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -41,5 +42,6 @@ public class Adventure {
         this.capacity = capacity;
         this.priceList = priceList;
         this.instructorId = instructorId;
+        this.rating = rating;
     }
 }

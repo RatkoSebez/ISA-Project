@@ -11,6 +11,8 @@ export class Adventure{
         public capacity: number,
         public priceList: string,
         public additionalServices: string,
-        public reservations: Array<AdventureReservation>
+        public reservations: Array<AdventureReservation>,
+        public instructorId: number,
+        public instructorBiography: string
     ){}
 }

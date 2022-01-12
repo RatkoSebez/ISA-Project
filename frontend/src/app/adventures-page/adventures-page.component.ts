@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-adventures-page',
   templateUrl: './adventures-page.component.html',
@@ -9,9 +12,10 @@ import { Router } from '@angular/router';
 })
 export class AdventuresPageComponent implements OnInit {
 
-  public nameBoat = '';
-  public descriptionBoat = '';
-  public capacityBoat!: number;
+  public name = '';
+  public description = '';
+  public address = '';
+  public capacity!: number;
   public people!: number;
   public days!: number;
   public date1!: Date;
@@ -20,14 +24,17 @@ export class AdventuresPageComponent implements OnInit {
 
   public constructor(private http: HttpClient, private router: Router) {}
 
-  // public getNameBoat(){
-  //   return this.nameBoat;
-  // }
-  // public getDescriptionBoat(){
-  //   return this.descriptionBoat;
-  // }
+  public getName(){
+    return this.name;
+  }
+  public getDescription(){
+    return this.description;
+  }
+  public getAddress(){
+    return this.address;
+  }
   // public getCapacityBoat(){
-  //   return this.capacityBoat;
+  //   return this.capacity;
   // }
   // public getDaysBoat(){
   //   return this.days;

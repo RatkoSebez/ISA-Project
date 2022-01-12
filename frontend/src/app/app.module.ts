@@ -30,6 +30,7 @@ import { AdventureCardComponent } from './adventure-card/adventure-card.componen
 import { AdventureInfoPageComponent } from './adventure-info-page/adventure-info-page.component';
 import { AdventureReservationsComponent } from './adventure-reservations/adventure-reservations.component';
 import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
+import { AndventuresFilterPipe } from './pipes/andventures-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MakeComplaintComponent } from './make-complaint/make-complaint.componen
     AdventureCardComponent,
     AdventureInfoPageComponent,
     AdventureReservationsComponent,
-    MakeComplaintComponent
+    MakeComplaintComponent,
+    AndventuresFilterPipe
   ],
   imports: [
     BrowserModule,

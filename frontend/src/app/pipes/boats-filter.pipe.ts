@@ -16,6 +16,7 @@ export class BoatsFilterPipe implements PipeTransform {
   transform(value: any[], filter: string, propName: string): any[] {
     var name = this.boatsPageComponent.getNameBoat();
     var description = this.boatsPageComponent.getDescriptionBoat();
+    var address = this.boatsPageComponent.getAddress();
     var date1 = this.boatsPageComponent.getDate1Boat();
     var date2 = this.boatsPageComponent.getDate2Boat();
     var people = this.boatsPageComponent.getPeopleBoat();
@@ -52,7 +53,7 @@ export class BoatsFilterPipe implements PipeTransform {
     const resultArray2 = [];
 
     for(const item of resultArray){
-      if(item['name'].includes(name) && item['description'].includes(description)){
+      if(item['name'].includes(name) && item['description'].includes(description) && item['address'].includes(address)){
         resultArray2.push(item);
       }
     }

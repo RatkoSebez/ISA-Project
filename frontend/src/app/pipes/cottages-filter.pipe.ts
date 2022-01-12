@@ -7,9 +7,7 @@ import { WeekendCottagesPageComponent } from '../weekend-cottages-page/weekend-c
 })
 export class CottagesFilterPipe implements PipeTransform {
 
-  constructor(private weekendCottagesPageComponent: WeekendCottagesPageComponent){
-
-  }
+  constructor(private weekendCottagesPageComponent: WeekendCottagesPageComponent){}
 
   transform(value: any[], filter: string, propName: string): any[] {
     var name = this.weekendCottagesPageComponent.getNameCottage();
