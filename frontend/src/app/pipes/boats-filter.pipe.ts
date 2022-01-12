@@ -25,28 +25,13 @@ export class BoatsFilterPipe implements PipeTransform {
     const resultArray = [];
     var sortBy = this.boatsPageComponent.getSortSelectValue();
     var sortType = this.boatsPageComponent.getSortType();
-
-    //var dateFormat = require('dateformat');
     
     var br = 0;
     for(let boat of boats){
       var ok = true;
       br += 1;
-      //console.log("-----------boat" + br)
       for(let reservation of boat.reservations){
-        //console.log(reservation.startDate + " - " + reservation.endDate);
-        //console.log(date1 + " - " + date2);
-        //date1 = dateFormat(date1, "YYYY-MM-DD");
-        //date2 = dateFormat(date2, "YYYY-MM-DD");
-        //date1 = moment("21/10/14", "DD/MM/YY").format("MM/DD/YY")
-
-        //reservation.startDate = new Date(this.dateToYMD(new Date(reservation.startDate.getFullYear(), reservation.startDate.getMonth(), reservation.startDate.getDate())));
-
-        //console.log("---")
-        //console.log(date1 + " > " + reservation.endDate + " - " + (date1 > reservation.endDate))
-        //console.log(date2 + " < " + reservation.startDate + " - " + (date2 < reservation.startDate))
-        //console.log("s" + date1 + " - " + reservation.endDate)
-        if(date1 > reservation.endDate || date2 < reservation.startDate || !date1 || !date2){}
+        if(new Date(date1).getTime() > new Date(reservation.endDate).getTime() || new Date(date2).getTime() < new Date(reservation.startDate).getTime() || !date1 || !date2){}
         else ok = false;
       }
       if(ok) resultArray.push(boat);

@@ -10,6 +10,7 @@
                     <p class="card-text">id: {{ boat.id }}</p>
                     <p class="card-text">{{ boat.address }}</p>
                     <p class="card-text">Average rating: {{ boat.rating }}</p>
+                    <p class="card-text">Price list: {{ boat.priceList }}</p>
                     <a href="/boat?id={{ boat.id }}" class="btn btn-primary">See more</a>
                     <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'" (click)='makeReservation(boat.id)'>Make Reservation</button>
                 </div>

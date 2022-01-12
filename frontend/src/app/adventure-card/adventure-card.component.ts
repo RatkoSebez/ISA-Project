@@ -24,7 +24,7 @@ export class AdventureCardComponent implements OnInit {
       }
     );
   }
-
+  
   public getAdventures() : Adventure[]{
     return this.adventures;
   }

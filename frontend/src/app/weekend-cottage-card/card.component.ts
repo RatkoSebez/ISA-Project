@@ -33,6 +33,10 @@ export class CardComponent implements OnInit {
     this.component.makeReservation(id);
   }
 
+  public getCottages() : WeekendCottage[]{
+    return this.weekendCottages;
+  }
+
   doGet(){ 
     this.http.get('api/user').subscribe(val => {
       console.log(val);

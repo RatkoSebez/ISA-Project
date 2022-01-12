@@ -13,6 +13,6 @@ export class Adventure{
         public additionalServices: string,
         public reservations: Array<AdventureReservation>,
         public instructorId: number,
-        public instructorBiography: string
+        public instructorBiography: string,
     ){}
 }

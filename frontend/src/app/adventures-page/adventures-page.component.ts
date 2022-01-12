@@ -42,12 +42,12 @@ export class AdventuresPageComponent implements OnInit {
   // public getPeopleBoat(){
   //   return this.people;
   // }
-  // public getDate1Boat() : Date{
-  //   return this.date1;
-  // }
-  // public getDate2Boat() : Date{
-  //   return this.date2;
-  // }
+  public getDate1Adventure() : Date{
+    return this.date1;
+  }
+  public getDate2Adventure() : Date{
+    return this.date2;
+  }
   public getSortSelectValue(){
     var e = (document.getElementById("sortAttribute")) as HTMLSelectElement;
     var sel = e.selectedIndex;

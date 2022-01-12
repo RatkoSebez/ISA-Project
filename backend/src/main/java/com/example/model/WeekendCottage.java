@@ -27,6 +27,7 @@ public class WeekendCottage {
     private String description;
     private Double rating;
     private String image;
+    private String priceList;
     @OneToMany(targetEntity = ReservationCottage.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
     private List<ReservationCottage> reservations;
@@ -45,9 +46,9 @@ public class WeekendCottage {
 //    public void setUser(User user) {
 //        this.user = user;
 //    }
-//    private String priceList;
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId){
+
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, String priceList){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -55,9 +56,10 @@ public class WeekendCottage {
         this.rulesOfConduct = rulesOfConduct;
         this.image = image;
         this.cottageOwnerId = cottageOwnerId;
+        this.priceList = priceList;
     }
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, String priceList){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -66,5 +68,6 @@ public class WeekendCottage {
         this.image = image;
         this.reservations = reservations;
         this.cottageOwnerId = cottageOwnerId;
+        this.priceList = priceList;
     }
 }

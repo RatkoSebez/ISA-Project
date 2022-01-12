@@ -1,3 +1,5 @@
+import { CottageReservation } from "./CottageReservation";
+
 export class WeekendCottage{
     constructor(
         public id: number,
@@ -6,6 +8,8 @@ export class WeekendCottage{
         public description: string,
         public rating: number,
         public rulesOfConduct: string,
-        public image: string
+        public image: string,
+        public priceList: string,
+        public reservations: Array<CottageReservation>
     ){}
 }
