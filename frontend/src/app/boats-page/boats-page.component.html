@@ -35,6 +35,24 @@
                     aria-describedby="basic-addon1" [(ngModel)]="people">
             </div>
         </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <select class="form-select mb-3" aria-label="" id="sortAttribute" (change)="getSortSelectValue()">
+                    <option value="Sort by">Sort by</option>
+                    <option value="Name">Name</option>
+                    <option value="Location">Location</option>
+                    <option value="Rating">Rating</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <select class="form-select mb-3" aria-label="" id="sortType" (change)="getSortType()">
+                    <option value="Ascending">Ascending</option>
+                    <option value="Descending">Descending</option>
+                </select>
+            </div>
+        </div>
     </div>
 </div>
 <app-boat-card></app-boat-card>

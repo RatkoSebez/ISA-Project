@@ -1,5 +1,27 @@
 <app-menu></app-menu>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <select class="form-select mb-3" aria-label="" id="sortAttribute" (change)="getSortSelectValue()">
+                    <option value="Sort by">Sort by</option>
+                    <option value="Date">Date</option>
+                    <option value="Duration">Duration</option>
+                    <option value="Price">Price</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <select class="form-select mb-3" aria-label="" id="sortType" (change)="getSortType()">
+                    <option value="Ascending">Ascending</option>
+                    <option value="Descending">Descending</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row justify-content-center">
     <div class="col-auto">
         <table class="table w-auto">
@@ -8,13 +30,15 @@
                     <th scope="col">Reservation id</th>
                     <th scope="col">Start date</th>
                     <th scope="col">End date</th>
+                    <th scope="col">Price</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let reservation of cottageReservations">
+                <tr *ngFor="let reservation of cottageReservations | cottagesReservationFilter:'':'name'">
                     <th scope="row">{{ reservation.id }}</th>
                     <td>{{ reservation.startDate }}</td>
                     <td>{{ reservation.endDate }}</td>
+                    <td>{{ reservation.price }}</td>
                 </tr>
             </tbody>
         </table>

@@ -21,10 +21,12 @@ public class ReservationBoat {
     private LocalDate startDate;
     private LocalDate endDate;
     private String clientEmail;
+    private Double price;
 
-    public ReservationBoat(LocalDate start, LocalDate end, String clientEmail){
+    public ReservationBoat(LocalDate start, LocalDate end, String clientEmail, Double price){
         this.startDate = start;
         this.endDate = end;
         this.clientEmail = clientEmail;
+        this.price = price;
     }
 }

@@ -31,6 +31,9 @@ import { AdventureInfoPageComponent } from './adventure-info-page/adventure-info
 import { AdventureReservationsComponent } from './adventure-reservations/adventure-reservations.component';
 import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
 import { AndventuresFilterPipe } from './pipes/andventures-filter.pipe';
+import { CottagesReservationFilterPipe } from './pipes/cottages-reservation-filter.pipe';
+import { BoatsReservationFilterPipe } from './pipes/boats-reservation-filter.pipe';
+import { AdventuresReservationFilterPipe } from './pipes/adventures-reservation-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { AndventuresFilterPipe } from './pipes/andventures-filter.pipe';
     AdventureInfoPageComponent,
     AdventureReservationsComponent,
     MakeComplaintComponent,
-    AndventuresFilterPipe
+    AndventuresFilterPipe,
+    CottagesReservationFilterPipe,
+    BoatsReservationFilterPipe,
+    AdventuresReservationFilterPipe
   ],
   imports: [
     BrowserModule,

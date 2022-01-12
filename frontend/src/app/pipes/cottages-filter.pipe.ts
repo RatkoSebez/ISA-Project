@@ -13,16 +13,29 @@ export class CottagesFilterPipe implements PipeTransform {
     var name = this.weekendCottagesPageComponent.getNameCottage();
     var address = this.weekendCottagesPageComponent.getAddressCottage();
     var description = this.weekendCottagesPageComponent.getDescriptionCottage();
+    var sortBy = this.weekendCottagesPageComponent.getSortSelectValue();
+    var sortType = this.weekendCottagesPageComponent.getSortType();
+    //console.log("u pajpu sam")
     const resultArray = [];
-    // if(value.length === 0 || name === '' || propName === ''){
-    //   return value;
-    // }
     for(const item of value){
       if(item['name'].includes(name) && item['address'].includes(address) && item['description'].includes(description)){
         resultArray.push(item);
       }
     }
-    
+    console.log("sortiram")
+    if(sortType == "Ascending"){
+      if(sortBy == "Sort by"){}
+      else if(sortBy == "Name") resultArray.sort((a,b) => a.name.localeCompare(b.name));
+      else if(sortBy == "Location") resultArray.sort((a,b) => a.address.localeCompare(b.address));
+      else if(sortBy == "Rating") resultArray.sort((a,b) => a.rating - b.rating);
+    }
+    else if(sortType == "Descending"){
+      if(sortBy == "Sort by"){}
+      else if(sortBy == "Name") resultArray.sort((b,a) => a.name.localeCompare(b.name));
+      else if(sortBy == "Location") resultArray.sort((b,a) => a.address.localeCompare(b.address));
+      else if(sortBy == "Rating") resultArray.sort((b,a) => a.rating - b.rating);
+    }
+
     return resultArray;
   }
 

@@ -4,6 +4,7 @@ export class CottageReservation{
         public startDate: Date,
         public endDate: Date,
         public clientEmail: string,
+        public price: number,
         public foreign_key: number
     ){}
 }

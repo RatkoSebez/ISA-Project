@@ -48,6 +48,22 @@ export class AdventuresPageComponent implements OnInit {
   // public getDate2Boat() : Date{
   //   return this.date2;
   // }
+  public getSortSelectValue(){
+    var e = (document.getElementById("sortAttribute")) as HTMLSelectElement;
+    var sel = e.selectedIndex;
+    var opt = e.options[sel];
+    var value = (<HTMLSelectElement><unknown>opt).value;
+    //console.log(value);
+    return value;
+  }
+  public getSortType(){
+    var e = (document.getElementById("sortType")) as HTMLSelectElement;
+    var sel = e.selectedIndex;
+    var opt = e.options[sel];
+    var value = (<HTMLSelectElement><unknown>opt).value;
+    //console.log(value);
+    return value;
+  }
 
   public makeReservation(id: number){
     var postData = {

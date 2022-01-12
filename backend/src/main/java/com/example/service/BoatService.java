@@ -47,7 +47,7 @@ public class BoatService {
         }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;
-        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail());
+        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), 60.0);
         reservations.add(reservation);
         boat.setReservations(reservations);
         boatRepository.save(boat);

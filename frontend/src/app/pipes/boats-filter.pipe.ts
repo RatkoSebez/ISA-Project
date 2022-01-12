@@ -23,6 +23,8 @@ export class BoatsFilterPipe implements PipeTransform {
     var days = this.boatsPageComponent.getDaysBoat();
     var boats: Array<Boat> = this.boatCardComponent.getBoats();
     const resultArray = [];
+    var sortBy = this.boatsPageComponent.getSortSelectValue();
+    var sortType = this.boatsPageComponent.getSortType();
 
     //var dateFormat = require('dateformat');
     
@@ -56,6 +58,20 @@ export class BoatsFilterPipe implements PipeTransform {
       if(item['name'].includes(name) && item['description'].includes(description) && item['address'].includes(address)){
         resultArray2.push(item);
       }
+    }
+
+    console.log("sortiram")
+    if(sortType == "Ascending"){
+      if(sortBy == "Sort by"){}
+      else if(sortBy == "Name") resultArray2.sort((a,b) => a.name.localeCompare(b.name));
+      else if(sortBy == "Location") resultArray2.sort((a,b) => a.address.localeCompare(b.address));
+      else if(sortBy == "Rating") resultArray2.sort((a,b) => a.rating - b.rating);
+    }
+    else if(sortType == "Descending"){
+      if(sortBy == "Sort by"){}
+      else if(sortBy == "Name") resultArray2.sort((b,a) => a.name.localeCompare(b.name));
+      else if(sortBy == "Location") resultArray2.sort((b,a) => a.address.localeCompare(b.address));
+      else if(sortBy == "Rating") resultArray2.sort((b,a) => a.rating - b.rating);
     }
 
     return resultArray2;

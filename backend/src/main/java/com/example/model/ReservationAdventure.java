@@ -23,10 +23,12 @@ public class ReservationAdventure {
     private LocalDate startDate;
     private LocalDate endDate;
     private String clientEmail;
+    private Double price;
 
-    public ReservationAdventure(LocalDate start, LocalDate end, String clientEmail){
+    public ReservationAdventure(LocalDate start, LocalDate end, String clientEmail, Double price){
         this.startDate = start;
         this.endDate = end;
         this.clientEmail = clientEmail;
+        this.price = price;
     }
 }
