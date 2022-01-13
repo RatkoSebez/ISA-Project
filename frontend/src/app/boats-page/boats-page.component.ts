@@ -74,8 +74,8 @@ export class BoatsPageComponent implements OnInit {
     }
     this.http.post("api/boat/reservation", postData).toPromise().then(data => {
       console.log(data);
-      this.router.navigate(['/boatReservations']);
     });
+    this.router.navigate(['/boatReservations']);
     //console.log("rezervisem")
   }
 

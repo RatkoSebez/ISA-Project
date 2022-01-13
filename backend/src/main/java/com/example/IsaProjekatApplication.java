@@ -29,8 +29,8 @@ public class IsaProjekatApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         //userRepository.save(new User("user@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_CLIENT));
-        userRepository.save(new User("$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", "user@gmail.com", "ime", "prezime", "adresa", "grad", "drzava", "1325648655", UserRole.ROLE_CLIENT, LoyaltyCategory.REGULAR, 100L, "Since you are in regular loyalty mode, you do not have any extra discounts."));
-        userRepository.save(new User("isaprojmejl2@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_FISHINGI));
+        userRepository.save(new User("$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", "isaprojmejl2@gmail.com", "ime", "prezime", "adresa", "grad", "drzava", "1325648655", UserRole.ROLE_CLIENT, LoyaltyCategory.REGULAR, 100L, "Since you are in regular loyalty mode, you do not have any extra discounts."));
+        userRepository.save(new User("user@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_FISHINGI));
         userRepository.save(new User("test@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_BOATOWNER));
         userRepository.save(new User("test@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_WEEKENDCOTTOWNER));
         String additionalServices = "usluga1, usluga2, usluga3";

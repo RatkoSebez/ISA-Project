@@ -53,8 +53,8 @@ export class RegisterComponent implements OnInit {
     console.log('registrujem: ' + this.email + this.password + this.firstName + this.lastName);
     this.http.post("api/user", postData).toPromise().then(data => {
       console.log(data);
-      this.router.navigate(['/home']);
     });
+    this.router.navigate(['/home']);
   }
 
 }

@@ -75,8 +75,8 @@ export class AdventuresPageComponent implements OnInit {
     }
     this.http.post("api/adventure/reservation", postData).toPromise().then(data => {
       console.log(data);
-      this.router.navigate(['/adventureReservations']);
     });
+    this.router.navigate(['/adventureReservations']);
     //console.log("rezervisem")
   }
 

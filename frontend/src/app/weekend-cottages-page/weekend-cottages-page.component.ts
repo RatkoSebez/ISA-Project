@@ -66,8 +66,8 @@ export class WeekendCottagesPageComponent implements OnInit {
     }
     this.http.post("api/weekendCottage/reservation", postData).toPromise().then(data => {
       console.log(data);
-      this.router.navigate(['/cottageReservations']);
     });
+    this.router.navigate(['/cottageReservations']);
     //console.log("rezervisem")
   }
 

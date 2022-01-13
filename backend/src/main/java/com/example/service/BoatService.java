@@ -59,6 +59,13 @@ public class BoatService {
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         userRepository.save(user);
+        //send email to notify client that reservation is made
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("isaprojmejl@gmail.com");
+        message.setTo(user.getEmail());
+        message.setSubject("You just made reservation.");
+        message.setText("Reservation is made for boat number " + boatReservationDTO.getBoatId() + " and it starts on " + boatReservationDTO.getStartDate() + " and it ends on " + boatReservationDTO.getEndDate() + ".");
+        javaMailSender.send(message);
         return true;
     }
 
