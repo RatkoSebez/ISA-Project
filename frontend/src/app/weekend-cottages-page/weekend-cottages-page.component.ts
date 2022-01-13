@@ -56,12 +56,13 @@ export class WeekendCottagesPageComponent implements OnInit {
     return value;
   }
 
-  public makeReservation(id: number){
+  public makeReservation(id: number, additionalServices: string){
     var postData = {
       guests: this.people,
       startDate: this.date1,
       endDate: this.date2,
-      boatId: id
+      boatId: id,
+      additionalServices: additionalServices
     }
     this.http.post("api/weekendCottage/reservation", postData).toPromise().then(data => {
       console.log(data);

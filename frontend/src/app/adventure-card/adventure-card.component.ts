@@ -12,6 +12,7 @@ export class AdventureCardComponent implements OnInit {
 
   adventures!: Adventure[];
   show = false;
+  additionalServices = "";
 
   constructor(private http: HttpClient, private component: AdventuresPageComponent) { }
 
@@ -30,7 +31,7 @@ export class AdventureCardComponent implements OnInit {
   }
 
   public makeReservation(id: number){
-    this.component.makeReservation(id);
+    this.component.makeReservation(id, this.additionalServices);
   }
 
   doGet(){ 
@@ -40,6 +41,10 @@ export class AdventureCardComponent implements OnInit {
         this.show = true;
       }
     });
+  }
+
+  addAdditionalService(additionalService: string){
+    this.additionalServices += additionalService + ",";
   }
 
 }

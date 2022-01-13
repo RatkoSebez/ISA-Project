@@ -24,11 +24,15 @@ public class ReservationAdventure {
     private LocalDate endDate;
     private String clientEmail;
     private Double price;
+    private Integer guests;
+    private String additionalServices;
 
-    public ReservationAdventure(LocalDate start, LocalDate end, String clientEmail, Double price){
+    public ReservationAdventure(LocalDate start, LocalDate end, String clientEmail, Double price, Integer guests, String additionalServices){
         this.startDate = start;
         this.endDate = end;
         this.clientEmail = clientEmail;
         this.price = price;
+        this.guests = guests;
+        this.additionalServices = additionalServices;
     }
 }

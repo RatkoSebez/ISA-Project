@@ -69,7 +69,7 @@ public class WeekendCottageService {
             else return false;
         }
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, 50.0));
+        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, 50.0, boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
         weekendCottage.setReservations(reservations);
         weekendCottageRepository.save(weekendCottage);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda

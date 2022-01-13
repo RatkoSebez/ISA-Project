@@ -32,13 +32,14 @@ public class Boat {
     private Integer capacity;
     private Double rating;
     private String priceList;
-    @Column(columnDefinition="TEXT")
-    private String additionalServices;
+    //@Column(columnDefinition="TEXT")
+    //private String additionalServices;
     @OneToMany(targetEntity = ReservationBoat.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<ReservationBoat> reservations;
     private Long boatOwnerId;
+    private String additionalServices;
 
     public Boat(String name, String address, String description, String image, Integer capacity, Double rating, String priceList, String additionalServices, Long boatOwnerId) {
         this.name = name;

@@ -16,6 +16,7 @@ export class CardComponent implements OnInit {
 
   weekendCottages!: WeekendCottage[];
   show = false;
+  additionalServices = "";
 
   constructor(private http: HttpClient, private component: WeekendCottagesPageComponent) { }
 
@@ -30,7 +31,7 @@ export class CardComponent implements OnInit {
   }
 
   public makeReservation(id: number){
-    this.component.makeReservation(id);
+    this.component.makeReservation(id, this.additionalServices);
   }
 
   public getCottages() : WeekendCottage[]{
@@ -45,5 +46,9 @@ export class CardComponent implements OnInit {
         this.show = true;
       }
     });
+  }
+
+  addAdditionalService(additionalService: string){
+    this.additionalServices += additionalService + ",";
   }
 }

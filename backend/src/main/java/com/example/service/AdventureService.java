@@ -42,7 +42,7 @@ public class AdventureService {
             else return false;
         }
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationAdventure(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, 70.0));
+        reservations.add(new ReservationAdventure(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, 70.0, boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
         adventure.setReservations(reservations);
         adventureRepository.save(adventure);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda

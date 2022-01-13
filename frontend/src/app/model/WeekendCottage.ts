@@ -10,6 +10,7 @@ export class WeekendCottage{
         public rulesOfConduct: string,
         public image: string,
         public priceList: string,
-        public reservations: Array<CottageReservation>
+        public reservations: Array<CottageReservation>,
+        public additionalServices: string
     ){}
 }

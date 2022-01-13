@@ -15,4 +15,5 @@ public class ReservationDTO {
     private LocalDate endDate;
     private Integer guests;
     private Long boatId;
+    private String additionalServices;
 }

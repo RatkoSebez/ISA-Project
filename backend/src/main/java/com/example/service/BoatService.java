@@ -38,6 +38,7 @@ public class BoatService {
     }
 
     public Boolean makeBoatReservation(ReservationDTO boatReservationDTO){
+        System.out.println("---------------" + boatReservationDTO.getAdditionalServices());
         Boat boat = boatRepository.findById(boatReservationDTO.getBoatId()).stream().findFirst().orElse(null);
         List<ReservationBoat> reservations = boat.getReservations();
         for(ReservationBoat reservation : reservations){
@@ -47,7 +48,7 @@ public class BoatService {
         }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;
-        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), 60.0);
+        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), 60.0, boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices());
         reservations.add(reservation);
         boat.setReservations(reservations);
         boatRepository.save(boat);

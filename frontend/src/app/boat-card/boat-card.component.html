@@ -11,6 +11,25 @@
                     <p class="card-text">{{ boat.address }}</p>
                     <p class="card-text">Average rating: {{ boat.rating }}</p>
                     <p class="card-text">Price list: {{ boat.priceList }}</p>
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <table class="table w-auto">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Additional Service</th>
+                                        <th scope="col">Add</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let additionalService of boat.additionalServices.split(',')">
+                                        <td>{{ additionalService }}</td>
+                                        <td><button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
+                                            (click)='addAdditionalService(additionalService)'>Add</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <a href="/boat?id={{ boat.id }}" class="btn btn-primary">See more</a>
                     <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'" (click)='makeReservation(boat.id)'>Make Reservation</button>
                 </div>

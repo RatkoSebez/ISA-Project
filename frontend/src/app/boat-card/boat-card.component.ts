@@ -15,6 +15,7 @@ export class BoatCardComponent implements OnInit {
 
   boats!: Boat[];
   show = false;
+  additionalServices = "";
 
   constructor(private http: HttpClient, private component: BoatsPageComponent) { }
 
@@ -33,7 +34,7 @@ export class BoatCardComponent implements OnInit {
   }
 
   public makeReservation(id: number){
-    this.component.makeReservation(id);
+    this.component.makeReservation(id, this.additionalServices);
   }
 
   doGet(){ 
@@ -43,6 +44,10 @@ export class BoatCardComponent implements OnInit {
         this.show = true;
       }
     });
+  }
+
+  addAdditionalService(additionalService: string){
+    this.additionalServices += additionalService + ",";
   }
 
 }

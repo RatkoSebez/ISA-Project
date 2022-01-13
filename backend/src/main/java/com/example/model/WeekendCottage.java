@@ -34,21 +34,9 @@ public class WeekendCottage {
     @Column(columnDefinition="TEXT")
     private String rulesOfConduct;
     private Long cottageOwnerId;
+    private String additionalServices;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
-//    public User getUser() {
-//        return user;
-//    }
-
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, String priceList){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, String priceList, String additionalServices){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -57,9 +45,10 @@ public class WeekendCottage {
         this.image = image;
         this.cottageOwnerId = cottageOwnerId;
         this.priceList = priceList;
+        this.additionalServices = additionalServices;
     }
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, String priceList){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, String priceList, String additionalServices){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -69,5 +58,6 @@ public class WeekendCottage {
         this.reservations = reservations;
         this.cottageOwnerId = cottageOwnerId;
         this.priceList = priceList;
+        this.additionalServices = additionalServices;
     }
 }
