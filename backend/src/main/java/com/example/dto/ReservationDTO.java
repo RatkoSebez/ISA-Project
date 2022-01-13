@@ -16,4 +16,5 @@ public class ReservationDTO {
     private Integer guests;
     private Long boatId;
     private String additionalServices;
+    private Double price;
 }

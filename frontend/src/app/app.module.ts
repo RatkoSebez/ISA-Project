@@ -34,6 +34,9 @@ import { AndventuresFilterPipe } from './pipes/andventures-filter.pipe';
 import { CottagesReservationFilterPipe } from './pipes/cottages-reservation-filter.pipe';
 import { BoatsReservationFilterPipe } from './pipes/boats-reservation-filter.pipe';
 import { AdventuresReservationFilterPipe } from './pipes/adventures-reservation-filter.pipe';
+import { FastReservationBoatComponent } from './fast-reservation-boat/fast-reservation-boat.component';
+import { FastReservationCottageComponent } from './fast-reservation-cottage/fast-reservation-cottage.component';
+import { FastReservationAdventureComponent } from './fast-reservation-adventure/fast-reservation-adventure.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { AdventuresReservationFilterPipe } from './pipes/adventures-reservation-
     AndventuresFilterPipe,
     CottagesReservationFilterPipe,
     BoatsReservationFilterPipe,
-    AdventuresReservationFilterPipe
+    AdventuresReservationFilterPipe,
+    FastReservationBoatComponent,
+    FastReservationCottageComponent,
+    FastReservationAdventureComponent
   ],
   imports: [
     BrowserModule,

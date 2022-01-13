@@ -21,6 +21,7 @@ export class AdventuresPageComponent implements OnInit {
   public date1!: Date;
   public date2!: Date;
   public boatId = 8;
+  public show = false;
 
   public constructor(private http: HttpClient, private router: Router) {}
 
@@ -80,7 +81,17 @@ export class AdventuresPageComponent implements OnInit {
     //console.log("rezervisem")
   }
 
+  goToDiscountPage(){
+    this.router.navigate(['/fastReservationAdventure']);
+  }
+
   ngOnInit(): void {
+    this.http.get('api/user').subscribe(val => {
+      console.log(val);
+      if(val) {
+        this.show = true;
+      }
+    });
   }
 
 }

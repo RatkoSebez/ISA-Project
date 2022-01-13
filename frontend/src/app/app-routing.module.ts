@@ -8,6 +8,9 @@ import { BoatReservationsComponent } from './boat-reservations/boat-reservations
 import { BoatsPageComponent } from './boats-page/boats-page.component';
 import { BookedReservationsComponent } from './booked-reservations/booked-reservations.component';
 import { CottageReservationsComponent } from './cottage-reservations/cottage-reservations.component';
+import { FastReservationAdventureComponent } from './fast-reservation-adventure/fast-reservation-adventure.component';
+import { FastReservationBoatComponent } from './fast-reservation-boat/fast-reservation-boat.component';
+import { FastReservationCottageComponent } from './fast-reservation-cottage/fast-reservation-cottage.component';
 import { HomeComponent } from './home/home.component';
 import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
 import { AdventureReservation } from './model/AdventureReservation';
@@ -21,6 +24,9 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "user", component: UserInfoPageComponent},
   {path: "adventures", component: AdventuresPageComponent},
+  {path: "fastReservationBoat", component: FastReservationBoatComponent},
+  {path: "fastReservationCottage", component: FastReservationCottageComponent},
+  {path: "fastReservationAdventure", component: FastReservationAdventureComponent},
   {path: "adventure", component: AdventureInfoPageComponent},
   {path: "adventureReservations", component: AdventureReservationsComponent},
   {path: "makeCompliant", component: MakeComplaintComponent},

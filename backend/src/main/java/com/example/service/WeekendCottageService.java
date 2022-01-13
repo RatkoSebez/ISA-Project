@@ -47,7 +47,14 @@ public class WeekendCottageService {
     }
 
     public List<ReservationCottage> getAllCottageReservations(){
-        return reservationCottageRepository.findAll();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) principal;
+        List<ReservationCottage> result = new ArrayList<>();
+        List<ReservationCottage> reservationCottages = reservationCottageRepository.findAll();
+        for(ReservationCottage reservationCottage : reservationCottages){
+            if(reservationCottage.getClientEmail().equals(user.getEmail())) result.add(reservationCottage);
+        }
+        return result;
     }
 
     public Boolean cancelCottageReservation(Long id){
@@ -69,7 +76,7 @@ public class WeekendCottageService {
             else return false;
         }
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, 50.0, boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
+        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
         weekendCottage.setReservations(reservations);
         weekendCottageRepository.save(weekendCottage);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda

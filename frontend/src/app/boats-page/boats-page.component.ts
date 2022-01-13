@@ -20,6 +20,7 @@ export class BoatsPageComponent implements OnInit {
   public date1!: Date;
   public date2!: Date;
   public boatId = 8;
+  public show = false;
 
   public constructor(private http: HttpClient, private router: Router) {}
 
@@ -70,7 +71,8 @@ export class BoatsPageComponent implements OnInit {
       startDate: this.date1,
       endDate: this.date2,
       boatId: id,
-      additionalServices: additionalServices
+      additionalServices: additionalServices,
+      price: 50
     }
     this.http.post("api/boat/reservation", postData).toPromise().then(data => {
       console.log(data);
@@ -79,6 +81,16 @@ export class BoatsPageComponent implements OnInit {
     //console.log("rezervisem")
   }
 
+  goToDiscountPage(){
+    this.router.navigate(['/fastReservationBoat']);
+  }
+
   ngOnInit(): void {
+    this.http.get('api/user').subscribe(val => {
+      console.log(val);
+      if(val) {
+        this.show = true;
+      }
+    });
   }
 }

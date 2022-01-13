@@ -42,7 +42,7 @@ public class AdventureService {
             else return false;
         }
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationAdventure(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, 70.0, boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
+        reservations.add(new ReservationAdventure(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
         adventure.setReservations(reservations);
         adventureRepository.save(adventure);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda
@@ -85,7 +85,14 @@ public class AdventureService {
     }
 
     public List<ReservationAdventure> getAllAdventureReservations(){
-        return reservationAdventureRepository.findAll();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) principal;
+        List<ReservationAdventure> result = new ArrayList<>();
+        List<ReservationAdventure> reservationAdventures = reservationAdventureRepository.findAll();
+        for(ReservationAdventure reservationAdventure : reservationAdventures){
+            if(reservationAdventure.getClientEmail().equals(user.getEmail())) result.add(reservationAdventure);
+        }
+        return result;
     }
 
     public void makeCompliant(Compliant compliant) {

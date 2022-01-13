@@ -18,6 +18,7 @@ export class WeekendCottagesPageComponent implements OnInit {
   public date1!: Date;
   public date2!: Date;
   public cottageId = 6;
+  public show = false;
 
   public constructor(private http: HttpClient, private router: Router) {}
 
@@ -71,7 +72,16 @@ export class WeekendCottagesPageComponent implements OnInit {
     //console.log("rezervisem")
   }
 
+  goToDiscountPage(){
+    this.router.navigate(['/fastReservationCottage']);
+  }
 
   ngOnInit(): void {
+    this.http.get('api/user').subscribe(val => {
+      console.log(val);
+      if(val) {
+        this.show = true;
+      }
+    });
   }
 }

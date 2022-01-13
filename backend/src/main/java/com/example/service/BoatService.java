@@ -38,7 +38,7 @@ public class BoatService {
     }
 
     public Boolean makeBoatReservation(ReservationDTO boatReservationDTO){
-        System.out.println("---------------" + boatReservationDTO.getAdditionalServices());
+        //System.out.println("---------------" + boatReservationDTO.getAdditionalServices());
         Boat boat = boatRepository.findById(boatReservationDTO.getBoatId()).stream().findFirst().orElse(null);
         List<ReservationBoat> reservations = boat.getReservations();
         for(ReservationBoat reservation : reservations){
@@ -48,7 +48,7 @@ public class BoatService {
         }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;
-        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), 60.0, boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices());
+        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices());
         reservations.add(reservation);
         boat.setReservations(reservations);
         boatRepository.save(boat);
@@ -90,7 +90,14 @@ public class BoatService {
     }
 
     public List<ReservationBoat> getAllBoatReservations(){
-        return reservationBoatRepository.findAll();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) principal;
+        List<ReservationBoat> result = new ArrayList<>();
+        List<ReservationBoat> reservationBoats = reservationBoatRepository.findAll();
+        for(ReservationBoat reservationBoat : reservationBoats){
+            if(reservationBoat.getClientEmail().equals(user.getEmail())) result.add(reservationBoat);
+        }
+        return result;
     }
 
 //    public List<Boat> getAllBoatsFromListOfIds(List<Long> ids){

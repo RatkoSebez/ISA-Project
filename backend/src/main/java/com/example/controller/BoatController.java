@@ -42,6 +42,7 @@ public class BoatController {
 //    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/reservation")
     public Boolean makeBoatReservation(@RequestBody ReservationDTO boatReservationDTO) {
+        System.out.println("--------------------" + boatReservationDTO.getStartDate());
         Boolean ans = boatService.makeBoatReservation(boatReservationDTO);
         return ans;
     }
