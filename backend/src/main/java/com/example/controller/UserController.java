@@ -10,6 +10,7 @@ import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +57,7 @@ public class UserController {
         return userResponseEntity;
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/deleteClientRequest")
     public Boolean deleteUser(@RequestBody DeleteAccountRequest deleteAccountRequest){
         return clientService.deleteUser(deleteAccountRequest);
@@ -70,11 +72,13 @@ public class UserController {
         return true;
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/subscribe")
     public Boolean subscribe(@RequestBody UserSubscription data) {
         return userService.subscribe(data);
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @GetMapping(path = "subscriptions")
     public List<UserSubscription> getAllSubscriptions(){
         return userService.getAllSubscriptions();

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -43,6 +44,7 @@ public class UserService implements UserDetailsService {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;
         List<UserSubscription> subscriptions = user.getSubscriptions();
+        if(subscriptions == null) return false;
         for(UserSubscription s : subscriptions){
             if(subscription.getEntity().equals(s.getEntity()) && subscription.getIdOfEntity() == s.getIdOfEntity()) return false;
         }
@@ -53,7 +55,9 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserSubscription> getAllSubscriptions(){
-        return userSubscriptionRepository.findAll();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) principal;
+        return user.getSubscriptions();
     }
 
     public Boolean deleteSubscription(Long id){

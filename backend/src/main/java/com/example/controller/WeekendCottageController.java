@@ -7,6 +7,7 @@ import com.example.model.ReservationCottage;
 import com.example.model.WeekendCottage;
 import com.example.service.WeekendCottageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,17 +39,20 @@ public class WeekendCottageController {
         return weekendCottageService.getAllCottageReservations();
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @DeleteMapping(path = "/reservation/{id}")
     public Boolean deleteCottageReservation(@PathVariable Long id){
         return weekendCottageService.cancelCottageReservation(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/reservation")
     public Boolean makeCottageReservation(@RequestBody ReservationDTO boatReservationDTO) {
         Boolean ans = weekendCottageService.makeCottageReservation(boatReservationDTO);
         return ans;
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/compliant")
     public Boolean makeCompliant(@RequestBody Compliant compliant) {
         weekendCottageService.makeCompliant(compliant);

@@ -4,6 +4,7 @@ import com.example.dto.ReservationDTO;
 import com.example.model.*;
 import com.example.service.AdventureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,18 +36,20 @@ public class AdventureController {
         return adventureService.getAdventure(id);
     }
 
-    //    @PreAuthorize("hasRole('ROLE_CLIENT')")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/reservation")
     public Boolean makeAdventureReservation(@RequestBody ReservationDTO boatReservationDTO) {
         Boolean ans = adventureService.makeAdventureReservation(boatReservationDTO);
         return ans;
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @DeleteMapping(path = "/reservation/{id}")
     public Boolean deleteAdventureReservation(@PathVariable Long id){
         return adventureService.cancelAdventureReservation(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/compliant")
     public Boolean makeCompliant(@RequestBody Compliant compliant) {
         adventureService.makeCompliant(compliant);

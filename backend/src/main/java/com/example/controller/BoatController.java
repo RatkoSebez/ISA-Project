@@ -6,6 +6,7 @@ import com.example.model.Compliant;
 import com.example.model.ReservationBoat;
 import com.example.service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class BoatController {
         return boatService.getBoat(id);
     }
 
-//    @PreAuthorize("hasRole('ROLE_CLIENT')")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/reservation")
     public Boolean makeBoatReservation(@RequestBody ReservationDTO boatReservationDTO) {
         System.out.println("--------------------" + boatReservationDTO.getStartDate());
@@ -47,6 +48,7 @@ public class BoatController {
         return ans;
     }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @DeleteMapping(path = "/reservation/{id}")
     public Boolean deleteBoatReservation(@PathVariable Long id){
         return boatService.cancelBoatReservation(id);
@@ -63,6 +65,7 @@ public class BoatController {
 //        //return null;
 //    }
 
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/compliant")
     public Boolean makeCompliant(@RequestBody Compliant compliant) {
         boatService.makeCompliant(compliant);
