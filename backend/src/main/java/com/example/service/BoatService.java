@@ -54,6 +54,7 @@ public class BoatService {
         boatRepository.save(boat);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda
         List<PotentialComplaint> potentialComplaints = user.getPotentialComplaints();
+        if(potentialComplaints == null) potentialComplaints = new ArrayList<PotentialComplaint>();
         potentialComplaints.add(new PotentialComplaint(boat.getId(), Entity.BOAT));
         potentialComplaints.add(new PotentialComplaint(boat.getBoatOwnerId(), Entity.BOAT_OWNER));
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
