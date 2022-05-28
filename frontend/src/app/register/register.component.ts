@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { error } from 'console';
 
 @Component({
   selector: 'app-register',
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
     var sel = e.selectedIndex;
     var opt = e.options[sel];
     var CurValue = (<HTMLSelectElement><unknown>opt).value;
-    //console.log('ajde: ' + CurValue)
+    var rol: number = +CurValue;
     var postData = {
       email: this.email,
       password: this.password,
@@ -48,11 +49,12 @@ export class RegisterComponent implements OnInit {
       country: this.country,
       city: this.city,
       phoneNumber: this.phoneNumber,
-      role: this.role
+      role: rol
     }
     console.log('registrujem: ' + this.email + this.password + this.firstName + this.lastName);
-    this.http.post("api/user", postData).toPromise().then(data => {
+    this.http.post("api/user/register", postData).toPromise().then(data => {
       console.log(data);
+      confirm("We send you verification on mail")
     });
     this.router.navigate(['/home']);
   }

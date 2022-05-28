@@ -36,6 +36,11 @@ public class WeekendCottageService {
         return weekendCottageRepository.findById(id);
     }
 
+    public Boolean createCottage(WeekendCottage cottage){
+        weekendCottageRepository.save(cottage);
+        return true;
+    }
+
     public List<ReservationCottage> getAllCottageReservationsThatCanBeCancelled(){
         List<ReservationCottage> reservations = reservationCottageRepository.findAll();
         List<ReservationCottage> reservations2 = new ArrayList<>();
