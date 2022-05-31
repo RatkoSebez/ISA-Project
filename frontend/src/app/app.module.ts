@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BoatCardComponent } from './boat-card/boat-card.component';
 import { BoatInfoPageComponent } from './boat-info-page/boat-info-page.component';
 import { WeekendCottageInfoPageComponent } from './weekend-cottage-info-page/weekend-cottage-info-page.component';
+import { MyCottagesFilterPipe } from './pipes/mycottages-filter.pipe';
 import { CottagesFilterPipe } from './pipes/cottages-filter.pipe';
 import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.component';
 import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
@@ -51,6 +52,7 @@ import { OwnerCottageCardComponent } from './owner-cottage-card/owner-cottage-ca
     BoatCardComponent,
     BoatInfoPageComponent,
     WeekendCottageInfoPageComponent,
+    MyCottagesFilterPipe,
     CottagesFilterPipe,
     HomeForGuestsComponent,
     BoatsFilterPipe,

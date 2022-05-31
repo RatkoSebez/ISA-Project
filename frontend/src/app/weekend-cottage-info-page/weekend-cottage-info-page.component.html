@@ -14,8 +14,7 @@
                 <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ weekendCottage.name }}</p>
                 <input placeholder="{{ weekendCottage.name }}" type="text" class="form-control w-50" aria-describedby="basic-addon1" [(ngModel)]="name" [ngClass]="edit ? 'is-not-active' : 'is-active'">
                 <p class="font-weight-bold">Id: </p>
-                <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ weekendCottage.id }}</p>
-                <input placeholder="{{ weekendCottage.id }}" type="text" class="form-control w-50" aria-describedby="basic-addon1" [(ngModel)]="address" [ngClass]="edit ? 'is-not-active' : 'is-active'">
+                <p class="text-muted">{{ weekendCottage.id }}</p>
                 <p class="font-weight-bold">Description: </p>
                 <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ weekendCottage.description }}</p>
                 <input placeholder="{{ weekendCottage.description }}" type="text" class="form-control w-50" aria-describedby="basic-addon1" [(ngModel)]="description" [ngClass]="edit ? 'is-not-active' : 'is-active'">

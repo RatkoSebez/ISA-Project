@@ -16,10 +16,56 @@ export class OwnerCottageCardComponent implements OnInit {
   show = false;
   additionalServices = "";
 
+  public nameCottage = '';
+  public addressCottage = '';
+  public descriptionCottage = '';
+  public people!: number;
+  public date1!: Date;
+  public date2!: Date;
+
   constructor(public http: HttpClient, private router: Router) { }
+
+  public getNameCottage(){
+    return this.nameCottage;
+  }
+  public getAddressCottage(){
+    return this.addressCottage;
+  }
+  public getDescriptionCottage(){
+    return this.descriptionCottage;
+  }
+  public getPeopleCottage(){
+    return this.people;
+  }
+  public getDate1Cottage() : Date{
+    return this.date1;
+  }
+  public getDate2Cottage() : Date{
+    return this.date2;
+  }
+  public getSortSelectValue(){
+    var e = (document.getElementById("sortAttribute")) as HTMLSelectElement;
+    var sel = e.selectedIndex;
+    var opt = e.options[sel];
+    var value = (<HTMLSelectElement><unknown>opt).value;
+    //console.log(value);
+    return value;
+  }
+  public getSortType(){
+    var e = (document.getElementById("sortType")) as HTMLSelectElement;
+    var sel = e.selectedIndex;
+    var opt = e.options[sel];
+    var value = (<HTMLSelectElement><unknown>opt).value;
+    //console.log(value);
+    return value;
+  }
 
   ngOnInit(): void {
     this.doGet();
+  }
+
+  public getCottages() : WeekendCottage[]{
+    return this.weekendCottages;
   }
 
   doGet(){ 
