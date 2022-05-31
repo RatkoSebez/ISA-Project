@@ -13,7 +13,9 @@ import { FastReservationBoatComponent } from './fast-reservation-boat/fast-reser
 import { FastReservationCottageComponent } from './fast-reservation-cottage/fast-reservation-cottage.component';
 import { HomeComponent } from './home/home.component';
 import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
+import { MakeCottageComponent } from './make-cottage/make-cottage.component';
 import { AdventureReservation } from './model/AdventureReservation';
+import { OwnerCottageCardComponent } from './owner-cottage-card/owner-cottage-card.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
@@ -38,8 +40,11 @@ const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "weekendCottage", component: WeekendCottageInfoPageComponent},
   {path: "boat", component: BoatInfoPageComponent},
+  {path: "mycottages", component: OwnerCottageCardComponent},
+  {path: "addCottage", component: MakeCottageComponent},
   {path: "", redirectTo: '/home', pathMatch: 'full'},
-  {path: "**", component: PageNotFoundComponent}
+  {path: "**", component: PageNotFoundComponent},
+  
 ];
 
 @NgModule({

@@ -1,0 +1,27 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <div class="center">
+            <button class="btn btn-outline-primary make-reservation"
+            (click)='addCottage()'>Add cottage</button>
+        </div>
+        
+        <div class="col-sm" *ngFor="let weekendCottage of weekendCottages">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/{{ weekendCottage.image }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ weekendCottage.name }}</h5>
+                    <p class="card-text">{{ weekendCottage.description | slice:0:200
+                        }}{{weekendCottage.description.length > 200 ? '...' : ''}}</p>
+                    <p class="card-text">{{ weekendCottage.address }}</p>
+                    <p class="card-text">id: {{ weekendCottage.id }}</p>
+                    <p class="card-text">Average rating: {{ weekendCottage.rating }}</p>
+                    <p class="card-text">Price list: {{ weekendCottage.priceList }}</p>
+                    <a href="/editCottage?id={{ weekendCottage.id }}"></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

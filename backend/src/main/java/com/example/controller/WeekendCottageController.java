@@ -24,6 +24,12 @@ public class WeekendCottageController {
         return weekendCottageService.getAllWeekendCottages();
     }
 
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @GetMapping(path = "/mycottages/{id}")
+    public List<WeekendCottage> getAllMyWeekendCottages(@PathVariable Long id){
+        return weekendCottageService.getAllMyWeekendCottages(id);
+    }
+
     @GetMapping(path = "{id}")
     public Optional<WeekendCottage> getWeekendCottage(@PathVariable Long id){
         return weekendCottageService.getWeekendCottage(id);
@@ -56,6 +62,13 @@ public class WeekendCottageController {
     @PostMapping(path = "/compliant")
     public Boolean makeCompliant(@RequestBody Compliant compliant) {
         weekendCottageService.makeCompliant(compliant);
+        return true;
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @PostMapping(path = "/addCottage")
+    public Boolean makeCottage(@RequestBody WeekendCottage cottage) {
+        weekendCottageService.createCottage(cottage);
         return true;
     }
 }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegistrationService } from './user-registration.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -37,6 +37,8 @@ import { AdventuresReservationFilterPipe } from './pipes/adventures-reservation-
 import { FastReservationBoatComponent } from './fast-reservation-boat/fast-reservation-boat.component';
 import { FastReservationCottageComponent } from './fast-reservation-cottage/fast-reservation-cottage.component';
 import { FastReservationAdventureComponent } from './fast-reservation-adventure/fast-reservation-adventure.component';
+import { MakeCottageComponent } from './make-cottage/make-cottage.component';
+import { OwnerCottageCardComponent } from './owner-cottage-card/owner-cottage-card.component';
 
 @NgModule({
   declarations: [
@@ -71,13 +73,16 @@ import { FastReservationAdventureComponent } from './fast-reservation-adventure/
     AdventuresReservationFilterPipe,
     FastReservationBoatComponent,
     FastReservationCottageComponent,
-    FastReservationAdventureComponent
+    FastReservationAdventureComponent,
+    MakeCottageComponent,
+    OwnerCottageCardComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule
   ],
   providers: [UserRegistrationService],
   bootstrap: [AppComponent]

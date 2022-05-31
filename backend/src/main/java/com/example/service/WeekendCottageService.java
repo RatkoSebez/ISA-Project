@@ -41,6 +41,16 @@ public class WeekendCottageService {
         return true;
     }
 
+    public List<WeekendCottage> getAllMyWeekendCottages(Long id){
+        List<WeekendCottage> myCottages = new ArrayList<>();
+        List<WeekendCottage> allCottages = weekendCottageRepository.findAll();
+        for(WeekendCottage w : allCottages){
+            if(w.getCottageOwnerId()==id)
+                myCottages.add(w);
+        }
+        return myCottages;
+    }
+
     public List<ReservationCottage> getAllCottageReservationsThatCanBeCancelled(){
         List<ReservationCottage> reservations = reservationCottageRepository.findAll();
         List<ReservationCottage> reservations2 = new ArrayList<>();

@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping()
-    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) throws MessagingException {
         User user = registrationService.registerUser(userDTO);
         ResponseEntity<User> userResponseEntity = new ResponseEntity<>(user, HttpStatus.CREATED);
         return userResponseEntity;
