@@ -1,3 +1,4 @@
+import { LongDateFormatKey } from "moment";
 import { CottageReservation } from "./CottageReservation";
 
 export class WeekendCottage{
@@ -7,10 +8,11 @@ export class WeekendCottage{
         public address: string,
         public description: string,
         public rating: number,
-        public rulesOfConduct: string,
         public image: string,
         public priceList: string,
         public reservations: Array<CottageReservation>,
+        public rulesOfConduct: string,
+        public cottageOwnerId: any,
         public additionalServices: string
     ){}
 }

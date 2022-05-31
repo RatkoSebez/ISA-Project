@@ -1,0 +1,46 @@
+<app-menu></app-menu>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5">
+            <div class="row z-depth-3 cottage-border">
+                <form  (ngSubmit)="onSubmit()">
+                    <h2 class="form-signin-heading">Add new cottage</h2>
+                    <p class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="name" name="name" [(ngModel)]="name" >
+                    </p>
+                    <p class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" placeholder="Address" name="address" [(ngModel)]="address" >
+                    </p>
+                    <p class="form-group">
+                        <label class="form-group">Description</label>
+                        <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description" >
+                    </p>
+                    <p>
+                        <label>Images</label>
+                        <input type="file" onclick="this.value = null" (change)="selectImage($event)" class="form-control">
+                    </p>
+                    <p class="form-group">
+                        <label class="sr-only">Rules of conduct</label>
+                        <input type="text" class="form-control" placeholder="Rules of conduct" name = "rules" [(ngModel)]="rules" >
+                    </p>
+                    <p class="form-group">
+                        <label class="sr-only">Price list</label>
+                        <input type="text"  class="form-control" placeholder="Price list" name="pricelist" [(ngModel)]="pricelist" >
+                    </p>
+                    <p class="form-group">
+                        <label class="sr-only">Additional services</label>
+                        <input type="text" class="form-control" placeholder="Additional services" name="additionalservices" [(ngModel)]="additionalservices" >
+                    </p>
+                    <p>
+                        <button type="submit" class="btn btn-primary" [disabled]="this.selectedFile==null || this.name==null || this.address==null || this.description==null || this.rules==null || this.pricelist==null ">Confirm</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

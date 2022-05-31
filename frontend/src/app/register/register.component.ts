@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
       role: rol
     }
     console.log('registrujem: ' + this.email + this.password + this.firstName + this.lastName);
-    this.http.post("api/user/register", postData).toPromise().then(data => {
+    this.http.post("api/user", postData).toPromise().then(data => {
       console.log(data);
       confirm("We send you verification on mail")
     });

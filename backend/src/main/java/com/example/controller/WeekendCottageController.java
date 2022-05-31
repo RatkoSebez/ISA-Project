@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.EditCottageDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.Compliant;
 import com.example.model.ReservationBoat;
@@ -22,6 +23,24 @@ public class WeekendCottageController {
     @GetMapping()
     public List<WeekendCottage> getAllWeekendCottages(){
         return weekendCottageService.getAllWeekendCottages();
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @PostMapping(path = "/editCottage")
+    public Boolean editCottage(@RequestBody EditCottageDTO cottage){
+        return weekendCottageService.editCottage(cottage);
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @DeleteMapping(path = "/cottage/{id}")
+    public Boolean deleteCottage(@PathVariable Long id){
+        return weekendCottageService.deleteCottage(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @GetMapping(path = "/mycottages/{id}")
+    public List<WeekendCottage> getAllMyWeekendCottages(@PathVariable Long id){
+        return weekendCottageService.getAllMyWeekendCottages(id);
     }
 
     @GetMapping(path = "{id}")
@@ -56,6 +75,13 @@ public class WeekendCottageController {
     @PostMapping(path = "/compliant")
     public Boolean makeCompliant(@RequestBody Compliant compliant) {
         weekendCottageService.makeCompliant(compliant);
+        return true;
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @PostMapping(path = "/addCottage")
+    public Boolean makeCottage(@RequestBody WeekendCottage cottage) {
+        weekendCottageService.createCottage(cottage);
         return true;
     }
 }

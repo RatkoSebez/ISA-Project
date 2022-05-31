@@ -39,6 +39,9 @@
                     <li class="nav-item">
                         <a href="/adventures" class="nav-link">Adventures</a>
                     </li>
+                    <li class="nav-item active">
+                        <a href="mycottages" class="nav-link" [ngClass]="owner ? 'is-active' : 'is-not-active'">My Cottages</a>
+                    </li>
                     <li class="nav-item">
                         <a href="/bookedReservations" class="nav-link" [ngClass]="client ? 'is-active' : 'is-not-active'">Cancel Reservations</a>
                     </li>

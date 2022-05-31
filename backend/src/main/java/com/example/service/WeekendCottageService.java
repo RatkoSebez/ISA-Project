@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.EditCottageDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
 import com.example.repository.CompliantRepository;
@@ -39,6 +40,41 @@ public class WeekendCottageService {
     public Boolean createCottage(WeekendCottage cottage){
         weekendCottageRepository.save(cottage);
         return true;
+    }
+
+    public Boolean deleteCottage(Long id){
+        Optional<WeekendCottage> cottage = weekendCottageRepository.findById(id);
+        if(cottage.get().getReservations().size() == 0) {
+            weekendCottageRepository.deleteById(id);
+        }
+        if(weekendCottageRepository.findById(id)==null)
+            return true;
+        return false;
+    }
+
+    public Boolean editCottage(EditCottageDTO cottage){
+        WeekendCottage oldCottage = weekendCottageRepository.findById(Long.parseLong(cottage.getId())).stream().findFirst().orElseThrow();
+        if(oldCottage == null)
+            return false;
+        oldCottage.setName(cottage.getName());
+        oldCottage.setAddress(cottage.getAddress());
+        oldCottage.setDescription(cottage.getDescription());
+        oldCottage.setImage(cottage.getImage());
+        oldCottage.setRulesOfConduct(cottage.getRulesOfConduct());
+        oldCottage.setPriceList(cottage.getPriceList());
+        oldCottage.setAdditionalServices(cottage.getAdditionalServices());
+        weekendCottageRepository.save(oldCottage);
+        return true;
+    }
+
+    public List<WeekendCottage> getAllMyWeekendCottages(Long id){
+        List<WeekendCottage> myCottages = new ArrayList<>();
+        List<WeekendCottage> allCottages = weekendCottageRepository.findAll();
+        for(WeekendCottage w : allCottages){
+            if(w.getCottageOwnerId()==id)
+                myCottages.add(w);
+        }
+        return myCottages;
     }
 
     public List<ReservationCottage> getAllCottageReservationsThatCanBeCancelled(){
