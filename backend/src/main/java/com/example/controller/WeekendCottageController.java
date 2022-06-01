@@ -46,6 +46,18 @@ public class WeekendCottageController {
         return weekendCottageService.getMyCottageReservations(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @PostMapping(path = "/fastreservation")
+    public Boolean makeFastCottageReservation(@RequestBody AvaliableReservations newAvaliableReservation) {
+        Boolean ans = weekendCottageService.makeAvaliableReservation(newAvaliableReservation);
+        return ans;
+    }
+
+    @GetMapping(path = "/availableReservations")
+    public List<AvaliableReservations> availableReservations() {
+        return weekendCottageService.getAllAvailableReservations();
+    }
+
     @GetMapping(path = "{id}")
     public Optional<WeekendCottage> getWeekendCottage(@PathVariable Long id){
         return weekendCottageService.getWeekendCottage(id);

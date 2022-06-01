@@ -51,7 +51,7 @@
                         <label style="margin-bottom: 10px; margin-left: 2%;">Start date:</label>
                         <mat-form-field class="s" appearance="fill" style="margin-left: 7%; width: 70%;">
                             <mat-label>Choose a date</mat-label>
-                            <input matInput [matDatepicker]="picker" [min]="todayDate" [(ngModel)]="startDate" >
+                            <input matInput [matDatepicker]="picker" [min]="todayDate" [(ngModel)]="firstDate" >
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker ></mat-datepicker>
                         </mat-form-field>
@@ -60,13 +60,11 @@
                         <label style="margin-bottom: 10px; margin-left: 2%;">End date:</label>
                         <mat-form-field appearance="fill" style="margin-left: 8.5%; width: 70%;">
                         <mat-label>Choose a date</mat-label>
-                        <input matInput [matDatepicker]="picker2" [min]="todayDate" [(ngModel)]="endDate">
+                        <input matInput [matDatepicker]="picker2" [min]="todayDate" [(ngModel)]="lastDate">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                         </mat-form-field>
-            
-                        
-                        <br>
+                                    
                         <label style="margin-bottom: 10px; margin-left: 2%;">Expiration date:</label>
                         <mat-form-field appearance="fill" style=" width: 70%;">
                             <mat-label>Choose a date</mat-label>
@@ -74,18 +72,24 @@
                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
-            
-                        <div class="row">
-                            <label style="margin-bottom: 10px; margin-left: 2%; width: 24.1%;">Max persons:</label>
-                            <div class="col">
-                                <input type="text" id="form3Example1q" class="form-control" style="width: 93%;" [(ngModel)]="endTime"/>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-4 ml-5 pl-5"><label>Current price:</label></div>
+                            <div class="col-md-8">
+                                <p>{{currprice}}</p>
                             </div>
                         </div>
-                        <br>
+
+                        <div class="row mt-3">
+                            <div class="col-md-4 ml-5 pl-5"><label>Action price:</label></div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" style="width: 89%;" [(ngModel)]="actionprice"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addReservation()">Add</button>
                     </div>
               </div>
             </div>

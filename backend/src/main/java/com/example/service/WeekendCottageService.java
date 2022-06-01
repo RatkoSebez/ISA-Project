@@ -23,6 +23,7 @@ public class WeekendCottageService {
     private final PassReservationCottageRepository passReservationCottageRepository;
     private final WeekendCottageRepository weekendCottageRepository;
     private final ReservationCottageRepository reservationCottageRepository;
+    private final AvaliableReservationRepository avaliableReservationsRepository;
     private final UserRepository userRepository;
     private final CompliantRepository compliantRepository;
     private final JavaMailSender javaMailSender;
@@ -63,6 +64,18 @@ public class WeekendCottageService {
         oldCottage.setAdditionalServices(cottage.getAdditionalServices());
         weekendCottageRepository.save(oldCottage);
         return true;
+    }
+
+    public Boolean makeAvaliableReservation(AvaliableReservations newAvaliableReservation){
+        if(checkNewReservation(newAvaliableReservation)){
+            avaliableReservationsRepository.save(newAvaliableReservation);
+            return true;
+        }
+        return false;
+    }
+
+    public List<AvaliableReservations> getAllAvailableReservations(){
+        return avaliableReservationsRepository.findAll();
     }
 
     public List<WeekendCottage> getAllMyWeekendCottages(Long id){
@@ -118,6 +131,18 @@ public class WeekendCottageService {
         }
         reservationCottageRepository.deleteById(id);
         return true;
+    }
+
+    private Boolean checkNewReservation(AvaliableReservations newAvaliableRes){
+        List<AvaliableReservations> reservations = avaliableReservationsRepository.findAll();
+        for (AvaliableReservations reservation : reservations) {
+            if(reservation.getEntityId() == newAvaliableRes.getEntityId()) {
+                if (newAvaliableRes.getStartDate().isAfter(reservation.getEndDate()) || newAvaliableRes.getEndDate().isBefore(reservation.getStartDate())) {
+                }
+                //ako se opseg nove rezervacije poklapa sa nekim datumom postojece rezervacije, onda ne pravim novu rezervaciju
+                else return false;
+            }
+        }return true;
     }
 
     public Boolean makeCottageReservation(ReservationDTO boatReservationDTO){

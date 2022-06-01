@@ -21,10 +21,11 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   postCottage! : WeekendCottage;
 
   todayDate: Date = new Date();
-  startDate: any;
-  endDate: any;
+  firstDate: any;
+  lastDate: any;
   newActionExpirationDate: any;
-  endTime: any
+  actionprice: any;
+  currprice: any
 
   public name = null;
   public address = null
@@ -42,6 +43,7 @@ export class WeekendCottageInfoPageComponent implements OnInit {
         this.http.get<WeekendCottage>('api/weekendCottage/' + id).subscribe(
           response => {
             this.weekendCottage = response;
+            this.currprice = this.weekendCottage.priceList
             this.postCottage = this.weekendCottage
           }
         );
@@ -90,6 +92,24 @@ export class WeekendCottageInfoPageComponent implements OnInit {
 
     this.http.post('api/weekendCottage/editCottage', this.postCottage).toPromise().then(data => {
       this.router.navigate(['/mycottages']);
+    });
+  }
+
+  addReservation(){
+    var postData ={
+      entity: "WEEKEND_COTTAGE",
+      entityId: this.weekendCottage.id,
+      startDate: this.firstDate,
+      oldPrice: this.currprice,
+      endDate: this.lastDate,
+      expirationDate: this.newActionExpirationDate,
+      newPrice: this.actionprice,
+      fast: true
+    }
+
+    this.http.post("api/weekendCottage/fastreservation", postData).toPromise().then(data => {
+      if(!data){alert("Cottage alredy busy")}
+      else{this.router.navigate(['/mycottages']);}
     });
   }
 }

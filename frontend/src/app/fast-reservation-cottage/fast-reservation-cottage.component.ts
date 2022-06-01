@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AvailableReservations } from '../model/AvailableReservations';
 import { FastReservation } from '../model/FastReservation';
 
 @Component({
@@ -10,14 +11,14 @@ import { FastReservation } from '../model/FastReservation';
 })
 export class FastReservationCottageComponent implements OnInit {
 
-  fastReservations!: FastReservation[];
+  availableresevations!: AvailableReservations[];
 
   public constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<any>('api/fastReservation/cottage').subscribe(
+    this.http.get<any>('api/weekendCottage/availableReservations').subscribe(
       response => {
-        this.fastReservations = response;
+        this.availableresevations = response;
       }
     );
   }

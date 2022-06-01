@@ -5,18 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity
+@javax.persistence.Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FastReservation {
+public class AvaliableReservations {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,17 +23,19 @@ public class FastReservation {
     private Long entityId;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String clientEmail;
     private LocalDate expirationDate;
+    private Double oldPrice;
     private Double newPrice;
+    private Boolean fast;
 
-    public FastReservation(com.example.model.Entity entity, Long entityId, LocalDate startDate, LocalDate endDate, String clientEmail, LocalDate expirationDate, Double newPrice) {
+    public AvaliableReservations(com.example.model.Entity entity, Long entityId, LocalDate startDate, LocalDate endDate, LocalDate expirationDate, Double oldPrice, Double newPrice, Boolean fast){
         this.entity = entity;
         this.entityId = entityId;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.clientEmail = clientEmail;
         this.expirationDate = expirationDate;
         this.newPrice = newPrice;
+        this.oldPrice = oldPrice;
+        this.fast = fast;
     }
 }

@@ -10,16 +10,17 @@
                     <th scope="col">End date</th>
                     <th scope="col">Old Price</th>
                     <th scope="col">New Price</th>
-                    <th scope="col">Make reservation</th>
+                    <th scope="col">Expires</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let reservation of fastReservations">
+                <tr *ngFor="let reservation of availableresevations">
                     <th scope="row">{{ reservation.id }}</th>
                     <td>{{ reservation.startDate }}</td>
                     <td>{{ reservation.endDate }}</td>
                     <td>{{ reservation.oldPrice }}</td>
                     <td>{{ reservation.newPrice }}</td>
+                    <td>{{ reservation.expirationDate }}</td>
                     <td><button class="btn btn-outline-primary make-reservation"
                             (click)='makeReservation(reservation.startDate, reservation.endDate, reservation.newPrice, reservation.entityId)'>Make
                             Reservation</button></td>
