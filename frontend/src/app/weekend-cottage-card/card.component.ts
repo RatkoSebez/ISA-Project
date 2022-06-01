@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   show = false;
   additionalServices = "";
 
-  constructor(private http: HttpClient, private component: WeekendCottagesPageComponent) { }
+  constructor(private http: HttpClient, public component: WeekendCottagesPageComponent) { }
 
   ngOnInit(): void {
     this.doGet();
@@ -30,8 +30,8 @@ export class CardComponent implements OnInit {
     );
   }
 
-  public makeReservation(id: number){
-    this.component.makeReservation(id, this.additionalServices);
+  public makeReservation(id: number, price: number){
+    this.component.makeReservation(id, price, this.additionalServices);
   }
 
   public getCottages() : WeekendCottage[]{

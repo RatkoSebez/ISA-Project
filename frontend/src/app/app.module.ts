@@ -40,6 +40,10 @@ import { FastReservationCottageComponent } from './fast-reservation-cottage/fast
 import { FastReservationAdventureComponent } from './fast-reservation-adventure/fast-reservation-adventure.component';
 import { MakeCottageComponent } from './make-cottage/make-cottage.component';
 import { OwnerCottageCardComponent } from './owner-cottage-card/owner-cottage-card.component';
+import { HistoryReservationCottageComponent } from './history-reservation-cottage/history-reservation-cottage.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module'; 
+import { DatePipe } from '@angular/common';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @NgModule({
   declarations: [
@@ -78,15 +82,18 @@ import { OwnerCottageCardComponent } from './owner-cottage-card/owner-cottage-ca
     FastReservationAdventureComponent,
     MakeCottageComponent,
     OwnerCottageCardComponent,
+    HistoryReservationCottageComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularMaterialModule
   ],
-  providers: [UserRegistrationService],
+  providers: [UserRegistrationService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

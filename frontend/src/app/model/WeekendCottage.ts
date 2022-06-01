@@ -9,7 +9,7 @@ export class WeekendCottage{
         public description: string,
         public rating: number,
         public image: string,
-        public priceList: string,
+        public priceList: number,
         public reservations: Array<CottageReservation>,
         public rulesOfConduct: string,
         public cottageOwnerId: any,

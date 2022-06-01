@@ -19,3 +19,7 @@
 .is-active {
   display: inherit;
 }
+
+.cdk-overlay-container{
+  z-index: 2000;
+}

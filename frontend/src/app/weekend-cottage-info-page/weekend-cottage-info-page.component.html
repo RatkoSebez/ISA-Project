@@ -32,6 +32,7 @@
                 (click)='subscribeToCottage(weekendCottage.id)'>Subscribe</button>
             <button class="btn btn-primary btn-block w-50 mb-3" [disabled]="this.postCottage.reservations.length !== 0" [ngClass]="coowner ? 'is-active' : 'is-not-active'"
                 (click)='doEdit()'>Edit</button>
+            <button class="btn btn-primary btn-block w-50 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" [ngClass]="coowner ? 'is-active' : 'is-not-active'">Reduction</button>
             <button class="btn btn-danger btn-block w-50 mb" [disabled]="this.postCottage.reservations.length !== 0" [ngClass]="coowner ? 'is-active' : 'is-not-active'"
                 (click)='doDeleteCottage()'>Delete</button>
             <button class="btn btn-success btn-block w-50 btn-block mb-3" [ngClass]="edit ? 'is-not-active' : 'is-active'"
@@ -39,7 +40,57 @@
             <button class="btn btn-danger btn-block w-50 mb-3" [ngClass]="edit ? 'is-not-active' : 'is-active'"
                 (click)='doEdit()'>Cancel</button>
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add fast reservation </h5>
+                    </div>
+                    <div class="modal-body">
+                        <label style="margin-bottom: 10px; margin-left: 2%;">Start date:</label>
+                        <mat-form-field class="s" appearance="fill" style="margin-left: 7%; width: 70%;">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" [min]="todayDate" [(ngModel)]="startDate" >
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker ></mat-datepicker>
+                        </mat-form-field>
+            
+                        <br>
+                        <label style="margin-bottom: 10px; margin-left: 2%;">End date:</label>
+                        <mat-form-field appearance="fill" style="margin-left: 8.5%; width: 70%;">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker2" [min]="todayDate" [(ngModel)]="endDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+            
+                        
+                        <br>
+                        <label style="margin-bottom: 10px; margin-left: 2%;">Expiration date:</label>
+                        <mat-form-field appearance="fill" style=" width: 70%;">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker1" [min]="todayDate" [(ngModel)]="newActionExpirationDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+            
+                        <div class="row">
+                            <label style="margin-bottom: 10px; margin-left: 2%; width: 24.1%;">Max persons:</label>
+                            <div class="col">
+                                <input type="text" id="form3Example1q" class="form-control" style="width: 93%;" [(ngModel)]="endTime"/>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+              </div>
+            </div>
+        </div>
     </div>
 </div>
-
+<app-history-reservation-cottage [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-history-reservation-cottage>
 <app-footer></app-footer>

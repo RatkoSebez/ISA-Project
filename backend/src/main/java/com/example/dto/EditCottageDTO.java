@@ -17,7 +17,7 @@ public class EditCottageDTO {
     private String description;
     private String rulesOfConduct;
     private String image;
-    private String priceList;
+    private Integer priceList;
     private String additionalServices;
     private List<ReservationCottage> reservations;
     private Double rating;

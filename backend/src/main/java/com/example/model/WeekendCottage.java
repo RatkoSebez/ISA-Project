@@ -27,16 +27,19 @@ public class WeekendCottage {
     private String description;
     private Double rating;
     private String image;
-    private String priceList;
+    private Integer priceList;
     @OneToMany(targetEntity = ReservationCottage.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
     private List<ReservationCottage> reservations;
+    @OneToMany(targetEntity = ReservationCottage.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "foreign_key", referencedColumnName = "id")
+    private List<ReservationCottage> passReservations;
     @Column(columnDefinition="TEXT")
     private String rulesOfConduct;
     private Long cottageOwnerId;
     private String additionalServices;
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, String priceList, String additionalServices){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, Integer priceList, String additionalServices){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -48,7 +51,7 @@ public class WeekendCottage {
         this.additionalServices = additionalServices;
     }
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, String priceList, String additionalServices){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, Integer priceList, String additionalServices){
         this.name = name;
         this.address = address;
         this.description = description;

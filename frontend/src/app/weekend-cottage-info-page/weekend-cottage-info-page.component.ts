@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwIfEmpty } from 'rxjs';
+import { HistoryReservationCottageComponent } from '../history-reservation-cottage/history-reservation-cottage.component';
 import { User } from '../model/User';
 import { WeekendCottage } from '../model/WeekendCottage';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-weekend-cottage-info-page',
@@ -18,6 +20,12 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   edit = true;
   postCottage! : WeekendCottage;
 
+  todayDate: Date = new Date();
+  startDate: any;
+  endDate: any;
+  newActionExpirationDate: any;
+  endTime: any
+
   public name = null;
   public address = null
   public description = null
@@ -26,7 +34,7 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   public additionalservices = null
   selectedFile = null;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {

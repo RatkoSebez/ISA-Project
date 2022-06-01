@@ -3,10 +3,7 @@ package com.example.service;
 import com.example.dto.EditCottageDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
-import com.example.repository.CompliantRepository;
-import com.example.repository.ReservationCottageRepository;
-import com.example.repository.UserRepository;
-import com.example.repository.WeekendCottageRepository;
+import com.example.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,6 +20,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class WeekendCottageService {
+    private final PassReservationCottageRepository passReservationCottageRepository;
     private final WeekendCottageRepository weekendCottageRepository;
     private final ReservationCottageRepository reservationCottageRepository;
     private final UserRepository userRepository;
@@ -80,11 +78,25 @@ public class WeekendCottageService {
     public List<ReservationCottage> getAllCottageReservationsThatCanBeCancelled(){
         List<ReservationCottage> reservations = reservationCottageRepository.findAll();
         List<ReservationCottage> reservations2 = new ArrayList<>();
-        for(ReservationCottage reservation : reservations){
-            if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){}
-            else reservations2.add(reservation);
+        if(reservations != null) {
+            for (ReservationCottage reservation : reservations) {
+                if (reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))) {
+                } else reservations2.add(reservation);
+            }
         }
         return reservations2;
+    }
+
+    public List<PassReservationCottage> getMyCottageReservations(Long id){
+        WeekendCottage cottage = weekendCottageRepository.findById(id).stream().findFirst().orElseThrow();
+        List<PassReservationCottage> cott = new ArrayList<>();
+        List<PassReservationCottage> resevations = passReservationCottageRepository.findAll();
+        for(PassReservationCottage reservation : resevations){
+            if(reservation.getCottageId() == cottage.getId()){
+                cott.add(reservation);
+            }
+        }
+        return cott;
     }
 
     public List<ReservationCottage> getAllCottageReservations(){
@@ -117,7 +129,8 @@ public class WeekendCottageService {
             else return false;
         }
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices()));
+        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices(), weekendCottage.getId()));
+        passReservationCottageRepository.save(new PassReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices(), weekendCottage.getId()));
         weekendCottage.setReservations(reservations);
         weekendCottageRepository.save(weekendCottage);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda
@@ -130,25 +143,25 @@ public class WeekendCottageService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         userRepository.save(user);
         //send email to notify client that reservation is made
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
-        message.setTo(user.getEmail());
-        message.setSubject("You just made reservation.");
-        message.setText("Reservation is made for weekend cottage number " + boatReservationDTO.getBoatId() + " and it starts on " + boatReservationDTO.getStartDate() + " and it ends on " + boatReservationDTO.getEndDate() + ".");
-        javaMailSender.send(message);
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom("dislinkacc@outlook.com");
+//        message.setTo(user.getEmail());
+//        message.setSubject("You just made reservation.");
+//        message.setText("Reservation is made for weekend cottage number " + boatReservationDTO.getBoatId() + " and it starts on " + boatReservationDTO.getStartDate() + " and it ends on " + boatReservationDTO.getEndDate() + ".");
+//        javaMailSender.send(message);
         return true;
     }
 
     public void makeCompliant(Compliant compliant) {
         compliantRepository.save(compliant);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         WeekendCottage cottage = weekendCottageRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         //Boat boat = boatRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         User user = userRepository.findById(cottage.getCottageOwnerId()).stream().findFirst().orElseThrow();
-        message.setTo(user.getEmail());
-        message.setSubject("Your weekend cottage received compliant.");
-        message.setText(compliant.getCompliant());
-        javaMailSender.send(message);
+//        message.setTo(user.getEmail());
+//        message.setSubject("Your weekend cottage received compliant.");
+//        message.setText(compliant.getCompliant());
+//        javaMailSender.send(message);
     }
 }

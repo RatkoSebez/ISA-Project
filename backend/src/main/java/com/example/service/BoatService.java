@@ -83,9 +83,11 @@ public class BoatService {
     public List<ReservationBoat> getAllBoatReservationsThatCanBeCancelled(){
         List<ReservationBoat> reservations = reservationBoatRepository.findAll();
         List<ReservationBoat> reservations2 = new ArrayList<>();
-        for(ReservationBoat reservation : reservations){
-            if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){}
-            else reservations2.add(reservation);
+        if(reservations!=null) {
+            for (ReservationBoat reservation : reservations) {
+                if (reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))) {
+                } else reservations2.add(reservation);
+            }
         }
         return reservations2;
     }

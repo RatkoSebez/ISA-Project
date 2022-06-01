@@ -1,0 +1,26 @@
+<div class="row justify-content-center mt-5 ">
+    <div class="col-auto">
+        <table class="table w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Reservation id</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Price per day</th>
+                    <th scope="col">Id user</th>
+                    <th scope="col">Name user</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reservation of cottageReservations">
+                    <th scope="row">{{ reservation.id }}</th>
+                    <td>{{ reservation.startDate }}</td>
+                    <td>{{ reservation.endDate }}</td>
+                    <td>{{ reservation.price }}</td>
+                    <td>{{ logged.id }}</td>
+                    <td>{{ logged.firstName }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

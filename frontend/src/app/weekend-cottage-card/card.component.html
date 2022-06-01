@@ -10,7 +10,7 @@
                     <p class="card-text">{{ weekendCottage.address }}</p>
                     <p class="card-text">id: {{ weekendCottage.id }}</p>
                     <p class="card-text">Average rating: {{ weekendCottage.rating }}</p>
-                    <p class="card-text">Price list: {{ weekendCottage.priceList }}</p>
+                    <p class="card-text">Price per day: {{ weekendCottage.priceList }}</p>
                     <div class="row justify-content-center">
                         <div class="col-auto">
                             <table class="table w-auto">
@@ -33,7 +33,7 @@
                     </div>
                     <a href="/weekendCottage?id={{ weekendCottage.id }}" class="btn btn-primary">See more</a>
                     <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
-                        (click)='makeReservation(weekendCottage.id)'>Make Reservation</button>
+                        (click)='makeReservation(weekendCottage.id, weekendCottage.priceList)' [disabled]="!this.component.date1 || !this.component.date2 || !this.component.people" >Make Reservation</button>
                 </div>
             </div>
         </div>

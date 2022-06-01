@@ -2,10 +2,7 @@ package com.example.controller;
 
 import com.example.dto.EditCottageDTO;
 import com.example.dto.ReservationDTO;
-import com.example.model.Compliant;
-import com.example.model.ReservationBoat;
-import com.example.model.ReservationCottage;
-import com.example.model.WeekendCottage;
+import com.example.model.*;
 import com.example.service.WeekendCottageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,6 +38,12 @@ public class WeekendCottageController {
     @GetMapping(path = "/mycottages/{id}")
     public List<WeekendCottage> getAllMyWeekendCottages(@PathVariable Long id){
         return weekendCottageService.getAllMyWeekendCottages(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @GetMapping(path = "/cottagesReservation/{id}")
+    public List<PassReservationCottage> getMyCottageReservations(@PathVariable Long id){
+        return weekendCottageService.getMyCottageReservations(id);
     }
 
     @GetMapping(path = "{id}")
