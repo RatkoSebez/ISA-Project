@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.AvailableReservationDTO;
 import com.example.dto.EditCottageDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
@@ -47,10 +48,15 @@ public class WeekendCottageController {
     }
 
     @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
-    @PostMapping(path = "/fastreservation")
-    public Boolean makeFastCottageReservation(@RequestBody AvaliableReservations newAvaliableReservation) {
+    @PostMapping(path = "/availability")
+    public Boolean makeAvaliableReservation(@RequestBody AvailableReservationDTO newAvaliableReservation) {
         Boolean ans = weekendCottageService.makeAvaliableReservation(newAvaliableReservation);
         return ans;
+    }
+
+    @GetMapping(path = "/availableFastReservations")
+    public List<AvaliableReservations> availableFastReservations() {
+        return weekendCottageService.getAllFastAvailableReservations();
     }
 
     @GetMapping(path = "/availableReservations")

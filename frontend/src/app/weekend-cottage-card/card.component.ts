@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { BoatsPageComponent } from '../boats-page/boats-page.component';
+import { AvailableReservations } from '../model/AvailableReservations';
 import { WeekendCottage } from '../model/WeekendCottage';
 import { WeekendCottagesPageComponent } from '../weekend-cottages-page/weekend-cottages-page.component';
 
@@ -17,6 +18,7 @@ export class CardComponent implements OnInit {
   weekendCottages!: WeekendCottage[];
   show = false;
   additionalServices = "";
+  availableReservation !: AvailableReservations[];
 
   constructor(private http: HttpClient, public component: WeekendCottagesPageComponent) { }
 
@@ -28,6 +30,12 @@ export class CardComponent implements OnInit {
         //console.log(this.weekendCottages)
       }
     );
+    this.http.get<any>('api/availableReservations').subscribe(
+      response => {
+        this.availableReservation = response;
+        //console.log(this.weekendCottages)
+      }
+    );
   }
 
   public makeReservation(id: number, price: number){
@@ -36,6 +44,10 @@ export class CardComponent implements OnInit {
 
   public getCottages() : WeekendCottage[]{
     return this.weekendCottages;
+  }
+
+  public getAR() : AvailableReservations[]{
+    return this.availableReservation;
   }
 
   doGet(){ 

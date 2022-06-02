@@ -5,7 +5,7 @@ import { throwIfEmpty } from 'rxjs';
 import { HistoryReservationCottageComponent } from '../history-reservation-cottage/history-reservation-cottage.component';
 import { User } from '../model/User';
 import { WeekendCottage } from '../model/WeekendCottage';
-import { DatePipe } from '@angular/common'
+import { DatePipe, formatDate } from '@angular/common'
 
 @Component({
   selector: 'app-weekend-cottage-info-page',
@@ -20,12 +20,19 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   edit = true;
   postCottage! : WeekendCottage;
 
+  //Fast availably
   todayDate: Date = new Date();
   firstDate: any;
   lastDate: any;
   newActionExpirationDate: any;
   actionprice: any;
-  currprice: any
+  currprice: any;
+
+  //Normal availably
+  beginDate: any;
+  startTime: any;
+  finishDate: any;
+  endTime: any;
 
   public name = null;
   public address = null
@@ -38,6 +45,8 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.startTime = "14:00"
+    this.endTime = "12:00"
     this.activatedRoute.queryParams.subscribe(params => {
         let id = params['id'];
         this.http.get<WeekendCottage>('api/weekendCottage/' + id).subscribe(
@@ -96,18 +105,39 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   }
 
   addReservation(){
+    var start = formatDate(this.firstDate,'dd-MM-yyyy','en_US');
+    var end  = formatDate(this.lastDate,'dd-MM-yyyy','en_US');
+    
     var postData ={
       entity: "WEEKEND_COTTAGE",
       entityId: this.weekendCottage.id,
-      startDate: this.firstDate,
+      startDate: start + " " + this.startTime,
       oldPrice: this.currprice,
-      endDate: this.lastDate,
+      endDate: end + " " + this.endTime,
       expirationDate: this.newActionExpirationDate,
       newPrice: this.actionprice,
       fast: true
     }
 
-    this.http.post("api/weekendCottage/fastreservation", postData).toPromise().then(data => {
+    this.http.post("api/weekendCottage/availability", postData).toPromise().then(data => {
+      if(!data){alert("Cottage alredy busy")}
+      else{this.router.navigate(['/mycottages']);}
+    });
+  }
+
+  editAvailability(){
+    var start = formatDate(this.beginDate,'dd-MM-yyyy','en_US');
+    var end  = formatDate(this.finishDate,'dd-MM-yyyy','en_US');
+    
+    var postData ={
+      entity: "WEEKEND_COTTAGE",
+      entityId: this.weekendCottage.id,
+      startDate: start + " " + this.startTime,
+      endDate: end + " " + this.endTime,
+      fast: false
+    }
+
+    this.http.post("api/weekendCottage/availability", postData).toPromise().then(data => {
       if(!data){alert("Cottage alredy busy")}
       else{this.router.navigate(['/mycottages']);}
     });

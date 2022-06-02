@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { AvailableReservations } from '../model/AvailableReservations';
 import { WeekendCottage } from '../model/WeekendCottage';
 import { CardComponent } from '../weekend-cottage-card/card.component';
 import { WeekendCottagesPageComponent } from '../weekend-cottages-page/weekend-cottages-page.component';
@@ -18,6 +19,7 @@ export class CottagesFilterPipe implements PipeTransform {
     var sortBy = this.weekendCottagesPageComponent.getSortSelectValue();
     var sortType = this.weekendCottagesPageComponent.getSortType();
     var cottages: Array<WeekendCottage> = this.weekendCottageCardComponent.getCottages();
+    var availableRes: Array<AvailableReservations> = this.weekendCottageCardComponent.getAR();
     var date1 = this.weekendCottagesPageComponent.getDate1Cottage();
     var date2 = this.weekendCottagesPageComponent.getDate2Cottage();
     const resultArray = [];
@@ -26,10 +28,16 @@ export class CottagesFilterPipe implements PipeTransform {
     for(let cottage of cottages){
       var ok = true;
       br += 1;
-      for(let reservation of cottage.reservations){
-        if(new Date(date1).getTime() > new Date(reservation.endDate).getTime() || new Date(date2).getTime() < new Date(reservation.startDate).getTime() || !date1 || !date2){}
-        else ok = false;
+      for(let ar of availableRes){
+        for(let reservation of cottage.reservations){
+          if(ar.entityId === cottage.id){
+            if(new Date(date1).getTime() > new Date(reservation.endDate).getTime() || new Date(date2).getTime() < new Date(reservation.startDate).getTime() || !date1 || !date2 || new Date(date1).getTime() > new Date(ar.endDate).getTime() || new Date(date2).getTime() < new Date(ar.startDate).getTime()){}
+            else ok = false;
+          }
+          
+        }
       }
+      
       if(ok) resultArray.push(cottage);
     }
     

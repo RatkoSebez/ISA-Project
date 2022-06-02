@@ -4,7 +4,7 @@
             <div class="card" style="width: 18rem;">
                 <img src="assets/{{ weekendCottage.image }}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">{{ weekendCottage.name }}</h5>
+                    <h2 class="card-title">{{ weekendCottage.name }}</h2>
                     <p class="card-text">{{ weekendCottage.description | slice:0:200
                         }}{{weekendCottage.description.length > 200 ? '...' : ''}}</p>
                     <p class="card-text">{{ weekendCottage.address }}</p>
@@ -31,7 +31,7 @@
                             </table>
                         </div>
                     </div>
-                    <a href="/weekendCottage?id={{ weekendCottage.id }}" class="btn btn-primary">See more</a>
+                    <a href="/weekendCottage?id={{ weekendCottage.id }}" class="btn btn-primary w-100">See more</a>
                     <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
                         (click)='makeReservation(weekendCottage.id, weekendCottage.priceList)' [disabled]="!this.component.date1 || !this.component.date2 || !this.component.people" >Make Reservation</button>
                 </div>

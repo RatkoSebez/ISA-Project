@@ -16,7 +16,7 @@ export class FastReservationCottageComponent implements OnInit {
   public constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<any>('api/weekendCottage/availableReservations').subscribe(
+    this.http.get<any>('api/weekendCottage/availableFastReservations').subscribe(
       response => {
         this.availableresevations = response;
       }

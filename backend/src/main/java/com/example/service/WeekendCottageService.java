@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.AvailableReservationDTO;
 import com.example.dto.EditCottageDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
@@ -13,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,16 +69,32 @@ public class WeekendCottageService {
         return true;
     }
 
-    public Boolean makeAvaliableReservation(AvaliableReservations newAvaliableReservation){
-        if(checkNewReservation(newAvaliableReservation)){
-            avaliableReservationsRepository.save(newAvaliableReservation);
+    public Boolean makeAvaliableReservation(AvailableReservationDTO newAvaliableReservation){
+        LocalDateTime end = findDate(String.valueOf(newAvaliableReservation.getEndDate()));
+        LocalDateTime start = findDate(String.valueOf(newAvaliableReservation.getStartDate()));
+        AvaliableReservations newAR = new AvaliableReservations(null, newAvaliableReservation.getEntity(), newAvaliableReservation.getEntityId(), start, end, newAvaliableReservation.getExpirationDate(), newAvaliableReservation.getOldPrice(), newAvaliableReservation.getNewPrice(), newAvaliableReservation.getFast());
+        if(checkNewReservation(newAR)){
+            avaliableReservationsRepository.save(newAR);
             return true;
         }
         return false;
     }
 
+    private LocalDateTime findDate(String start){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(start, formatter);
+    }
+
+    public List<AvaliableReservations> getAllFastAvailableReservations(){
+        List<AvaliableReservations> available = avaliableReservationsRepository.findAllByFastIsTrue();
+        if(available != null) {
+            return available;
+        }else{available = new ArrayList<>();}
+        return available;
+    }
+
     public List<AvaliableReservations> getAllAvailableReservations(){
-        return avaliableReservationsRepository.findAll();
+        return avaliableReservationsRepository.findAllByFastIsFalse();
     }
 
     public List<WeekendCottage> getAllMyWeekendCottages(Long id){
