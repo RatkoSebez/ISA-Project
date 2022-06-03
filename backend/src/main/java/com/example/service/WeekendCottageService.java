@@ -81,7 +81,7 @@ public class WeekendCottageService {
     }
 
     private LocalDateTime findDate(String start){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return LocalDateTime.parse(start, formatter);
     }
 
@@ -94,7 +94,11 @@ public class WeekendCottageService {
     }
 
     public List<AvaliableReservations> getAllAvailableReservations(){
-        return avaliableReservationsRepository.findAllByFastIsFalse();
+        List<AvaliableReservations> available = avaliableReservationsRepository.findAllByFastIsFalse();
+        if(available != null) {
+            return available;
+        }else{available = new ArrayList<>();}
+        return available;
     }
 
     public List<WeekendCottage> getAllMyWeekendCottages(Long id){

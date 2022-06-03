@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <a href="/weekendCottage?id={{ weekendCottage.id }}" class="btn btn-primary w-100">See more</a>
-                    <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
+                    <button class="btn btn-outline-primary make-reservation" [ngClass]="reserve ? 'is-active' : 'is-not-active'"
                         (click)='makeReservation(weekendCottage.id, weekendCottage.priceList)' [disabled]="!this.component.date1 || !this.component.date2 || !this.component.people" >Make Reservation</button>
                 </div>
             </div>

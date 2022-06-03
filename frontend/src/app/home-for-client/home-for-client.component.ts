@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { WeekendCottage } from '../model/WeekendCottage';
 
 @Component({
   selector: 'app-home-for-client',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeForClientComponent implements OnInit {
 
-  constructor() { }
+  weekendCottages!: WeekendCottage[];
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<any>('api/weekendCottage').subscribe(
+      response => {
+        this.weekendCottages = response;
+        //console.log(this.weekendCottages)
+      }
+    );
   }
 
 }

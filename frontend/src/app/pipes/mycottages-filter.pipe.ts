@@ -28,7 +28,7 @@ export class MyCottagesFilterPipe implements PipeTransform {
       var ok = true;
       br += 1;
       for(let reservation of cottage.reservations){
-        if(new Date(date1).getTime() > new Date(reservation.endDate).getTime() || new Date(date2).getTime() < new Date(reservation.startDate).getTime() || !date1 || !date2){}
+        if(new Date(date1).getTime() < new Date(reservation.endDate).getTime() || new Date(date2).getTime() > new Date(reservation.startDate).getTime() || !date1 || !date2){}
         else ok = false;
       }
       if(ok) resultArray.push(cottage);

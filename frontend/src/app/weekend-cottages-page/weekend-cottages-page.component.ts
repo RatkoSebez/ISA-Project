@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CardComponent } from '../weekend-cottage-card/card.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class WeekendCottagesPageComponent implements OnInit {
   public date2!: Date;
   public cottageId = 6;
   public show = false;
+  todayDate: Date = new Date();
 
   public constructor(private http: HttpClient, private router: Router) {}
 

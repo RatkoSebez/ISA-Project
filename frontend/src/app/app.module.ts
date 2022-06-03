@@ -44,6 +44,7 @@ import { HistoryReservationCottageComponent } from './history-reservation-cottag
 import { AngularMaterialModule } from './angular-material/angular-material.module'; 
 import { DatePipe } from '@angular/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [

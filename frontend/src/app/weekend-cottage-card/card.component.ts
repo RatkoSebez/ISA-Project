@@ -17,6 +17,7 @@ export class CardComponent implements OnInit {
 
   weekendCottages!: WeekendCottage[];
   show = false;
+  reserve = false;
   additionalServices = "";
   availableReservation !: AvailableReservations[];
 
@@ -30,7 +31,7 @@ export class CardComponent implements OnInit {
         //console.log(this.weekendCottages)
       }
     );
-    this.http.get<any>('api/availableReservations').subscribe(
+    this.http.get<any>('api/weekendCottage/availableReservations').subscribe(
       response => {
         this.availableReservation = response;
         //console.log(this.weekendCottages)

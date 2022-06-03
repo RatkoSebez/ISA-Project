@@ -1,1 +1,35 @@
-Wellcome client!
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm" *ngFor="let weekendCottage of weekendCottages">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/{{ weekendCottage.image }}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h2 class="card-title">{{ weekendCottage.name }}</h2>
+                    <p class="card-text">{{ weekendCottage.description | slice:0:200
+                        }}{{weekendCottage.description.length > 200 ? '...' : ''}}</p>
+                    <p class="card-text">{{ weekendCottage.address }}</p>
+                    <p class="card-text">id: {{ weekendCottage.id }}</p>
+                    <p class="card-text">Average rating: {{ weekendCottage.rating }}</p>
+                    <p class="card-text">Price per day: {{ weekendCottage.priceList }}</p>
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <table class="table w-auto">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Additional Service</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let additionalService of weekendCottage.additionalServices.split(',')">
+                                        <td>{{ additionalService }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a href="/weekendCottage?id={{ weekendCottage.id }}" class="btn btn-primary w-100">See more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

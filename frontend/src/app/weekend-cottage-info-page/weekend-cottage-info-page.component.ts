@@ -105,8 +105,8 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   }
 
   addReservation(){
-    var start = formatDate(this.firstDate,'dd-MM-yyyy','en_US');
-    var end  = formatDate(this.lastDate,'dd-MM-yyyy','en_US');
+    var start = formatDate(this.firstDate,'yyyy-MM-dd','en_US');
+    var end  = formatDate(this.lastDate,'yyyy-MM-dd','en_US');
     
     var postData ={
       entity: "WEEKEND_COTTAGE",
@@ -126,8 +126,8 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   }
 
   editAvailability(){
-    var start = formatDate(this.beginDate,'dd-MM-yyyy','en_US');
-    var end  = formatDate(this.finishDate,'dd-MM-yyyy','en_US');
+    var start = formatDate(this.beginDate,'yyyy-MM-dd','en_US');
+    var end  = formatDate(this.finishDate,'yyyy-MM-dd','en_US');
     
     var postData ={
       entity: "WEEKEND_COTTAGE",

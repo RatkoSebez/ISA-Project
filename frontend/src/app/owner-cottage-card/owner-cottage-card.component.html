@@ -23,12 +23,22 @@
                 </div>
                 <div class="col-sm">
                     <div class="input-group mb-3">
-                        <input type="date" id="birthday" name="birthday" [(ngModel)]="date1">
+                        <mat-form-field appearance="fill" style="margin-left: 7%; width: 70%;">
+                            <mat-label>Choose a start</mat-label>
+                            <input matInput [matDatepicker]="picker3" [min]="todayDate" [(ngModel)]="date1" >
+                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3 ></mat-datepicker>
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="col-sm">
                     <div class="input-group mb-3">
-                        <input type="date" id="birthday" name="birthday" [(ngModel)]="date2">
+                        <mat-form-field appearance="fill" style="width: 70%;">
+                            <mat-label>Choose a end</mat-label>
+                            <input matInput [matDatepicker]="picker4" [min]="todayDate" [(ngModel)]="date2" >
+                            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                            <mat-datepicker #picker4 ></mat-datepicker>
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="col-sm">

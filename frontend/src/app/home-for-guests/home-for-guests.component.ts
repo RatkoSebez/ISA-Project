@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
+import { WeekendCottage } from '../model/WeekendCottage';
 import { CardComponent } from '../weekend-cottage-card/card.component';
 
 @Injectable({
@@ -16,8 +18,9 @@ export class HomeForGuestsComponent implements OnInit {
   public nameBoat = '';
   public descriptionBoat = '';
   public capacityBoat!: number;
+  weekendCottages!: WeekendCottage[];
 
-  public constructor(private cottageComponent: CardComponent) {
+  public constructor(private http: HttpClient) {
     
   }
 
@@ -42,6 +45,12 @@ export class HomeForGuestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.get<any>('api/weekendCottage').subscribe(
+      response => {
+        this.weekendCottages = response;
+        //console.log(this.weekendCottages)
+      }
+    );
   }
 
 }

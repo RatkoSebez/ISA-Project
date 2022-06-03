@@ -22,6 +22,7 @@ export class OwnerCottageCardComponent implements OnInit {
   public people!: number;
   public date1!: Date;
   public date2!: Date;
+  todayDate: Date = new Date();
 
   constructor(public http: HttpClient, private router: Router) { }
 
