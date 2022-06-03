@@ -68,4 +68,14 @@ public class UserService implements UserDetailsService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    public User getUser(String email) {
+        List<User> users = userRepository.findAll();
+        User that = new User();
+        for(User u:users){
+            if(u.getEmail()==email){}
+                that = u;
+        }
+        return that;
+    }
 }

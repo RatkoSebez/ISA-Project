@@ -53,8 +53,9 @@ public class IsaProjekatApplication implements ApplicationRunner {
         reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 60.0, 5, "usluga1"));
         reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 55.0, 3, "usluga1"));
         List<ReservationCottage> reservationsCottage = new ArrayList<>();
-        reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 20.0, 3, "usluga1", 13L));
-        reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 50.0, 3, "usluga1", 13L));
+        List<AvaliableReservations> avaliableReservations = new ArrayList<>();
+        reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 20.0, 3, "usluga1", 13L,  false));
+        reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 50.0, 3, "usluga1", 13L, false));
         weekendCottageRepository.save(new WeekendCottage("vikendica", "adresa6", "ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ", 4.5, "pravila", "siki.jpg", 4L, 40, additionalServices));
         weekendCottageRepository.save(new WeekendCottage("vikendica2", "adresa2", "ovo je opis vikendice", 4.55, "pravila", "liki.jpg", 7L, reservationsCottage, 50, additionalServices));
         weekendCottageRepository.save(new WeekendCottage("vikendica3", "adresa4", "ovo je opis vikendice", 3.5, "pravila", "siki.jpg", 7L, 25, additionalServices));

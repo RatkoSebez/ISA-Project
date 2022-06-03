@@ -45,6 +45,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { DatePipe } from '@angular/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { InfoUserComponent } from './info-user/info-user.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MakeCottageComponent,
     OwnerCottageCardComponent,
     HistoryReservationCottageComponent,
+    InfoUserComponent,
   ],
   imports: [
     BrowserModule,

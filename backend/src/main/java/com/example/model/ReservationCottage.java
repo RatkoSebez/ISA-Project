@@ -26,8 +26,9 @@ public class ReservationCottage {
     private Integer guests;
     private String additionalServices;
     private Long cottageId;
+    private Boolean canceled;
 
-    public ReservationCottage(LocalDate start, LocalDate end, String clientEmail, Double price, Integer guests, String additionalServices, Long cottageId){
+    public ReservationCottage(LocalDate start, LocalDate end, String clientEmail, Double price, Integer guests, String additionalServices, Long cottageId, Boolean canceled){
         this.startDate = start;
         this.endDate = end;
         this.clientEmail = clientEmail;
@@ -35,5 +36,6 @@ public class ReservationCottage {
         this.guests = guests;
         this.additionalServices = additionalServices;
         this.cottageId = cottageId;
+        this.canceled = canceled;
     }
 }

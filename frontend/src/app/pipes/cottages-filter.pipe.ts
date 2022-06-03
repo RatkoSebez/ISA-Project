@@ -32,6 +32,7 @@ export class CottagesFilterPipe implements PipeTransform {
     if(date1 && date2){this.weekendCottageCardComponent.reserve = true}
   
     var br = 0;
+    var bok = false;
     for(let cottage of cottages){
       var ok = true;
       br += 1;
@@ -41,12 +42,13 @@ export class CottagesFilterPipe implements PipeTransform {
           console.log(this.convertToLocalDate(start))
           console.log("Slobodno do ",this.convertToLocalDate(ar.endDate))
           console.log(this.convertToLocalDate(end))
-          if(new Date(this.convertToLocalDate(start)).getTime() >= new Date(this.convertToLocalDate(ar.startDate)).getTime() && new Date(this.convertToLocalDate(end)).getTime() <= new Date(this.convertToLocalDate(ar.endDate)).getTime() && new Date(this.convertToLocalDate(start)).getTime() <= new Date(this.convertToLocalDate(ar.endDate)).getTime() && new Date(this.convertToLocalDate(end)).getTime() >= new Date(this.convertToLocalDate(ar.startDate)).getTime() || !date1 || !date2){}
+          if(new Date(this.convertToLocalDate(start)).getTime() >= new Date(this.convertToLocalDate(ar.startDate)).getTime() && new Date(this.convertToLocalDate(end)).getTime() <= new Date(this.convertToLocalDate(ar.endDate)).getTime() && new Date(this.convertToLocalDate(start)).getTime() <= new Date(this.convertToLocalDate(ar.endDate)).getTime() && new Date(this.convertToLocalDate(end)).getTime() >= new Date(this.convertToLocalDate(ar.startDate)).getTime() || !date1 || !date2){bok=true;}
           else ok = false;
         }else ok = false;
       }
       
-      if(ok) resultArray.push(cottage);
+      if(ok || bok) resultArray.push(cottage);
+      bok = false;
     }
     
     const resultArray2 = [];

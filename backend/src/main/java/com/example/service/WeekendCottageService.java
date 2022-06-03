@@ -23,7 +23,6 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class WeekendCottageService {
-    private final PassReservationCottageRepository passReservationCottageRepository;
     private final WeekendCottageRepository weekendCottageRepository;
     private final ReservationCottageRepository reservationCottageRepository;
     private final AvaliableReservationRepository avaliableReservationsRepository;
@@ -123,16 +122,11 @@ public class WeekendCottageService {
         return reservations2;
     }
 
-    public List<PassReservationCottage> getMyCottageReservations(Long id){
+    public List<ReservationCottage> getMyCottageReservations(Long id){
         WeekendCottage cottage = weekendCottageRepository.findById(id).stream().findFirst().orElseThrow();
-        List<PassReservationCottage> cott = new ArrayList<>();
-        List<PassReservationCottage> resevations = passReservationCottageRepository.findAll();
-        for(PassReservationCottage reservation : resevations){
-            if(reservation.getCottageId() == cottage.getId()){
-                cott.add(reservation);
-            }
-        }
-        return cott;
+        List<ReservationCottage> reservations = new ArrayList<ReservationCottage>();
+        if(cottage.getReservations() != null) { reservations = cottage.getReservations();}
+        return reservations;
     }
 
     public List<ReservationCottage> getAllCottageReservations(){
@@ -149,10 +143,9 @@ public class WeekendCottageService {
     public Boolean cancelCottageReservation(Long id){
         Optional<ReservationCottage> optional = reservationCottageRepository.findById(id);
         ReservationCottage reservation = optional.stream().findFirst().orElse(null);
-        if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){
-            return false;
-        }
-        reservationCottageRepository.deleteById(id);
+        if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){return false;}
+        reservation.setCanceled(true);
+        reservationCottageRepository.save(reservation);
         return true;
     }
 
@@ -177,8 +170,8 @@ public class WeekendCottageService {
             else return false;
         }
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices(), weekendCottage.getId()));
-        passReservationCottageRepository.save(new PassReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices(), weekendCottage.getId()));
+        reservations.add(new ReservationCottage(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), email, boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices(), weekendCottage.getId(),false));
+        //avaliableReservationsRepository.deleteByEntityId(weekendCottage.getId());
         weekendCottage.setReservations(reservations);
         weekendCottageRepository.save(weekendCottage);
         //kad napravi rezervaciju, onda moze da pise zalbu na brod ili vlasnika broda

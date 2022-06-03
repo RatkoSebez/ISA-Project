@@ -51,6 +51,11 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping(path = "/{email}")
+    public User getUser(@PathVariable String email){
+        return (User) userService.getUser(email);
+    }
+
     @PostMapping(path = "/edit")
     public ResponseEntity<User> editUser(@RequestBody User data) {
         User user = clientService.editUser(data);

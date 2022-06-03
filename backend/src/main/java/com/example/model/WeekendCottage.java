@@ -31,9 +31,6 @@ public class WeekendCottage {
     @OneToMany(targetEntity = ReservationCottage.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "foreign_key", referencedColumnName = "id")
     private List<ReservationCottage> reservations;
-    @OneToMany(targetEntity = ReservationCottage.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "foreign_key", referencedColumnName = "id")
-    private List<ReservationCottage> passReservations;
     @Column(columnDefinition="TEXT")
     private String rulesOfConduct;
     private Long cottageOwnerId;

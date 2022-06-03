@@ -7,8 +7,7 @@
                     <th scope="col">Start date</th>
                     <th scope="col">End date</th>
                     <th scope="col">Price per day</th>
-                    <th scope="col">Id user</th>
-                    <th scope="col">Name user</th>
+                    <th scope="col">User email</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,10 +16,61 @@
                     <td>{{ reservation.startDate }}</td>
                     <td>{{ reservation.endDate }}</td>
                     <td>{{ reservation.price }}</td>
-                    <td>{{ logged.id }}</td>
-                    <td>{{ logged.firstName }}</td>
+                    <td><a href="/info?email={{ reservation.clientEmail }}">{{ reservation.clientEmail }}</a></td>
+                    <td><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark-text"></i></button></td>
+                    <td><button data-bs-toggle="modal" data-bs-target="#edit" type="button" class="btn btn-secondary" (click)="evoJe('{{reservation}}')"><i class="bi bi-pencil-square"></i></button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLongTitle">Select cottage availability</h2>
+                </div>
+                
+                <div  class="container"  style="margin-bottom: 3%; margin-top: 3%;">
+                    <label style="margin-bottom: 10px; margin-left: 2%;">Start date:</label>
+                    <mat-form-field appearance="fill" style="margin-left: 7%; width: 70%;">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker3"  >
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3 ></mat-datepicker>
+                    </mat-form-field>
+        
+                    <div class="row">
+                        <label class="col" style="margin-bottom: 10px; margin-left: 2%; max-width: 22%;">Start time:</label>
+                        <div class="col">
+                            <input disabled type="time" id="form3Example1q" class="form-control" style="width: 93%;" />
+                        </div>
+                    </div>
+        
+                    <br>
+                    <label style="margin-bottom: 10px; margin-left: 2%;">End date:</label>
+                    <mat-form-field appearance="fill" style="margin-left: 8.5%; width: 70%;">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker4"  >
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+        
+                    <div class="row">
+                        <label class="col" style="margin-bottom: 10px; margin-left: 2%; max-width: 22%;">End time:</label>
+                        <div class="col">
+                            <input disabled type="time" id="form3Example1q" class="form-control" style="width: 93%;" />
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" >Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

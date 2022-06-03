@@ -43,7 +43,7 @@ public class WeekendCottageController {
 
     @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
     @GetMapping(path = "/cottagesReservation/{id}")
-    public List<PassReservationCottage> getMyCottageReservations(@PathVariable Long id){
+    public List<ReservationCottage> getMyCottageReservations(@PathVariable Long id){
         return weekendCottageService.getMyCottageReservations(id);
     }
 

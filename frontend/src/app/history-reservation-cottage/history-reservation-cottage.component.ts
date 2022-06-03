@@ -16,8 +16,9 @@ import { WeekendCottageInfoPageComponent } from '../weekend-cottage-info-page/we
 export class HistoryReservationCottageComponent implements OnInit {
 
   cottageReservations!: CottageReservation[];
-  logged !: User;
   id: any;
+  coowner= false;
+  reservation !: CottageReservation
   
   constructor(private http: HttpClient, private component: WeekendCottageInfoPageComponent) { }
 
@@ -28,13 +29,10 @@ export class HistoryReservationCottageComponent implements OnInit {
         console.log(this.cottageReservations)
       }
     );
+  }
 
-    this.http.get<any>('api/user').subscribe(val => {
-      console.log(val);
-      if(val) {
-        this.logged = val;
-      }
-    });
+  evoJe(res: any){
+    this.reservation = res;
   }
 
 }

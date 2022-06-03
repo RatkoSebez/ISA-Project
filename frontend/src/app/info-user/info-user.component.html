@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8 rounded-right">
+            <h1 class="ml-5 mt-5 text-center">
+                {{ user.firstName }}
+            </h1>
+            <div class="row">
+                <p class="font-weight-bold">First name: </p>
+                <p class="text-muted">{{ user.firstName }}</p>
+                <p class="font-weight-bold">Last name: </p>
+                <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ user.lastName }}</p>
+                <p class="font-weight-bold">Country: </p>
+                <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ user.country }}</p>
+                <p class="font-weight-bold">City: </p>
+                <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ user.city }}</p>
+                <p class="font-weight-bold">Address: </p>
+                <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ user.address }}</p>
+                <p class="font-weight-bold">Phone number: </p>
+                <p class="text-muted" [ngClass]="edit ? 'is-active' : 'is-not-active'">{{ user.phoneNumber }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
