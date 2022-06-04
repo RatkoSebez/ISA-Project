@@ -155,4 +155,11 @@ public class WeekendCottageController {
             return new ResponseEntity<>(e, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @PostMapping(path = "/editReservation")
+    public Boolean editCottageReservation(@RequestBody EditReservationDTO reservation) {
+        Boolean ans = weekendCottageService.editReservation(reservation);
+        return ans;
+    }
 }

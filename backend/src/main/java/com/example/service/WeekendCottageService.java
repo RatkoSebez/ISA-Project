@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.AvailableReservationDTO;
 import com.example.dto.EditCottageDTO;
+import com.example.dto.EditReservationDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
 import com.example.repository.*;
@@ -66,6 +67,16 @@ public class WeekendCottageService {
         oldCottage.setAdditionalServices(cottage.getAdditionalServices());
         weekendCottageRepository.save(oldCottage);
         return true;
+    }
+
+    public Boolean editReservation(EditReservationDTO reservation){
+        ReservationCottage oldReservation = reservationCottageRepository.findById(reservation.getId()).stream().findFirst().orElseThrow();
+        if(oldReservation != null){
+            oldReservation.setStartDate(findDate(reservation.getStartDate()));
+            oldReservation.setEndDate(LocalDate.parse(reservation.getEndDate()));
+            reservationCottageRepository.save(oldReservation);
+            return true;
+        }return false;
     }
 
     public Boolean makeAvaliableReservation(AvailableReservationDTO newAvaliableReservation){
