@@ -146,6 +146,9 @@
             </div>
         </div>
     </div>
+
+    <app-history-reservation-cottage [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-history-reservation-cottage>
+    <app-weekend-cottage-report [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-weekend-cottage-report>
 </div>
-<app-history-reservation-cottage [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-history-reservation-cottage>
+
 <app-footer></app-footer>

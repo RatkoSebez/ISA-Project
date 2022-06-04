@@ -18,7 +18,7 @@
                     <td>{{ reservation.price }}</td>
                     <td><a href="/info?email={{ reservation.clientEmail }}">{{ reservation.clientEmail }}</a></td>
                     <td><button type="button" class="btn btn-secondary"><i class="bi bi-file-earmark-text"></i></button></td>
-                    <td><button data-bs-toggle="modal" data-bs-target="#edit" type="button" class="btn btn-secondary" (click)="evoJe('{{reservation}}')"><i class="bi bi-pencil-square"></i></button></td>
+                    <td *ngIf="reservation.canceled ? 'is-not-active' : 'is-active'"><button data-bs-toggle="modal" data-bs-target="#edit" type="button" class="btn btn-secondary" (click)="evoJe(reservation)"><i class="bi bi-pencil-square"></i></button></td>
                 </tr>
             </tbody>
         </table>

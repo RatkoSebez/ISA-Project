@@ -20,7 +20,6 @@ public class IsaProjekatApplication implements ApplicationRunner {
     private WeekendCottageRepository weekendCottageRepository;
     private BoatRepository boatRepository;
     private ReservationBoatRepository reservationBoatRepository;
-    private FastReservationRepository fastReservationRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(IsaProjekatApplication.class, args);
@@ -66,9 +65,9 @@ public class IsaProjekatApplication implements ApplicationRunner {
         boatRepository.save(new Boat("brod3", "adresa3", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", additionalServices, 3L));
         boatRepository.save(new Boat("brod4", "adresa1", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 3.2, "cenovnik", additionalServices, 3L));
         boatRepository.save(new Boat("brod5", "adresa6", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", additionalServices, 3L));
-        fastReservationRepository.save(new FastReservation(Entity.BOAT, 25L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
-        fastReservationRepository.save(new FastReservation(Entity.WEEKEND_COTTAGE, 19L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
-        fastReservationRepository.save(new FastReservation(Entity.ADVENTURE, 8L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));//        List<ReservationBoat> reservations = new ArrayList<>();
+//        fastReservationRepository.save(new FastReservation(Entity.BOAT, 25L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
+//        fastReservationRepository.save(new FastReservation(Entity.WEEKEND_COTTAGE, 19L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
+//        fastReservationRepository.save(new FastReservation(Entity.ADVENTURE, 8L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));//        List<ReservationBoat> reservations = new ArrayList<>();
 //        reservations.add(new ReservationBoat(LocalDate.of(2000, 2, 3), LocalDate.of(1999, 6, 21), "user@gmail.com"));
 //        Boat brod = new Boat("brod", reservations);
 //        boatRepository.save(brod);

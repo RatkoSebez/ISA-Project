@@ -46,6 +46,7 @@ import { DatePipe } from '@angular/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { InfoUserComponent } from './info-user/info-user.component';
+import { WeekendCottageReportComponent } from './weekend-cottage-report/weekend-cottage-report.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { InfoUserComponent } from './info-user/info-user.component';
     OwnerCottageCardComponent,
     HistoryReservationCottageComponent,
     InfoUserComponent,
+    WeekendCottageReportComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,7 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   coowner = false;
   edit = true;
   postCottage! : WeekendCottage;
+  id: any
 
   //Fast availably
   todayDate: Date = new Date();
@@ -48,8 +49,8 @@ export class WeekendCottageInfoPageComponent implements OnInit {
     this.startTime = "14:00"
     this.endTime = "12:00"
     this.activatedRoute.queryParams.subscribe(params => {
-        let id = params['id'];
-        this.http.get<WeekendCottage>('api/weekendCottage/' + id).subscribe(
+        this.id = params['id'];
+        this.http.get<WeekendCottage>('api/weekendCottage/' + this.id).subscribe(
           response => {
             this.weekendCottage = response;
             this.currprice = this.weekendCottage.priceList
