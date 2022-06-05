@@ -98,7 +98,7 @@ public class AdventureService {
     public void makeCompliant(Compliant compliant) {
         compliantRepository.save(compliant);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         Adventure adventure = adventureRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         //Boat boat = boatRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         User user = userRepository.findById(adventure.getInstructorId()).stream().findFirst().orElseThrow();

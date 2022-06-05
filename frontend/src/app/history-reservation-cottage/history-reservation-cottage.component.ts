@@ -2,6 +2,9 @@ import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventSettingsModel, View } from '@syncfusion/ej2-angular-schedule';
+import { now } from 'moment';
+import { calendar } from '../model/calendar';
 import { CottageReservation } from '../model/CottageReservation';
 import { User } from '../model/User';
 import { WeekendCottageInfoPageComponent } from '../weekend-cottage-info-page/weekend-cottage-info-page.component';
@@ -18,6 +21,8 @@ import { WeekendCottageInfoPageComponent } from '../weekend-cottage-info-page/we
 export class HistoryReservationCottageComponent implements OnInit {
 
   cottageReservations!: CottageReservation[];
+  lista!: calendar[];
+  newList!: calendar[];
   id: any;
   coowner= false;
   reservation !: CottageReservation
@@ -25,6 +30,8 @@ export class HistoryReservationCottageComponent implements OnInit {
   todayDate: Date = new Date();
   beginDate: any;
   finishDate: any;
+  checkboxFlag: any;
+  comment: any;
   
   constructor(private http: HttpClient, private router: Router, private component: WeekendCottageInfoPageComponent) { }
 
@@ -32,14 +39,25 @@ export class HistoryReservationCottageComponent implements OnInit {
     this.http.get<any>('api/weekendCottage/cottagesReservation/'+ this.component.weekendCottage.id).subscribe(
       response => {
         this.cottageReservations = response;
+        this.lista = response;
         console.log(this.cottageReservations)
       }
     );
+
+    this.http.get<any>('api/weekendCottage/reservationc').subscribe(
+      response => {
+        this.lista = response;
+      }
+    );
+
+    for(var list of this.lista){
+    }
   }
 
   getId(res: any){
     this.reservation = res
   }
+
   editReservation(){
     var start = formatDate(this.beginDate,'yyyy-MM-dd','en_US');
     var end  = formatDate(this.finishDate,'yyyy-MM-dd','en_US');
@@ -56,6 +74,36 @@ export class HistoryReservationCottageComponent implements OnInit {
       })
     }
 
+  }
+
+  eventObject: EventSettingsModel = {
+    dataSource: this.lista
+  }
+  
+  setView: View = 'Month'
+
+  doComment(){
+    var e = (document.getElementById("commentSelect")) as HTMLSelectElement;
+    var sel = e.selectedIndex;
+    var opt = e.options[sel];
+    var CurValue = (<HTMLSelectElement><unknown>opt).value;
+    var rol: number = +CurValue;
+
+    var report = {
+      clientEmail: this.reservation.clientEmail,
+      cottageId: this.reservation.cottageId,
+      endDate: this.reservation.endDate,
+      shows : this.checkboxFlag,
+      assessment : rol,
+      comment: this.comment
+    } 
+    
+    if(!this.reservation.canceled && this.reservation.endDate <= this.todayDate){
+      this.http.post("api/weekendCottage/mark", report).toPromise().then(data => {
+        if(!data){alert("Something went wrong, please try later")}
+        window. location. reload();
+      })
+    }else{alert("Reservation not completed")}
   }
 
 }

@@ -79,6 +79,11 @@ public class WeekendCottageController {
         return weekendCottageService.getAllCottageReservationsThatCanBeCancelled();
     }
 
+    @GetMapping(path = "/reservationc")
+    public List<CalendarDTO> getReservations(){
+        return weekendCottageService.getAllReservationForCalendar();
+    }
+
     @GetMapping(path = "/allreservations")
     public List<ReservationCottage> getAllBoatReservations(){
         return weekendCottageService.getAllCottageReservations();
@@ -160,6 +165,13 @@ public class WeekendCottageController {
     @PostMapping(path = "/editReservation")
     public Boolean editCottageReservation(@RequestBody EditReservationDTO reservation) {
         Boolean ans = weekendCottageService.editReservation(reservation);
+        return ans;
+    }
+
+    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
+    @PostMapping(path = "/mark")
+    public Boolean reportMes(@RequestBody Report reservation) {
+        Boolean ans = weekendCottageService.reportMes(reservation);
         return ans;
     }
 }

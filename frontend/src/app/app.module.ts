@@ -47,6 +47,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { WeekendCottageReportComponent } from './weekend-cottage-report/weekend-cottage-report.component';
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
+import { CalendarComponent } from './calendar/calendar.component'
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { WeekendCottageReportComponent } from './weekend-cottage-report/weekend-
     HistoryReservationCottageComponent,
     InfoUserComponent,
     WeekendCottageReportComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -96,9 +99,11 @@ import { WeekendCottageReportComponent } from './weekend-cottage-report/weekend-
     NoopAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ScheduleModule,
+    RecurrenceEditorModule
   ],
-  providers: [UserRegistrationService, DatePipe],
+  providers: [UserRegistrationService, DatePipe, DayService, WeekService, MonthService, MonthAgendaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

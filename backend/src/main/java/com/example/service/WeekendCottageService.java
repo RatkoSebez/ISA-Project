@@ -1,9 +1,6 @@
 package com.example.service;
 
-import com.example.dto.AvailableReservationDTO;
-import com.example.dto.EditCottageDTO;
-import com.example.dto.EditReservationDTO;
-import com.example.dto.ReservationDTO;
+import com.example.dto.*;
 import com.example.model.*;
 import com.example.repository.*;
 import lombok.AllArgsConstructor;
@@ -14,12 +11,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.DateFormatter;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +28,7 @@ public class WeekendCottageService {
     private final AvaliableReservationRepository avaliableReservationsRepository;
     private final UserRepository userRepository;
     private final CompliantRepository compliantRepository;
+    private final ReportRepository reportRepository;
     private final JavaMailSender javaMailSender;
 
     public List<WeekendCottage> getAllWeekendCottages(){
@@ -141,6 +139,24 @@ public class WeekendCottageService {
         return reservations2;
     }
 
+    public List<CalendarDTO> getAllReservationForCalendar(){
+        List<ReservationCottage> reservations = reservationCottageRepository.findAll();
+        CalendarDTO reservation3 = new CalendarDTO();
+        List<CalendarDTO> reservations2 = new ArrayList<>();
+        if(reservations != null) {
+            for (ReservationCottage reservation : reservations) {
+                Date dateStart = Date.from(reservation.getStartDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date dateEnd = Date.from(reservation.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+               reservation3.setId(reservation.getId());
+               reservation3.setEndTime(dateEnd);
+               reservation3.setStartTime(dateStart);
+               reservation3.setSubject("reserved");
+               reservations2.add(reservation3);
+            }
+        }
+        return reservations2;
+    }
+
     public List<ReservationCottage> getMyCottageReservations(Long id){
         WeekendCottage cottage = weekendCottageRepository.findById(id).stream().findFirst().orElseThrow();
         List<ReservationCottage> reservations = new ArrayList<ReservationCottage>();
@@ -166,6 +182,14 @@ public class WeekendCottageService {
         reservation.setCanceled(true);
         reservationCottageRepository.save(reservation);
         return true;
+    }
+
+    public Boolean reportMes(Report repo){
+        if(repo != null) {
+            reportRepository.save(repo);
+            return true;
+        }
+        return false;
     }
 
     private Boolean checkNewReservation(AvaliableReservations newAvaliableRes){
