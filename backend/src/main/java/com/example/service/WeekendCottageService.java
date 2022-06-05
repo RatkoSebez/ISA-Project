@@ -14,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.DateFormatter;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -72,16 +74,17 @@ public class WeekendCottageService {
     public Boolean editReservation(EditReservationDTO reservation){
         ReservationCottage oldReservation = reservationCottageRepository.findById(reservation.getId()).stream().findFirst().orElseThrow();
         if(oldReservation != null){
+            if(oldReservation.getEndDate().isBefore(LocalDate.now())){
             oldReservation.setStartDate(findDate(reservation.getStartDate()));
-            oldReservation.setEndDate(LocalDate.parse(reservation.getEndDate()));
+            oldReservation.setEndDate(findDate(reservation.getEndDate()));
             reservationCottageRepository.save(oldReservation);
-            return true;
+            return true;}
         }return false;
     }
 
     public Boolean makeAvaliableReservation(AvailableReservationDTO newAvaliableReservation){
-        LocalDateTime end = findDate(String.valueOf(newAvaliableReservation.getEndDate()));
-        LocalDateTime start = findDate(String.valueOf(newAvaliableReservation.getStartDate()));
+        LocalDateTime end = findDateTime(String.valueOf(newAvaliableReservation.getEndDate()));
+        LocalDateTime start = findDateTime(String.valueOf(newAvaliableReservation.getStartDate()));
         AvaliableReservations newAR = new AvaliableReservations(null, newAvaliableReservation.getEntity(), newAvaliableReservation.getEntityId(), start, end, newAvaliableReservation.getExpirationDate(), newAvaliableReservation.getOldPrice(), newAvaliableReservation.getNewPrice(), newAvaliableReservation.getFast());
         if(checkNewReservation(newAR)){
             avaliableReservationsRepository.save(newAR);
@@ -90,9 +93,14 @@ public class WeekendCottageService {
         return false;
     }
 
-    private LocalDateTime findDate(String start){
+    private LocalDateTime findDateTime(String start){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return LocalDateTime.parse(start, formatter);
+    }
+
+    private LocalDate findDate(String start){
+        DateTimeFormatter  formatter = DateTimeFormatter.ofPattern ("yyyy-MM-dd");
+        return LocalDate.parse(start, formatter);
     }
 
     public List<AvaliableReservations> getAllFastAvailableReservations(){

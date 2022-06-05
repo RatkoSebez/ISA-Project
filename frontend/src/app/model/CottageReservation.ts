@@ -6,6 +6,7 @@ export class CottageReservation{
         public clientEmail: string,
         public price: number,
         public foreign_key: number,
-        public canceled: Boolean
+        public canceled: Boolean,
+        public cottageId: number
     ){}
 }

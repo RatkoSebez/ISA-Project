@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CottageReservation } from '../model/CottageReservation';
 import { User } from '../model/User';
 import { WeekendCottageInfoPageComponent } from '../weekend-cottage-info-page/weekend-cottage-info-page.component';
@@ -23,15 +24,11 @@ export class HistoryReservationCottageComponent implements OnInit {
 
   todayDate: Date = new Date();
   beginDate: any;
-  startTime: any;
   finishDate: any;
-  endTime: any;
   
-  constructor(private http: HttpClient, private component: WeekendCottageInfoPageComponent) { }
+  constructor(private http: HttpClient, private router: Router, private component: WeekendCottageInfoPageComponent) { }
 
   ngOnInit(): void {
-    this.startTime= " 13:00";
-    this.endTime= " 15:00";
     this.http.get<any>('api/weekendCottage/cottagesReservation/'+ this.component.weekendCottage.id).subscribe(
       response => {
         this.cottageReservations = response;
@@ -48,13 +45,14 @@ export class HistoryReservationCottageComponent implements OnInit {
     var end  = formatDate(this.finishDate,'yyyy-MM-dd','en_US');
     
     var postData ={
-      startDate: start + " " + this.startTime,
-      endDate: end + " " + this.endTime,
+      startDate: start,
+      endDate: end,
       id: this.reservation.id
     }
     if(start && end){
       this.http.post("api/weekendCottage/editReservation", postData).toPromise().then(data => {
         if(!data){alert("Something went wrong, please try later")}
+        window. location. reload();
       })
     }
 
