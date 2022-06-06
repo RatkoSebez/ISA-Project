@@ -122,6 +122,19 @@ public class BoatService {
         return reservations2;
     }
 
+    public List<AvaliableReservations> getAllBoatFastReservations(){
+        List<AvaliableReservations> reservations = avaliableReservationsRepository.findAll();
+        List<AvaliableReservations> reservations2 = new ArrayList<>();
+        if(reservations!=null) {
+            for (AvaliableReservations reservation : reservations) {
+                if (reservation.getFast() == true) {
+                    reservations2.add(reservation);
+                }
+            }
+        }
+        return reservations2;
+    }
+
     public List<ReservationBoat> getAllBoatReservations(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;

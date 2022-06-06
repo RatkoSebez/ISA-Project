@@ -41,6 +41,11 @@ public class BoatController {
         return boatService.getAllBoatReservations();
     }
 
+    @GetMapping(path = "/fastreservation")
+    public List<AvaliableReservations> getAllFastReservations(){
+        return boatService.getAllBoatFastReservations();
+    }
+
     @GetMapping(path = "{id}")
     public Optional<Boat> getBoat(@PathVariable Long id){
         return boatService.getBoat(id);
