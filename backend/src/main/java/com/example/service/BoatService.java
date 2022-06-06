@@ -88,7 +88,8 @@ public class BoatService {
         if(reservation.getStartDate().isBefore(LocalDate.now().plusDays(3))){
             return false;
         }
-        reservationBoatRepository.deleteById(id);
+        reservation.setCanceled(true);
+        reservationBoatRepository.save(reservation);
         return true;
     }
 

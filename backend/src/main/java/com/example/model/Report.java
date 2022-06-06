@@ -21,17 +21,19 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String clientEmail;
-    private Long cottageId;
+    private Long entityId;
+    private com.example.model.Entity entity;
     private Boolean shows;
     private Assessment assessment;
     private String comment;
 
-    public Report(String clientEmail, Long cottageId, Boolean shows, Assessment assessment, String comment){
+    public Report(String clientEmail, Long cottageId, Boolean shows, Assessment assessment, String comment, com.example.model.Entity entity){
         this.clientEmail = clientEmail;
-        this.cottageId = cottageId;
+        this.entityId = cottageId;
         this.assessment = assessment;
         this.shows = shows;
         this.comment = comment;
+        this.entity = entity;
     };
 };
 

@@ -60,4 +60,38 @@
         </div>
     </div>
 
+    <!-- Notice client -->
+    <div class="modal fade" id="reportnotice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Report</h2>
+                </div>
+                
+                <select class="form-select mt-3" aria-label="" id="commentSelect">
+                    <option selected value="0">Bad</option>
+                    <option value="1">Good</option>
+                </select>
+
+                <div class="row mt-3">
+                    <div class="col-sm"><h3>Did he show up?</h3></div>
+                    <div class="col-sm mt3"><input class="row" [(ngModel)]="checkboxFlag" type="checkbox"/></div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="form-group">
+                        <h3>Your compliant for client:</h3>
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="5"
+                            [(ngModel)]="comment"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="doComment()" >Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

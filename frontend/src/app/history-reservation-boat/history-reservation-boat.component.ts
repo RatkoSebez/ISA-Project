@@ -16,7 +16,7 @@ export class HistoryReservationBoatComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private component: BoatInfoPageComponent) { }
 
   boatReservations!: BoatReservation[]
-  boat!: Boat
+  reservation!: BoatReservation
 
   todayDate: Date = new Date();
   beginDate: any;
@@ -34,7 +34,7 @@ export class HistoryReservationBoatComponent implements OnInit {
   }
 
   getId(res: any){
-    this.boat = res
+    this.reservation = res
   }
 
   editReservation(){
@@ -44,7 +44,7 @@ export class HistoryReservationBoatComponent implements OnInit {
     var postData ={
       startDate: start,
       endDate: end,
-      id: this.boat.id
+      id: this.reservation.id
     }
     if(start && end){
       this.http.post("api/boat/editReservation", postData).toPromise().then(data => {
@@ -52,7 +52,31 @@ export class HistoryReservationBoatComponent implements OnInit {
         window. location. reload();
       })
     }
+  }
 
+  doComment(){
+    var e = (document.getElementById("commentSelect")) as HTMLSelectElement;
+    var sel = e.selectedIndex;
+    var opt = e.options[sel];
+    var CurValue = (<HTMLSelectElement><unknown>opt).value;
+    var rol: number = +CurValue;
+
+    var report = {
+      clientEmail: this.reservation.clientEmail,
+      endDate: this.reservation.endDate,
+      shows : this.checkboxFlag,
+      assessment : rol,
+      comment: this.comment,
+      entityId: this.reservation.boatId,
+      entity: "BOAT"
+    } 
+
+    if(!this.reservation.canceled && this.comment){
+      this.http.post("api/weekendCottage/mark", report).toPromise().then(data => {
+        if(!data){alert("Something went wrong, please try later")}
+        window. location. reload();
+      })
+    }else{alert("Add comment")}
   }
 
 }

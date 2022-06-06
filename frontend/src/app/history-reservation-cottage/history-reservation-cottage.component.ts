@@ -102,15 +102,17 @@ export class HistoryReservationCottageComponent implements OnInit {
       endDate: this.reservation.endDate,
       shows : this.checkboxFlag,
       assessment : rol,
-      comment: this.comment
+      comment: this.comment,
+      entityId: this.reservation.cottageId,
+      entity: "WEEKEND_COTTAGE"
     } 
     
-    if(!this.reservation.canceled && this.reservation.endDate <= this.todayDate){
+    if(!this.reservation.canceled && this.comment){
       this.http.post("api/weekendCottage/mark", report).toPromise().then(data => {
         if(!data){alert("Something went wrong, please try later")}
         window. location. reload();
       })
-    }else{alert("Reservation not completed")}
+    }else{alert("Add comment")}
   }
 
 }

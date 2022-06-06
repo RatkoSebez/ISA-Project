@@ -168,7 +168,6 @@ public class WeekendCottageController {
         return ans;
     }
 
-    @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
     @PostMapping(path = "/mark")
     public Boolean reportMes(@RequestBody Report reservation) {
         Boolean ans = weekendCottageService.reportMes(reservation);
