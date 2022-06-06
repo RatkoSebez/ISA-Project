@@ -19,6 +19,8 @@ export class MakeCottageComponent implements OnInit {
   public pricelist = null
   public additionalservices = null
   selectedFile = null;
+  longitude: any;
+  latitude: any;
   logged !: User;
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) { }
@@ -44,7 +46,9 @@ export class MakeCottageComponent implements OnInit {
       image: this.selectedFile,
       cottageOwnerId : this.logged.id,
       priceList : this.pricelist,
-      additionalServices : this.additionalservices
+      additionalServices : this.additionalservices,
+      longitude : this.longitude,
+      latitude : this.latitude
     }
 
     if(Cottage){

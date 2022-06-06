@@ -13,6 +13,8 @@ export class WeekendCottage{
         public reservations: Array<CottageReservation>,
         public rulesOfConduct: string,
         public cottageOwnerId: any,
-        public additionalServices: string
+        public additionalServices: string,
+        public longitude: number,
+        public latitude: number
     ){}
 }

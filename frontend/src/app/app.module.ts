@@ -48,7 +48,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { WeekendCottageReportComponent } from './weekend-cottage-report/weekend-cottage-report.component';
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
-import { CalendarComponent } from './calendar/calendar.component'
+import { CalendarComponent } from './calendar/calendar.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,10 @@ import { CalendarComponent } from './calendar/calendar.component'
     HttpClientModule,
     AngularMaterialModule,
     ScheduleModule,
-    RecurrenceEditorModule
+    RecurrenceEditorModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyC07agHtsNuXmgKYFi4QpfbZw7cAMVy6wA'
+    })
   ],
   providers: [UserRegistrationService, DatePipe, DayService, WeekService, MonthService, MonthAgendaService],
   bootstrap: [AppComponent]

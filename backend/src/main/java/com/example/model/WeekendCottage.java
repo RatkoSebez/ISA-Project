@@ -23,6 +23,8 @@ public class WeekendCottage {
     private Long id;
     private String name;
     private String address;
+    private Double longitude;
+    private Double latitude;
     @Column(columnDefinition="TEXT")
     private String description;
     private Double rating;
@@ -48,7 +50,7 @@ public class WeekendCottage {
         this.additionalServices = additionalServices;
     }
 
-    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, Integer priceList, String additionalServices){
+    public WeekendCottage(String name, String address, String description, Double rating, String rulesOfConduct, String image, Long cottageOwnerId, List<ReservationCottage> reservations, Integer priceList, String additionalServices, Double longitude, Double latitude){
         this.name = name;
         this.address = address;
         this.description = description;
@@ -59,5 +61,7 @@ public class WeekendCottage {
         this.cottageOwnerId = cottageOwnerId;
         this.priceList = priceList;
         this.additionalServices = additionalServices;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

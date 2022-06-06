@@ -20,6 +20,12 @@ import { WeekendCottageInfoPageComponent } from '../weekend-cottage-info-page/we
 })
 export class HistoryReservationCottageComponent implements OnInit {
 
+  // Mapa
+  latitude = 45.2396;
+  longitude = 19.8227;
+  lon!: any
+  lat!: any
+
   cottageReservations!: CottageReservation[];
   lista!: calendar[];
   newList!: calendar[];
@@ -42,16 +48,17 @@ export class HistoryReservationCottageComponent implements OnInit {
         this.lista = response;
         console.log(this.cottageReservations)
       }
+      
     );
+
+    this.lon = this.component.weekendCottage.longitude;
+    this.lat = this.component.weekendCottage.latitude;
 
     this.http.get<any>('api/weekendCottage/reservationc').subscribe(
       response => {
         this.lista = response;
       }
     );
-
-    for(var list of this.lista){
-    }
   }
 
   getId(res: any){

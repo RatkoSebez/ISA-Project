@@ -5,3 +5,7 @@
 .is-active {
   display: inherit;
 }
+
+agm-map{
+  height: 400px;
+}
