@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventSettingsModel, View } from '@syncfusion/ej2-angular-schedule';
 import { BoatInfoPageComponent } from '../boat-info-page/boat-info-page.component';
 import { Boat } from '../model/Boat';
 import { BoatReservation } from '../model/BoatReservation';
@@ -36,6 +37,11 @@ export class HistoryReservationBoatComponent implements OnInit {
   getId(res: any){
     this.reservation = res
   }
+
+  eventObject: EventSettingsModel = {
+  }
+  
+  setView: View = 'Month'
 
   editReservation(){
     var start = formatDate(this.beginDate,'yyyy-MM-dd','en_US');

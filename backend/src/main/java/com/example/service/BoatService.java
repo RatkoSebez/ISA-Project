@@ -172,7 +172,7 @@ public class BoatService {
     public void makeCompliant(Compliant compliant){
         compliantRepository.save(compliant);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         Boat boat = boatRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         User user = userRepository.findById(boat.getBoatOwnerId()).stream().findFirst().orElseThrow();
         message.setTo(user.getEmail());

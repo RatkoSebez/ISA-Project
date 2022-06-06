@@ -61,11 +61,11 @@
         </div>
         <div class="col-md-2 mt-5 pt-5 z-depth-3">
             <button class="btn btn-primary make-reservation" [ngClass]="user ? 'is-active' : 'is-not-active'" (click)='subscribeToBoat(boat.id)'>{{ subscribeButtonText }}</button>
-            <button class="btn btn-primary btn-block w-50 mb-3"  [ngClass]="boowner ? 'is-active' : 'is-not-active'"
+            <button class="btn btn-primary btn-block w-50 mb-3"  [ngClass]="boowner ? 'is-active' : 'is-not-active'" [disabled]="this.boat.reservations.length !== 0"
                 (click)='doEdit()'>Edit</button>
             <button class="btn btn-primary btn-block w-50 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" [ngClass]="boowner ? 'is-active' : 'is-not-active'">Reduction</button>
             <button class="btn btn-primary btn-block w-50 mb-3" data-bs-toggle="modal" data-bs-target="#availability" [ngClass]="boowner ? 'is-active' : 'is-not-active'">Availability</button>
-            <button class="btn btn-danger btn-block w-50 mb"  [ngClass]="boowner ? 'is-active' : 'is-not-active'"
+            <button class="btn btn-danger btn-block w-50 mb"  [ngClass]="boowner ? 'is-active' : 'is-not-active'" [disabled]="this.boat.reservations.length !== 0"
                 (click)='doDeleteBoat()'>Delete</button>
             <button class="btn btn-success btn-block w-50 btn-block mb-3" [ngClass]="edit ? 'is-not-active' : 'is-active'"
                 (click)='doEditBoat()'>Save</button>

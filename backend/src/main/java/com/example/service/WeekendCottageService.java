@@ -204,12 +204,12 @@ public class WeekendCottageService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         userRepository.save(user);
         //send email to notify client that reservation is made
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setFrom("dislinkacc@outlook.com");
-//        message.setTo(user.getEmail());
-//        message.setSubject("You just made reservation.");
-//        message.setText("Reservation is made for weekend cottage number " + boatReservationDTO.getBoatId() + " and it starts on " + boatReservationDTO.getStartDate() + " and it ends on " + boatReservationDTO.getEndDate() + ".");
-//        javaMailSender.send(message);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("dislinkacc@outlook.com");
+        message.setTo(user.getEmail());
+        message.setSubject("You just made reservation.");
+        message.setText("Reservation is made for weekend cottage number " + boatReservationDTO.getBoatId() + " and it starts on " + boatReservationDTO.getStartDate() + " and it ends on " + boatReservationDTO.getEndDate() + ".");
+        javaMailSender.send(message);
         return true;
     }
 
@@ -220,9 +220,9 @@ public class WeekendCottageService {
         WeekendCottage cottage = weekendCottageRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         //Boat boat = boatRepository.findById(compliant.getIdOfEntity()).stream().findFirst().orElseThrow();
         User user = userRepository.findById(cottage.getCottageOwnerId()).stream().findFirst().orElseThrow();
-//        message.setTo(user.getEmail());
-//        message.setSubject("Your weekend cottage received compliant.");
-//        message.setText(compliant.getCompliant());
-//        javaMailSender.send(message);
+        message.setTo(user.getEmail());
+        message.setSubject("Your weekend cottage received compliant.");
+        message.setText(compliant.getCompliant());
+        javaMailSender.send(message);
     }
 }

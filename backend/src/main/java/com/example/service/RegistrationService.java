@@ -90,7 +90,7 @@ public class RegistrationService {
         helper.setSubject("Please confirm your email address.");
         helper.setFrom("dislinkacc@outlook.com");
         javaMailSender.send(mimeMessage);
-        //javaMailSender.send(message);
+        javaMailSender.send(message);
         System.out.println("mejl radi");
     }
 }

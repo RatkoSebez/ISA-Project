@@ -90,7 +90,7 @@ public class AdministratorService {
     private void sendDeclineEmail(User user, String reasonOfDecline){
         user.setEnabled(true);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         message.setTo(user.getEmail());
         message.setSubject("You are declined!!!!!!!!!!!");
 //        String uniqueID = UUID.randomUUID().toString();
@@ -189,7 +189,7 @@ public class AdministratorService {
     private void sendAcceptDAR(User user){
         user.setEnabled(true);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         message.setTo(user.getEmail());
         message.setSubject("Your account is deleted sucessfully!");
 //        String uniqueID = UUID.randomUUID().toString();
@@ -213,7 +213,7 @@ public class AdministratorService {
     private void sendDeclineDAR(User user){
         user.setEnabled(true);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         message.setTo(user.getEmail());
         message.setSubject("Your DAR is declined");
 //        String uniqueID = UUID.randomUUID().toString();
