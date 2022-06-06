@@ -25,8 +25,9 @@ public class ReservationBoat {
     private Integer guests;
     private String additionalServices;
     private Boolean canceled;
+    private Long boatId;
 
-    public ReservationBoat(LocalDate start, LocalDate end, String clientEmail, Double price, Integer guests, String additionalServices){
+    public ReservationBoat(LocalDate start, LocalDate end, String clientEmail, Double price, Integer guests, String additionalServices, Long boatId){
         this.startDate = start;
         this.endDate = end;
         this.clientEmail = clientEmail;
@@ -34,5 +35,6 @@ public class ReservationBoat {
         this.guests = guests;
         this.additionalServices = additionalServices;
         this.canceled = false;
+        this.boatId = boatId;
     }
 }

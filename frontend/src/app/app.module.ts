@@ -54,6 +54,7 @@ import { AgmCoreModule } from '@agm/core';
 import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.component';
 import { MakeBoatComponent } from './make-boat/make-boat.component';
 import { HistoryReservationBoatComponent } from './history-reservation-boat/history-reservation-boat.component';
+import { BoatReportComponent } from './boat-report/boat-report.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { HistoryReservationBoatComponent } from './history-reservation-boat/hist
     CalendarComponent,
     OwnerBoatCardComponent,
     MakeBoatComponent,
-    HistoryReservationBoatComponent
+    HistoryReservationBoatComponent,
+    BoatReportComponent
   ],
   imports: [
     BrowserModule,

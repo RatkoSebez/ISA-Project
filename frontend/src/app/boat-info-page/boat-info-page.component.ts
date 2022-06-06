@@ -17,6 +17,7 @@ export class BoatInfoPageComponent implements OnInit {
   edit = true;
   user = false;
   boowner = false;
+  id: any
   subscribeButtonText = "subscribe";
   selectedFile = null;
   latitude = 45.2396;
@@ -58,8 +59,8 @@ export class BoatInfoPageComponent implements OnInit {
     this.startTime = "14:00"
     this.endTime = "12:00"
     this.activatedRoute.queryParams.subscribe(params => {
-        let id = params['id'];
-        this.http.get<any>('api/boat/' + id).subscribe(
+        this.id = params['id'];
+        this.http.get<any>('api/boat/' + this.id).subscribe(
           response => {
             this.boat = response;
           }

@@ -181,6 +181,7 @@
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="8">
         <agm-marker  [latitude]=19.757386 [longitude]=46.094376></agm-marker>
     </agm-map>
+    <app-boat-report [ngClass]="boowner ? 'is-active' : 'is-not-active'"></app-boat-report>
 </div>
 
 <app-footer></app-footer>

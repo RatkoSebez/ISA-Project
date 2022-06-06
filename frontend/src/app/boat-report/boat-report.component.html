@@ -1,0 +1,61 @@
+<div>
+
+    <div>
+        <h2>Rating: {{rating}}</h2><br><br>
+        <h2>Number of reservations per year: </h2><br>
+        <canvas id="myChartYear" width="1200" height="400"></canvas>
+    </div>
+    <div>
+        <br><h2>Number of reservations per month: </h2><br>
+        <label>Select year:</label>
+        <select class="form-select" aria-label="Default select example" (change)="selectYear($event)">
+            <option value="2021">2021</option>
+            <option selected value="2022">2022</option>
+        </select>
+        <canvas id="myMonth" width="1200" height="400"></canvas>
+    </div>
+    
+    <div>
+        <br><h2>Number of reservations per week: </h2><br>
+        <label style="margin-bottom: 10px;">Start date:</label>
+        <mat-form-field appearance="fill" style="margin-left: 3%">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="startDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
+        <label style="margin-bottom: 10px; margin-left: 2%;">End date:</label>
+        <mat-form-field appearance="fill" style="margin-left: 3%; ">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker2" [min]="startDate" [(ngModel)]="endDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 ></mat-datepicker>
+        </mat-form-field>
+        <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDays()">Select</button><br>
+        <h3 class="mt-3">Total in selected period: {{totalPerWeek}}</h3>
+
+        <canvas *ngIf="startDate !== undefined" id="myChartWeek" width="1200" height="400"></canvas>
+    </div>
+
+    <div>
+        <br><h3>Income in specific period: </h3><br>
+        <label style="margin-bottom: 10px;">Start date:</label>
+        <mat-form-field appearance="fill" style="margin-left: 3%">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker3" [(ngModel)]="startDateIncome">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3 ></mat-datepicker>
+        </mat-form-field>
+        <label style="margin-bottom: 10px; margin-left: 2%;">End date:</label>
+        <mat-form-field appearance="fill" style="margin-left: 3%; ">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker4" [min]="startDateIncome" [(ngModel)]="endDateIncome">
+            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+            <mat-datepicker #picker4 ></mat-datepicker>
+        </mat-form-field>
+        <button class="btn btn-primary" style="margin-left: 2%;" (click)="selectDaysIncome()">Select</button><br>
+
+        <canvas *ngIf="startDateIncome !== undefined" id="myChartIncome" width="1200" height="400"></canvas>
+
+    </div>
+</div>

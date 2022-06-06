@@ -60,7 +60,7 @@ public class BoatService {
         }
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;
-        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices());
+        ReservationBoat reservation = new ReservationBoat(boatReservationDTO.getStartDate(), boatReservationDTO.getEndDate(), user.getEmail(), boatReservationDTO.getPrice(), boatReservationDTO.getGuests(), boatReservationDTO.getAdditionalServices(), boatReservationDTO.getBoatId());
         reservations.add(reservation);
         boat.setReservations(reservations);
         boatRepository.save(boat);
@@ -74,7 +74,7 @@ public class BoatService {
         userRepository.save(user);
         //send email to notify client that reservation is made
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("isaprojmejl@gmail.com");
+        message.setFrom("dislinkacc@outlook.com");
         message.setTo(user.getEmail());
         message.setSubject("You just made reservation.");
         message.setText("Reservation is made for boat number " + boatReservationDTO.getBoatId() + " and it starts on " + boatReservationDTO.getStartDate() + " and it ends on " + boatReservationDTO.getEndDate() + ".");

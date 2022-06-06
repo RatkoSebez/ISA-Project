@@ -21,6 +21,7 @@ export class BoatsPageComponent implements OnInit {
   public date2!: Date;
   public boatId = 8;
   public show = false;
+  todayDate: Date = new Date();
 
   public constructor(private http: HttpClient, private router: Router) {}
 
@@ -75,9 +76,9 @@ export class BoatsPageComponent implements OnInit {
       price: 50
     }
     this.http.post("api/boat/reservation", postData).toPromise().then(data => {
-      console.log(data);
+      this.router.navigate(['/boatReservations']);
     });
-    this.router.navigate(['/boatReservations']);
+    
     //console.log("rezervisem")
   }
 

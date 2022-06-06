@@ -1,19 +1,16 @@
 package com.example.controller;
 
-import com.example.dto.AvailableReservationDTO;
-import com.example.dto.EditReservationDTO;
-import com.example.dto.ReservationDTO;
+import com.example.dto.*;
 import com.example.model.*;
 import com.example.service.BoatService;
 import com.example.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "api/boat")
@@ -119,5 +116,50 @@ public class BoatController {
     public Boolean makeAvaliableReservation(@RequestBody AvailableReservationDTO newAvaliableReservation) {
         Boolean ans = reservationService.makeAvaliableReservation(newAvaliableReservation);
         return ans;
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/numResYearBoat")
+    public ResponseEntity<Map<Integer, Integer>> getNumberofReservationYearlyBoat(@RequestBody String id) {
+        Map<Integer, Integer> e = reservationService.numReservationYearBoat(id);
+        if(e!=null)
+            return new ResponseEntity<>(e, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/numResMontBoat")
+    public ResponseEntity<Map<String, Integer>> getNumberofReservationMonthlyBoat(@RequestBody MonthDTO dto) {
+        Map<String, Integer> e = reservationService.numReservationMontBoats(dto.getId(), dto.getYear());
+        if(e!=null)
+            return new ResponseEntity<>(e, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/numResSpecWeekBoat")
+    public ResponseEntity<Map<String, Integer>> numResSpecWeekBoat(@RequestBody WeekDTO dto) {
+        Map<String, Integer> e = reservationService.numReservationSpecWeekBoat(dto);
+        if(e!=null)
+            return new ResponseEntity<>(e, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/numResWeekBoat")
+    public ResponseEntity<Integer> numResWeekBoat(@RequestBody WeekDTO dto) {
+        Integer e = reservationService.numReseWeeklyBoat(dto);
+        if(e!=null)
+            return new ResponseEntity<>(e, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/incomeSpecWeekBoat")
+    public ResponseEntity<Map<String, Double>> incomeSpecWeekCottage(@RequestBody WeekDTO dto) {
+        Map<String, Double>  e = reservationService.getIncomeInSpecificRange(dto);
+        if(e!=null)
+            return new ResponseEntity<>(e, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

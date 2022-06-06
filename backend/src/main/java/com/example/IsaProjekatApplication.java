@@ -50,8 +50,8 @@ public class IsaProjekatApplication implements ApplicationRunner {
         //userRepository.save(new User("uuuuu", "eeeee", "kkk", "ttt", "eee", "tyyyy", "assfa", "asfsf", "1assfasf", UserRole.ROLE_FISHINGI, false, fishingServiceList));
         //
         List<ReservationBoat> reservationsBoat = new ArrayList<>();
-        reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 60.0, 5, "usluga1"));
-        reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 55.0, 3, "usluga1"));
+        reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 60.0, 5, "usluga1", 18L));
+        reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 55.0, 3, "usluga1", 18L));
         List<ReservationCottage> reservationsCottage = new ArrayList<>();
         //List<AvaliableReservations> avaliableReservations = new ArrayList<>();
         reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 20.0, 3, "usluga1", 13L,  false));
