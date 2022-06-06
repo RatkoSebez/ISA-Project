@@ -3,8 +3,6 @@ import { BoatCardComponent } from '../boat-card/boat-card.component';
 import { BoatsPageComponent } from '../boats-page/boats-page.component';
 import { HomeForGuestsComponent } from '../home-for-guests/home-for-guests.component';
 import { Boat } from '../model/Boat';
-import { OwnerBoatCardComponent } from '../owner-boat-card/owner-boat-card.component';
-import { OwnerCottageCardComponent } from '../owner-cottage-card/owner-cottage-card.component';
 
 @Pipe({
   name: 'boatsFilter',
@@ -12,7 +10,7 @@ import { OwnerCottageCardComponent } from '../owner-cottage-card/owner-cottage-c
 })
 export class BoatsFilterPipe implements PipeTransform {
 
-  constructor(private boatsPageComponent: OwnerBoatCardComponent){
+  constructor(private boatsPageComponent: BoatsPageComponent, private boatCardComponent: BoatCardComponent){
   }
 
   transform(value: any[], filter: string, propName: string): any[] {
@@ -23,7 +21,7 @@ export class BoatsFilterPipe implements PipeTransform {
     var date2 = this.boatsPageComponent.getDate2Boat();
     var people = this.boatsPageComponent.getPeopleBoat();
     var days = this.boatsPageComponent.getDaysBoat();
-    var boats: Array<Boat> = this.boatsPageComponent.getBoats();
+    var boats: Array<Boat> = this.boatCardComponent.getBoats();
     const resultArray = [];
     var sortBy = this.boatsPageComponent.getSortSelectValue();
     var sortType = this.boatsPageComponent.getSortType();

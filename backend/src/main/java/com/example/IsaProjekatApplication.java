@@ -19,6 +19,7 @@ public class IsaProjekatApplication implements ApplicationRunner {
     private UserRepository userRepository;
     private WeekendCottageRepository weekendCottageRepository;
     private BoatRepository boatRepository;
+    private ReservationCottageRepository reservationCottageRepository;
     private ReservationBoatRepository reservationBoatRepository;
 
     public static void main(String[] args) {
@@ -30,8 +31,8 @@ public class IsaProjekatApplication implements ApplicationRunner {
 
         //userRepository.save(new User("user@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_CLIENT));
         //userRepository.save(new User("$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", "isaprojmejl2@gmail.com", "ime", "prezime", "adresa", "grad", "drzava", "1325648655", UserRole.ROLE_CLIENT, LoyaltyCategory.REGULAR, 100L, "Since you are in regular loyalty mode, you do not have any extra discounts."));
-        //userRepository.save(new User("user@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_FISHINGI));
-       // userRepository.save(new User("test@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_BOATOWNER));
+        //userRepository.save(new User("qwe", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_FISHINGI));
+        userRepository.save(new User("qwe", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_BOATOWNER));
         //userRepository.save(new User("test@gmail.com", "$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra", UserRole.ROLE_WEEKENDCOTTOWNER));
         String additionalServices = "usluga1, usluga2, usluga3";
         List<Adventure> adventures = new ArrayList<>();
@@ -52,19 +53,21 @@ public class IsaProjekatApplication implements ApplicationRunner {
         reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 60.0, 5, "usluga1"));
         reservationsBoat.add(new ReservationBoat(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 55.0, 3, "usluga1"));
         List<ReservationCottage> reservationsCottage = new ArrayList<>();
-        List<AvaliableReservations> avaliableReservations = new ArrayList<>();
+        //List<AvaliableReservations> avaliableReservations = new ArrayList<>();
         reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 20.0, 3, "usluga1", 13L,  false));
         reservationsCottage.add(new ReservationCottage(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 50.0, 3, "usluga1", 13L, false));
+        reservationCottageRepository.save(new ReservationCottage(LocalDate.of(2022, 1, 7), LocalDate.of(2022, 1, 9), "user@gmail.com", 20.0, 3, "usluga1", 13L,  false));
+        reservationCottageRepository.save((new ReservationCottage(LocalDate.of(2022, 1, 10), LocalDate.of(2022, 1, 11), "user@gmail.com", 50.0, 3, "usluga1", 13L, false)));
         weekendCottageRepository.save(new WeekendCottage("vikendica", "adresa6", "ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ovo je opis vikendice ", 4.5, "pravila", "siki.jpg", 4L, 40, additionalServices));
-        weekendCottageRepository.save(new WeekendCottage("Koliba", "Doza Djerdja", "ovo je opis vikendice", 4.55, "pravila", "liki.jpg", 7L, reservationsCottage, 50, additionalServices,19.831332, 45.246792 ));
-        weekendCottageRepository.save(new WeekendCottage("Supa", "Cirpanova", "ovo je opis vikendice", 3.5, "pravila", "siki.jpg", 7L, null,25, additionalServices, 19.831740, 45.252377));
+        weekendCottageRepository.save(new WeekendCottage("Koliba", "Doza Djerdja", "ovo je opis vikendice", 4.55, "pravila", "liki.jpg", 7L, null, 50, additionalServices,19.831332, 45.246792 ));
+        weekendCottageRepository.save(new WeekendCottage("Supa", "Cirpanova", "ovo je opis vikendice", 3.5, "pravila", "siki.jpg", 7L, reservationsCottage,25, additionalServices, 19.831740, 45.252377));
         weekendCottageRepository.save(new WeekendCottage("vikendica4", "adresa3", "ovo je opis vikendice", 4.0, "pravila", "liki.jpg", 7L, 30, additionalServices));
         //weekendCottageRepository.save(new WeekendCottage("vikendica5", "adresa7", "ovo je opis vikendice", 3.2, "pravila", "vikendica.jpg", 4L, "cenovnik", additionalServices));
-        boatRepository.save(new Boat("brod1", "adresa2", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.8, "cenovnik", additionalServices, 3L, reservationsBoat));
-        boatRepository.save(new Boat("brod2", "adresa8", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.1, "cenovnik", additionalServices, 3L));
-        boatRepository.save(new Boat("brod3", "adresa3", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", additionalServices, 3L));
-        boatRepository.save(new Boat("brod4", "adresa1", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 3.2, "cenovnik", additionalServices, 3L));
-        boatRepository.save(new Boat("brod5", "adresa6", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, "cenovnik", additionalServices, 3L));
+        boatRepository.save(new Boat("brod1", "adresa2", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.8, 30.0, additionalServices, 3L, reservationsBoat));
+        boatRepository.save(new Boat("brod2", "adresa8", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.1, 31.0, additionalServices, 3L));
+        boatRepository.save(new Boat("brod3", "adresa3", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, 33.0, additionalServices, 3L));
+        boatRepository.save(new Boat("brod4", "adresa1", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 3.2, 32.0, additionalServices, 3L));
+        boatRepository.save(new Boat("brod5", "adresa6", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, 40.0, additionalServices, 3L));
 //        fastReservationRepository.save(new FastReservation(Entity.BOAT, 25L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
 //        fastReservationRepository.save(new FastReservation(Entity.WEEKEND_COTTAGE, 19L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
 //        fastReservationRepository.save(new FastReservation(Entity.ADVENTURE, 8L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));//        List<ReservationBoat> reservations = new ArrayList<>();

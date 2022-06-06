@@ -16,6 +16,7 @@ import { InfoUserComponent } from './info-user/info-user.component';
 import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
 import { MakeCottageComponent } from './make-cottage/make-cottage.component';
 import { AdventureReservation } from './model/AdventureReservation';
+import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.component';
 import { OwnerCottageCardComponent } from './owner-cottage-card/owner-cottage-card.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: "boat", component: BoatInfoPageComponent},
   {path: "mycottages", component: OwnerCottageCardComponent},
   {path: "addCottage", component: MakeCottageComponent},
+  {path: "myboats", component: OwnerBoatCardComponent},
   {path: "info", component: InfoUserComponent},
   {path: "", redirectTo: '/home', pathMatch: 'full'},
   {path: "**", component: PageNotFoundComponent},

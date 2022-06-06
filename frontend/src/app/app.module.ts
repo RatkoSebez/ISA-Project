@@ -50,6 +50,7 @@ import { WeekendCottageReportComponent } from './weekend-cottage-report/weekend-
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AgmCoreModule } from '@agm/core';
+import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { AgmCoreModule } from '@agm/core';
     HistoryReservationCottageComponent,
     InfoUserComponent,
     WeekendCottageReportComponent,
-    CalendarComponent
+    CalendarComponent,
+    OwnerBoatCardComponent
   ],
   imports: [
     BrowserModule,

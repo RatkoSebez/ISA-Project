@@ -4,6 +4,7 @@ import com.example.dto.ReservationDTO;
 import com.example.model.Boat;
 import com.example.model.Compliant;
 import com.example.model.ReservationBoat;
+import com.example.model.WeekendCottage;
 import com.example.service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +24,12 @@ public class BoatController {
     @GetMapping()
     public List<Boat> getAllBoats(){
         return boatService.getAllBoats();
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @GetMapping(path = "/myboats/{id}")
+    public List<Boat> getAllMyBoats(@PathVariable Long id){
+        return boatService.getAllMyBoats(id);
     }
 
     @GetMapping(path = "/reservation")

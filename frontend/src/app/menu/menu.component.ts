@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
   logout = false;
   client = false;
   owner = false;
+  ownerB = false;
 
   constructor(private http: HttpClient, private renderer: Renderer2, private elem: ElementRef) { }
 
@@ -33,6 +34,7 @@ export class MenuComponent implements OnInit {
       }
       if(this.user.role == "ROLE_CLIENT") this.client = true;
       else if(this.user.role == "ROLE_WEEKENDCOTTOWNER") this.owner = true;
+      else if(this.user.role == "ROLE_BOATOWNER") this.ownerB = true;
     });
   }
 

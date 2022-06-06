@@ -33,6 +33,16 @@ public class BoatService {
         return boatRepository.findAll();
     }
 
+    public List<Boat> getAllMyBoats(Long id){
+        List<Boat> myBoats = new ArrayList<>();
+        List<Boat> allBoats = boatRepository.findAll();
+        for(Boat b : allBoats){
+            if(b.getBoatOwnerId() == id)
+                myBoats.add(b);
+        }
+        return myBoats;
+    }
+
     public Optional<Boat> getBoat(Long id){
         return boatRepository.findById(id);
     }

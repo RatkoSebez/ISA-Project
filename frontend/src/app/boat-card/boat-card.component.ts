@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { BoatsPageComponent } from '../boats-page/boats-page.component';
 import { Boat } from '../model/Boat';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,6 @@ export class BoatCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.doGet();
-    this.http.get<any>('api/boat').subscribe(
-      response => {
-        this.boats = response;
-        //console.log(this.boats);
-      }
-    );
   }
 
   public getBoats() : Boat[]{
@@ -38,11 +33,24 @@ export class BoatCardComponent implements OnInit {
   }
 
   doGet(){ 
-    this.http.get('api/user').subscribe(val => {
+    let llogged = null
+    this.http.get<User>('api/user').subscribe(val => {
       console.log(val);
       if(val) {
         this.show = true;
+        llogged = val.id;
+        console.log(llogged);
+        this.doSome(llogged);
       }
+    });
+  }
+
+  doSome(llogged: any){
+    console.log(llogged)
+    let id = llogged;
+    this.http.get<any>('api/boat/myboats/' + llogged).subscribe(response => {
+        this.boats = response;
+        console.log(this.boats);
     });
   }
 
