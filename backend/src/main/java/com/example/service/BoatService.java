@@ -1,11 +1,9 @@
 package com.example.service;
 
+import com.example.dto.AvailableReservationDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
-import com.example.repository.BoatRepository;
-import com.example.repository.CompliantRepository;
-import com.example.repository.ReservationBoatRepository;
-import com.example.repository.UserRepository;
+import com.example.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +28,7 @@ public class BoatService {
     private final UserRepository userRepository;
     private final CompliantRepository compliantRepository;
     private final JavaMailSender javaMailSender;
+    private final AvaliableReservationRepository avaliableReservationsRepository;
 
     public List<Boat> getAllBoats(){
         return boatRepository.findAll();

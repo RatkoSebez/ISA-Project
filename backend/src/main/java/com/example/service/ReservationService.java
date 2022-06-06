@@ -1,16 +1,20 @@
 package com.example.service;
 
+import com.example.dto.AvailableReservationDTO;
 import com.example.dto.WeekDTO;
+import com.example.model.AvaliableReservations;
 import com.example.model.ReservationCottage;
 import com.example.repository.AvaliableReservationRepository;
 import com.example.repository.ReservationCottageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -125,5 +129,33 @@ public class ReservationService {
         }
 
         return income;
+    }
+
+    private Boolean checkNewReservation(AvaliableReservations newAvaliableRes){
+        List<AvaliableReservations> reservations = avaliableReservationsRepository.findAll();
+        for (AvaliableReservations reservation : reservations) {
+            if(reservation.getEntityId() == newAvaliableRes.getEntityId() && reservation.getEntity() == newAvaliableRes.getEntity()) {
+                if (newAvaliableRes.getStartDate().isAfter(reservation.getEndDate()) || newAvaliableRes.getEndDate().isBefore(reservation.getStartDate())) {
+                }
+                //ako se opseg nove rezervacije poklapa sa nekim datumom postojece rezervacije, onda ne pravim novu rezervaciju
+                else return false;
+            }
+        }return true;
+    }
+
+    public Boolean makeAvaliableReservation(AvailableReservationDTO newAvaliableReservation){
+        LocalDateTime end = findDateTime(String.valueOf(newAvaliableReservation.getEndDate()));
+        LocalDateTime start = findDateTime(String.valueOf(newAvaliableReservation.getStartDate()));
+        AvaliableReservations newAR = new AvaliableReservations(null, newAvaliableReservation.getEntity(), newAvaliableReservation.getEntityId(), start, end, newAvaliableReservation.getExpirationDate(), newAvaliableReservation.getOldPrice(), newAvaliableReservation.getNewPrice(), newAvaliableReservation.getFast());
+        if(checkNewReservation(newAR)){
+            avaliableReservationsRepository.save(newAR);
+            return true;
+        }
+        return false;
+    }
+
+    private LocalDateTime findDateTime(String start){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return LocalDateTime.parse(start, formatter);
     }
 }

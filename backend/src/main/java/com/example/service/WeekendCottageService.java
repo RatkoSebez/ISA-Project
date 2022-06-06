@@ -80,17 +80,6 @@ public class WeekendCottageService {
         }return false;
     }
 
-    public Boolean makeAvaliableReservation(AvailableReservationDTO newAvaliableReservation){
-        LocalDateTime end = findDateTime(String.valueOf(newAvaliableReservation.getEndDate()));
-        LocalDateTime start = findDateTime(String.valueOf(newAvaliableReservation.getStartDate()));
-        AvaliableReservations newAR = new AvaliableReservations(null, newAvaliableReservation.getEntity(), newAvaliableReservation.getEntityId(), start, end, newAvaliableReservation.getExpirationDate(), newAvaliableReservation.getOldPrice(), newAvaliableReservation.getNewPrice(), newAvaliableReservation.getFast());
-        if(checkNewReservation(newAR)){
-            avaliableReservationsRepository.save(newAR);
-            return true;
-        }
-        return false;
-    }
-
     private LocalDateTime findDateTime(String start){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return LocalDateTime.parse(start, formatter);
@@ -190,18 +179,6 @@ public class WeekendCottageService {
             return true;
         }
         return false;
-    }
-
-    private Boolean checkNewReservation(AvaliableReservations newAvaliableRes){
-        List<AvaliableReservations> reservations = avaliableReservationsRepository.findAll();
-        for (AvaliableReservations reservation : reservations) {
-            if(reservation.getEntityId() == newAvaliableRes.getEntityId()) {
-                if (newAvaliableRes.getStartDate().isAfter(reservation.getEndDate()) || newAvaliableRes.getEndDate().isBefore(reservation.getStartDate())) {
-                }
-                //ako se opseg nove rezervacije poklapa sa nekim datumom postojece rezervacije, onda ne pravim novu rezervaciju
-                else return false;
-            }
-        }return true;
     }
 
     public Boolean makeCottageReservation(ReservationDTO boatReservationDTO){

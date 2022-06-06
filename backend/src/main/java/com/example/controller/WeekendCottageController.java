@@ -55,7 +55,7 @@ public class WeekendCottageController {
     @PreAuthorize("hasRole('ROLE_WEEKENDCOTTOWNER')")
     @PostMapping(path = "/availability")
     public Boolean makeAvaliableReservation(@RequestBody AvailableReservationDTO newAvaliableReservation) {
-        Boolean ans = weekendCottageService.makeAvaliableReservation(newAvaliableReservation);
+        Boolean ans = reservationService.makeAvaliableReservation(newAvaliableReservation);
         return ans;
     }
 

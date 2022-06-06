@@ -1,3 +1,4 @@
+import { DatePipe, formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,9 +36,25 @@ export class BoatInfoPageComponent implements OnInit {
   cancellationConditions: any
   fishingEqu: any
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
+  //Fast availably
+  todayDate: Date = new Date();
+  firstDate: any;
+  lastDate: any;
+  newActionExpirationDate: any;
+  actionprice: any;
+  currprice: any;
+
+  //Normal availably
+  beginDate: any;
+  startTime: any;
+  finishDate: any;
+  endTime: any;
+
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.startTime = "14:00"
+    this.endTime = "12:00"
     this.activatedRoute.queryParams.subscribe(params => {
         let id = params['id'];
         this.http.get<any>('api/boat/' + id).subscribe(
@@ -95,6 +112,27 @@ export class BoatInfoPageComponent implements OnInit {
     this.http.post('api/boat/editboat', this.boat).toPromise().then(data => {
       if(data) window.location.reload();
       else{alert("Something went wrong")}
+    });
+  }
+
+  addReservation(){
+    var start = formatDate(this.firstDate,'yyyy-MM-dd','en_US');
+    var end  = formatDate(this.lastDate,'yyyy-MM-dd','en_US');
+    
+    var postData ={
+      entity: "BOAT",
+      entityId: this.boat.id,
+      startDate: start + " " + this.startTime,
+      oldPrice: this.currprice,
+      endDate: end + " " + this.endTime,
+      expirationDate: this.newActionExpirationDate,
+      newPrice: this.actionprice,
+      fast: true
+    }
+
+    this.http.post("api/boat/availability", postData).toPromise().then(data => {
+      if(!data){alert("Boat alredy busy")}
+      else{window.location.reload();}
     });
   }
 

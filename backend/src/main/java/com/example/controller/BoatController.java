@@ -1,11 +1,13 @@
 package com.example.controller;
 
+import com.example.dto.AvailableReservationDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.Boat;
 import com.example.model.Compliant;
 import com.example.model.ReservationBoat;
 import com.example.model.WeekendCottage;
 import com.example.service.BoatService;
+import com.example.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class BoatController {
     @Autowired
     private BoatService boatService;
+    @Autowired
+    private ReservationService reservationService;
 
     @GetMapping()
     public List<Boat> getAllBoats(){
@@ -96,6 +100,13 @@ public class BoatController {
     @PostMapping(path = "/editboat")
     public Boolean editBoat(@RequestBody Boat boatReservationDTO) {
         Boolean ans = boatService.editBoat(boatReservationDTO);
+        return ans;
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/availability")
+    public Boolean makeAvaliableReservation(@RequestBody AvailableReservationDTO newAvaliableReservation) {
+        Boolean ans = reservationService.makeAvaliableReservation(newAvaliableReservation);
         return ans;
     }
 }
