@@ -78,4 +78,11 @@ public class BoatController {
         boatService.makeCompliant(compliant);
         return true;
     }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/addboat")
+    public Boolean makeBoat(@RequestBody Boat boatReservationDTO) {
+        Boolean ans = boatService.makeBoat(boatReservationDTO);
+        return ans;
+    }
 }

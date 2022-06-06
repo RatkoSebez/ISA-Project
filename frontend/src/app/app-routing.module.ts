@@ -13,6 +13,7 @@ import { FastReservationBoatComponent } from './fast-reservation-boat/fast-reser
 import { FastReservationCottageComponent } from './fast-reservation-cottage/fast-reservation-cottage.component';
 import { HomeComponent } from './home/home.component';
 import { InfoUserComponent } from './info-user/info-user.component';
+import { MakeBoatComponent } from './make-boat/make-boat.component';
 import { MakeComplaintComponent } from './make-complaint/make-complaint.component';
 import { MakeCottageComponent } from './make-cottage/make-cottage.component';
 import { AdventureReservation } from './model/AdventureReservation';
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: "boat", component: BoatInfoPageComponent},
   {path: "mycottages", component: OwnerCottageCardComponent},
   {path: "addCottage", component: MakeCottageComponent},
+  {path: "addBoat", component: MakeBoatComponent},
   {path: "myboats", component: OwnerBoatCardComponent},
   {path: "info", component: InfoUserComponent},
   {path: "", redirectTo: '/home', pathMatch: 'full'},

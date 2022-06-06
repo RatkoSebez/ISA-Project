@@ -18,6 +18,7 @@ import { MyCottagesFilterPipe } from './pipes/mycottages-filter.pipe';
 import { CottagesFilterPipe } from './pipes/cottages-filter.pipe';
 import { HomeForGuestsComponent } from './home-for-guests/home-for-guests.component';
 import { BoatsFilterPipe } from './pipes/boats-filter.pipe';
+import {MyBoatsFilterPipe} from './pipes/myboats-filter.pipe';
 import { RegisterComponent } from './register/register.component';
 import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
 import { HomeForClientComponent } from './home-for-client/home-for-client.component';
@@ -51,6 +52,7 @@ import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, MonthS
 import { CalendarComponent } from './calendar/calendar.component';
 import { AgmCoreModule } from '@agm/core';
 import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.component';
+import { MakeBoatComponent } from './make-boat/make-boat.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.compon
     CottagesFilterPipe,
     HomeForGuestsComponent,
     BoatsFilterPipe,
+    MyBoatsFilterPipe,
     RegisterComponent,
     UserInfoPageComponent,
     HomeForClientComponent,
@@ -93,7 +96,8 @@ import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.compon
     InfoUserComponent,
     WeekendCottageReportComponent,
     CalendarComponent,
-    OwnerBoatCardComponent
+    OwnerBoatCardComponent,
+    MakeBoatComponent
   ],
   imports: [
     BrowserModule,

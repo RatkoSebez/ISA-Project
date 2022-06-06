@@ -8,7 +8,7 @@ import { Boat } from '../model/Boat';
   name: 'boatsFilter',
   pure: false
 })
-export class BoatsFilterPipe implements PipeTransform {
+export class MyBoatsFilterPipe implements PipeTransform {
 
   constructor(private boatsPageComponent: BoatsPageComponent, private boatCardComponent: BoatCardComponent){
   }

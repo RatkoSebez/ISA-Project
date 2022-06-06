@@ -63,11 +63,11 @@ public class IsaProjekatApplication implements ApplicationRunner {
         weekendCottageRepository.save(new WeekendCottage("Supa", "Cirpanova", "ovo je opis vikendice", 3.5, "pravila", "siki.jpg", 7L, reservationsCottage,25, additionalServices, 19.831740, 45.252377));
         weekendCottageRepository.save(new WeekendCottage("vikendica4", "adresa3", "ovo je opis vikendice", 4.0, "pravila", "liki.jpg", 7L, 30, additionalServices));
         //weekendCottageRepository.save(new WeekendCottage("vikendica5", "adresa7", "ovo je opis vikendice", 3.2, "pravila", "vikendica.jpg", 4L, "cenovnik", additionalServices));
-        boatRepository.save(new Boat("brod1", "adresa2", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.8, 30.0, additionalServices, 3L, reservationsBoat));
-        boatRepository.save(new Boat("brod2", "adresa8", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.1, 31.0, additionalServices, 3L));
-        boatRepository.save(new Boat("brod3", "adresa3", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, 33.0, additionalServices, 3L));
-        boatRepository.save(new Boat("brod4", "adresa1", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 3.2, 32.0, additionalServices, 3L));
-        boatRepository.save(new Boat("brod5", "adresa6", "opis", "https://images.pexels.com/photos/6585322/pexels-photo-6585322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", 5, 4.2, 40.0, additionalServices, 3L));
+        boatRepository.save(new Boat("brod1", "adresa2", "opis", "brod.jpg", 5, 4.8, 30.0, additionalServices, 1L, reservationsBoat));
+        boatRepository.save(new Boat("brod2", "adresa8", "opis", "brod1.jpg", 5, 4.1, 31.0, additionalServices, 3L));
+        boatRepository.save(new Boat("brod3", "adresa3", "opis", "brod2.jpg", 5, 4.2, 33.0, additionalServices, 3L));
+        boatRepository.save(new Boat("brod4", "adresa1", "opis", "brod3.jpg", 5, 3.2, 32.0, additionalServices, 3L));
+//        boatRepository.save(new Boat("brod5", "adresa6", "opis", "brod4.jpg", 5, 4.2, 40.0, additionalServices, 3L));
 //        fastReservationRepository.save(new FastReservation(Entity.BOAT, 25L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
 //        fastReservationRepository.save(new FastReservation(Entity.WEEKEND_COTTAGE, 19L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));
 //        fastReservationRepository.save(new FastReservation(Entity.ADVENTURE, 8L, LocalDate.of(2022, 1, 25), LocalDate.of(2022, 1, 29), "isaprojmejl2@gmail.com", LocalDate.of(2023, 1, 29), 40.0));//        List<ReservationBoat> reservations = new ArrayList<>();

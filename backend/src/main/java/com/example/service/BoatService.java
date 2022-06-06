@@ -132,4 +132,12 @@ public class BoatService {
         message.setText(compliant.getCompliant());
         javaMailSender.send(message);
     }
+
+    public Boolean makeBoat(Boat boat){
+        if(boat != null) {
+            boatRepository.save(boat);
+            return true;
+        }
+        else{return false;}
+    }
 }

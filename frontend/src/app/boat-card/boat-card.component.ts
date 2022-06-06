@@ -22,6 +22,12 @@ export class BoatCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.doGet();
+    this.http.get<any>('api/boat').subscribe(
+      response => {
+        this.boats = response;
+        //console.log(this.boats);
+      }
+    );
   }
 
   public getBoats() : Boat[]{
@@ -38,19 +44,7 @@ export class BoatCardComponent implements OnInit {
       console.log(val);
       if(val) {
         this.show = true;
-        llogged = val.id;
-        console.log(llogged);
-        this.doSome(llogged);
       }
-    });
-  }
-
-  doSome(llogged: any){
-    console.log(llogged)
-    let id = llogged;
-    this.http.get<any>('api/boat/myboats/' + llogged).subscribe(response => {
-        this.boats = response;
-        console.log(this.boats);
     });
   }
 

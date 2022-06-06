@@ -97,4 +97,8 @@ export class OwnerBoatCardComponent implements OnInit {
     });
   }
 
+  addBoat(){
+    this.router.navigate(['/addBoat']);
+  }
+
 }

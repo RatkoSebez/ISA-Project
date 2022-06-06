@@ -7,7 +7,7 @@ import { OwnerBoatCardComponent } from '../owner-boat-card/owner-boat-card.compo
 import { OwnerCottageCardComponent } from '../owner-cottage-card/owner-cottage-card.component';
 
 @Pipe({
-  name: 'boatsFilter',
+  name: 'myboatsFilter',
   pure: false
 })
 export class BoatsFilterPipe implements PipeTransform {

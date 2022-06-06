@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5">
+            <div class="row z-depth-3 cottage-border">
+                <form  (ngSubmit)="onSubmit()">
+                    <h2 class="form-signin-heading">Add new boat</h2>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="name" name="name" [(ngModel)]="name" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Address" name="address" [(ngModel)]="address" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Type" name="additionalservices" [(ngModel)]="type" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Length" name="additionalservices" [(ngModel)]="length" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Engine number" name="additionalservices" [(ngModel)]="engnumber" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Engine power" name="additionalservices" [(ngModel)]="engpower" >
+                    </p>
+                    <p class="form-group">
+                        <label class="sr-only">Max speed</label>
+                        <input type="text" class="form-control" placeholder="Max speed" name="additionalservices" [(ngModel)]="maxspeed" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description" >
+                    </p>
+                    <p>
+                        <label>Images</label>
+                        <input type="file" onclick="this.value = null" (change)="selectImage($event)" class="form-control">
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Capacity" name="additionalservices" [(ngModel)]="capacity" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Rules of conduct" name = "rules" [(ngModel)]="rules" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text"  class="form-control" placeholder="Price per day" name="pricelist" [(ngModel)]="pricelist" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Navigation" name="additionalservices" [(ngModel)]="navigation" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Cancellation conditions" name="additionalservices" [(ngModel)]="cancel" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Additional services" name="additionalservices" [(ngModel)]="additionalservices" >
+                    </p>
+                    <p>
+                        <button type="submit" class="btn btn-primary" [disabled]="this.selectedFile==null || this.name==null || this.address==null || this.description==null || this.rules==null || this.pricelist==null ">Confirm</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

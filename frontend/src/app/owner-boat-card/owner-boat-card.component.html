@@ -61,12 +61,12 @@
 
         <div class="center mb-4">
             <button class="btn btn-outline-primary make-reservation" [ngClass]="show ? 'is-active' : 'is-not-active'"
-                >Add Boat</button>
+               (click)="addBoat()" >Add Boat</button>
         </div>
 
-        <div class="col-sm" *ngFor="let boat of boats | boatsFilter:'':'name'">
+        <div class="col-sm" *ngFor="let boat of boats | myboatsFilter:'':'name'">
             <div class="card" style="width: 18rem;">
-                <img src="{{ boat.image }}" class="card-img-top" alt="">
+                <img src="assets/{{ boat.image }}" class="card-img-top" alt="">
                 <div class="card-body">
                     <h2 class="card-title">{{ boat.name }}</h2>
                     <p class="card-text">{{ boat.description | slice:0:200
