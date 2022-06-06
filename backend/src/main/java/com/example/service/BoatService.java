@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.AvailableReservationDTO;
+import com.example.dto.EditReservationDTO;
 import com.example.dto.ReservationDTO;
 import com.example.model.*;
 import com.example.repository.*;
@@ -91,6 +92,23 @@ public class BoatService {
         return true;
     }
 
+    public Boolean editReservation(EditReservationDTO reservation){
+        ReservationBoat oldReservation = reservationBoatRepository.findById(reservation.getId()).stream().findFirst().orElseThrow();
+        if(oldReservation != null){
+            if(oldReservation.getEndDate().isAfter(LocalDate.now()) && oldReservation.getCanceled() == false){
+                oldReservation.setStartDate(findDate(reservation.getStartDate()));
+                oldReservation.setEndDate(findDate(reservation.getEndDate()));
+
+                reservationBoatRepository.save(oldReservation);
+                return true;}
+        }return false;
+    }
+
+    private LocalDate findDate(String start){
+        DateTimeFormatter  formatter = DateTimeFormatter.ofPattern ("yyyy-MM-dd");
+        return LocalDate.parse(start, formatter);
+    }
+
     public List<ReservationBoat> getAllBoatReservationsThatCanBeCancelled(){
         List<ReservationBoat> reservations = reservationBoatRepository.findAll();
         List<ReservationBoat> reservations2 = new ArrayList<>();
@@ -121,6 +139,13 @@ public class BoatService {
 //        }
 //        return boats;
 //    }
+
+    public List<ReservationBoat> getMyBoatReservations(Long id){
+        Boat boat = boatRepository.findById(id).stream().findFirst().orElseThrow();
+        List<ReservationBoat> reservations = new ArrayList<>();
+        if(boat.getReservations() != null) { reservations = boat.getReservations();}
+        return reservations;
+    }
 
     public void makeCompliant(Compliant compliant){
         compliantRepository.save(compliant);

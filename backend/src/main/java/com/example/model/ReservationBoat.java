@@ -24,6 +24,7 @@ public class ReservationBoat {
     private Double price;
     private Integer guests;
     private String additionalServices;
+    private Boolean canceled;
 
     public ReservationBoat(LocalDate start, LocalDate end, String clientEmail, Double price, Integer guests, String additionalServices){
         this.startDate = start;
@@ -32,5 +33,6 @@ public class ReservationBoat {
         this.price = price;
         this.guests = guests;
         this.additionalServices = additionalServices;
+        this.canceled = false;
     }
 }

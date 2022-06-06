@@ -53,6 +53,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { AgmCoreModule } from '@agm/core';
 import { OwnerBoatCardComponent } from './owner-boat-card/owner-boat-card.component';
 import { MakeBoatComponent } from './make-boat/make-boat.component';
+import { HistoryReservationBoatComponent } from './history-reservation-boat/history-reservation-boat.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { MakeBoatComponent } from './make-boat/make-boat.component';
     WeekendCottageReportComponent,
     CalendarComponent,
     OwnerBoatCardComponent,
-    MakeBoatComponent
+    MakeBoatComponent,
+    HistoryReservationBoatComponent
   ],
   imports: [
     BrowserModule,

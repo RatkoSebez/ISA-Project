@@ -72,7 +72,7 @@ public class WeekendCottageService {
     public Boolean editReservation(EditReservationDTO reservation){
         ReservationCottage oldReservation = reservationCottageRepository.findById(reservation.getId()).stream().findFirst().orElseThrow();
         if(oldReservation != null){
-            if(oldReservation.getEndDate().isBefore(LocalDate.now())){
+            if(oldReservation.getEndDate().isAfter(LocalDate.now())){
             oldReservation.setStartDate(findDate(reservation.getStartDate()));
             oldReservation.setEndDate(findDate(reservation.getEndDate()));
             reservationCottageRepository.save(oldReservation);

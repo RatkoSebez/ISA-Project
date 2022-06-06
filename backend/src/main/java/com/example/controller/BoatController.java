@@ -1,11 +1,9 @@
 package com.example.controller;
 
 import com.example.dto.AvailableReservationDTO;
+import com.example.dto.EditReservationDTO;
 import com.example.dto.ReservationDTO;
-import com.example.model.Boat;
-import com.example.model.Compliant;
-import com.example.model.ReservationBoat;
-import com.example.model.WeekendCottage;
+import com.example.model.*;
 import com.example.service.BoatService;
 import com.example.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +73,19 @@ public class BoatController {
 //        return boatService.getAllBoatsFromListOfIds(result);
 //        //return null;
 //    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @GetMapping(path = "/boatReservations/{id}")
+    public List<ReservationBoat> getMyBoatReservations(@PathVariable Long id){
+        return boatService.getMyBoatReservations(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/editReservation")
+    public Boolean editBoatReservation(@RequestBody EditReservationDTO reservation) {
+        Boolean ans = boatService.editReservation(reservation);
+        return ans;
+    }
 
     @PreAuthorize("hasRole('ROLE_CLIENT')")
     @PostMapping(path = "/compliant")
