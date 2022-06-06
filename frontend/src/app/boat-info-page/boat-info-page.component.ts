@@ -19,6 +19,8 @@ export class BoatInfoPageComponent implements OnInit {
   boowner = false;
   subscribeButtonText = "subscribe";
   selectedFile = null;
+  latitude = 45.2396;
+  longitude = 19.8227;
 
   //Editable
   name: any

@@ -146,7 +146,9 @@
             </div>
         </div>
     </div>
-
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="8">
+        <agm-marker  [latitude]="lat" [longitude]="lon"></agm-marker>
+    </agm-map>
     <app-history-reservation-cottage [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-history-reservation-cottage>
     <app-weekend-cottage-report [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-weekend-cottage-report>
     <app-calendar [ngClass]="coowner ? 'is-active' : 'is-not-active'"></app-calendar>

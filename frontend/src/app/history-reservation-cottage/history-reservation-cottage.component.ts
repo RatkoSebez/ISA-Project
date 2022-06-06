@@ -23,8 +23,7 @@ export class HistoryReservationCottageComponent implements OnInit {
   // Mapa
   latitude = 45.2396;
   longitude = 19.8227;
-  lon!: any
-  lat!: any
+ 
 
   cottageReservations!: CottageReservation[];
   lista!: calendar[];
@@ -50,9 +49,6 @@ export class HistoryReservationCottageComponent implements OnInit {
       }
       
     );
-
-    this.lon = this.component.weekendCottage.longitude;
-    this.lat = this.component.weekendCottage.latitude;
 
     this.http.get<any>('api/weekendCottage/reservationc').subscribe(
       response => {

@@ -20,6 +20,10 @@ export class WeekendCottageInfoPageComponent implements OnInit {
   edit = true;
   postCottage! : WeekendCottage;
   id: any
+  latitude = 45.2396;
+  longitude = 19.8227;
+  lon!: any
+  lat!: any
 
   //Fast availably
   todayDate: Date = new Date();
@@ -55,6 +59,8 @@ export class WeekendCottageInfoPageComponent implements OnInit {
             this.weekendCottage = response;
             this.currprice = this.weekendCottage.priceList
             this.postCottage = this.weekendCottage
+            this.lon = this.weekendCottage.longitude;
+            this.lat = this.weekendCottage.latitude;
           }
         );
     });
