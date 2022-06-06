@@ -3,15 +3,13 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.mb{
+  margin-bottom: 100%;
+}
+
 .img-cottage {
   width: 100%;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.col-sm-4 {
-  padding: 0;
 }
 
 .is-not-active {
@@ -20,4 +18,8 @@
 
 .is-active {
   display: inherit;
+}
+
+.cdk-overlay-container{
+  z-index: 2000;
 }

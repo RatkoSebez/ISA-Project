@@ -9,8 +9,18 @@ export class Boat{
         public rating: number,
         public image: string,
         public capacity: number,
-        public priceList: string,
+        public pricePerDay: number,
         public additionalServices: string,
-        public reservations: Array<BoatReservation>
+        public reservations: Array<BoatReservation>,
+        public type: string,
+        public length: number,
+        public engineNumber: number,
+        public enginePower: string,
+        public maxSpeed: number,
+        public rules: string,
+        public navigation: string,
+        public fishingEqu: string,
+        public cancellationConditions: string,
+        public boatOwnerId: number
     ){}
 }

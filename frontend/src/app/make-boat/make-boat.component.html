@@ -25,7 +25,6 @@
                         <input type="text" class="form-control" placeholder="Engine power" name="additionalservices" [(ngModel)]="engpower" >
                     </p>
                     <p class="form-group">
-                        <label class="sr-only">Max speed</label>
                         <input type="text" class="form-control" placeholder="Max speed" name="additionalservices" [(ngModel)]="maxspeed" >
                     </p>
                     <p class="form-group">
@@ -52,6 +51,9 @@
                     </p>
                     <p class="form-group">
                         <input type="text" class="form-control" placeholder="Additional services" name="additionalservices" [(ngModel)]="additionalservices" >
+                    </p>
+                    <p class="form-group">
+                        <input type="text" class="form-control" placeholder="Fishing equipment" name="additionalservices" [(ngModel)]="fishingEqu" >
                     </p>
                     <p>
                         <button type="submit" class="btn btn-primary" [disabled]="this.selectedFile==null || this.name==null || this.address==null || this.description==null || this.rules==null || this.pricelist==null ">Confirm</button>

@@ -140,4 +140,34 @@ public class BoatService {
         }
         else{return false;}
     }
+
+    public Boolean editBoat(Boat boat){
+        Boat oldBoat = boatRepository.findById(boat.getId()).stream().findFirst().orElseThrow();
+        if(boat == null) {return false;}
+        oldBoat.setName(boat.getName());
+        oldBoat.setAddress(boat.getAddress());
+        oldBoat.setDescription(boat.getDescription());
+        oldBoat.setImage(boat.getImage());
+        oldBoat.setPricePerDay(boat.getPricePerDay());
+        oldBoat.setAdditionalServices(boat.getAdditionalServices());
+        oldBoat.setType(boat.getType());
+        oldBoat.setLength(boat.getLength());
+        oldBoat.setEngineNumber(boat.getEngineNumber());
+        oldBoat.setEnginePower(boat.getEnginePower());
+        oldBoat.setMaxSpeed(boat.getMaxSpeed());
+        oldBoat.setNavigation(boat.getNavigation());
+        oldBoat.setCancellationConditions(boat.getCancellationConditions());
+        oldBoat.setFishingEqu(boat.getFishingEqu());
+        boatRepository.save(oldBoat);
+        return true;
+    }
+
+    public Boolean deleteBoat(Long id){
+        Optional<Boat> boat = boatRepository.findById(id);
+        if(boat.get().getReservations()==null || boat.get().getReservations().size() == 0) {
+            boatRepository.deleteById(id);
+            return true;
+        }
+        else{return false;}
+    }
 }

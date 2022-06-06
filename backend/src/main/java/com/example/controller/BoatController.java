@@ -85,4 +85,17 @@ public class BoatController {
         Boolean ans = boatService.makeBoat(boatReservationDTO);
         return ans;
     }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @DeleteMapping(path = "/{id}")
+    public Boolean deleteBoat(@PathVariable Long id){
+        return boatService.deleteBoat(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_BOATOWNER')")
+    @PostMapping(path = "/editboat")
+    public Boolean editBoat(@RequestBody Boat boatReservationDTO) {
+        Boolean ans = boatService.editBoat(boatReservationDTO);
+        return ans;
+    }
 }

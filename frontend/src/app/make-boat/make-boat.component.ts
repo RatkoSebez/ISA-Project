@@ -24,6 +24,7 @@ export class MakeBoatComponent implements OnInit {
   capacity: any;
   navigation: any;
   cancel: any;
+  fishingEqu: any;
 
   selectedFile = null;
   longitude: any;
@@ -59,8 +60,8 @@ export class MakeBoatComponent implements OnInit {
       maxSpeed: this.maxspeed,
       capacity: this.capacity,
       navigation: this.navigation,
-      cancellationConditions: this.cancel
-
+      cancellationConditions: this.cancel,
+      fishingEqu: this.fishingEqu
     }
 
     if(boat){
