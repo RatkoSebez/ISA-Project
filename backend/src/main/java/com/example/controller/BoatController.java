@@ -36,6 +36,11 @@ public class BoatController {
         return boatService.getAllBoatReservationsThatCanBeCancelled();
     }
 
+    @GetMapping(path = "/availableReservations")
+    public List<AvaliableReservations> availableRegularReservations() {
+        return boatService.availableRegularReservations();
+    }
+
     @GetMapping(path = "/allreservations")
     public List<ReservationBoat> getAllBoatReservations(){
         return boatService.getAllBoatReservations();

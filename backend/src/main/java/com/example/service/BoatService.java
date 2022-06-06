@@ -135,6 +135,14 @@ public class BoatService {
         return reservations2;
     }
 
+    public List<AvaliableReservations> availableRegularReservations(){
+        List<AvaliableReservations> available = avaliableReservationsRepository.findAllByFastIsFalse();
+        if(available != null) {
+            return available;
+        }else{available = new ArrayList<>();}
+        return available;
+    }
+
     public List<ReservationBoat> getAllBoatReservations(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = (User) principal;

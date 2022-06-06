@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { BoatsPageComponent } from '../boats-page/boats-page.component';
+import { AvailableReservations } from '../model/AvailableReservations';
 import { Boat } from '../model/Boat';
 import { User } from '../model/User';
 
@@ -16,7 +17,9 @@ export class BoatCardComponent implements OnInit {
 
   boats!: Boat[];
   show = false;
+  reserve = false;
   additionalServices = "";
+  availableReservation !: AvailableReservations[];
 
   constructor(private http: HttpClient, private component: BoatsPageComponent) { }
 
@@ -25,13 +28,22 @@ export class BoatCardComponent implements OnInit {
     this.http.get<any>('api/boat').subscribe(
       response => {
         this.boats = response;
-        //console.log(this.boats);
       }
     );
+    this.http.get<any>('api/boat/availableReservations').subscribe(
+      response => {
+        this.availableReservation = response;
+      }
+    );
+    
   }
 
   public getBoats() : Boat[]{
     return this.boats;
+  }
+
+  public getAR() : AvailableReservations[]{
+    return this.availableReservation;
   }
 
   public makeReservation(id: number){
