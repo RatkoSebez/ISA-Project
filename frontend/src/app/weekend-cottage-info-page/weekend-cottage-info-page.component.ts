@@ -122,7 +122,7 @@ export class WeekendCottageInfoPageComponent implements OnInit {
 
     this.http.post("api/weekendCottage/availability", postData).toPromise().then(data => {
       if(!data){alert("Cottage alredy busy")}
-      else{this.router.navigate(['/mycottages']);}
+      else{window.location.reload();}
     });
   }
 
@@ -140,7 +140,7 @@ export class WeekendCottageInfoPageComponent implements OnInit {
 
     this.http.post("api/weekendCottage/availability", postData).toPromise().then(data => {
       if(!data){alert("Cottage alredy busy")}
-      else{this.router.navigate(['/mycottages']);}
+      else{window.location.reload();}
     });
   }
 }

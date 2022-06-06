@@ -136,6 +136,24 @@ export class BoatInfoPageComponent implements OnInit {
     });
   }
 
+  editAvailability(){
+    var start = formatDate(this.beginDate,'yyyy-MM-dd','en_US');
+    var end  = formatDate(this.finishDate,'yyyy-MM-dd','en_US');
+    
+    var postData ={
+      entity: "BOAT",
+      entityId: this.boat.id,
+      startDate: start + " " + this.startTime,
+      endDate: end + " " + this.endTime,
+      fast: false
+    }
+
+    this.http.post("api/boat/availability", postData).toPromise().then(data => {
+      if(!data){alert("Boat alredy busy")}
+      else{window.location.reload();}
+    });
+  }
+
   selectImage(event: any){
     this.selectedFile = event.target.files[0].name;
   }
